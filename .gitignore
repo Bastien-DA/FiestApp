@@ -28,7 +28,6 @@ lib/generated_plugin_registrant.dart
 **/android/key.properties
 **/android/local.properties
 **/android/**/GeneratedPluginRegistrant.java
-android
 
 # iOS/XCode related
 **/ios/**/*.mode1v3
@@ -58,7 +57,7 @@ android
 **/ios/Flutter/flutter_export_environment.sh
 **/ios/ServiceDefinitions.json
 **/ios/Runner/GeneratedPluginRegistrant.*
-ios
+
 
 # Exceptions to above rules.
 !**/ios/**/default.mode1v3
@@ -160,8 +159,6 @@ obj/
 .idea/gradle.xml
 .idea/jarRepositories.xml
 .idea/navEditor.xml
-.idea
-./.idea
 
 # Legacy Eclipse project files
 .classpath
