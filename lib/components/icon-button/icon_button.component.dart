@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class CustomIconButton extends ConsumerWidget {
   const CustomIconButton({
     super.key,
+    this.size = 20.0,
     required this.icon,
     required this.backgroundColor,
     required this.iconColor,
@@ -13,6 +14,7 @@ class CustomIconButton extends ConsumerWidget {
 
   final IconData icon;
   final Color backgroundColor;
+  final double size;
   final Color iconColor;
   final Function() onClick;
 
@@ -28,7 +30,7 @@ class CustomIconButton extends ConsumerWidget {
         ),
         height: 44,
         width: 44,
-        child: FaIcon(icon, color: iconColor, size: 20),
+        child: FaIcon(icon, color: iconColor, size: size),
       ),
     );
   }
