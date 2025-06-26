@@ -1,7 +1,7 @@
 import 'package:fiestapp/components/avatar-group.dart/avatar-group-back.component.dart';
 import 'package:fiestapp/components/icon-button/icon_button.component.dart';
 import 'package:fiestapp/enum/app_route.dart';
-import 'package:fiestapp/mock/data.dart';
+import 'package:fiestapp/mock/user.mock.dart';
 import 'package:fiestapp/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

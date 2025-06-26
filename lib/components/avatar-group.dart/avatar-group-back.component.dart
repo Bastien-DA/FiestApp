@@ -1,4 +1,4 @@
-import 'package:fiestapp/types.dart';
+import 'package:fiestapp/utils/types/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

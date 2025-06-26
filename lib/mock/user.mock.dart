@@ -1,4 +1,4 @@
-import '../types.dart';
+import '../utils/types/user.dart';
 
 final List<User> mockUsers = [
   User(

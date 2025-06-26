@@ -11,42 +11,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      home: const MyHomePage(title: 'FiestApp'),
+    return MaterialApp.router(
+      title: 'FiestApp',
+      routerConfig: router,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        // Appliquer Poppins partout dans l'app
-        textTheme: GoogleFonts.poppinsTextTheme(
-          Theme.of(
-            context,
-          ).textTheme, // <-- important pour l’héritage des styles
-        ),
-      ),
-      //theme: ThemeData(textTheme: GoogleFonts.poppinsTextTheme()),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      extendBody: true,
-      backgroundColor: Colors.white,
-      body: MaterialApp.router(
-        routerConfig: router,
-        debugShowCheckedModeBanner: false,
-      ),
+      theme: ThemeData(textTheme: GoogleFonts.poppinsTextTheme()),
     );
   }
 }
