@@ -16,8 +16,14 @@ class MyApp extends StatelessWidget {
       home: const MyHomePage(title: 'FiestApp'),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        textTheme: GoogleFonts.poppinsTextTheme()
+        // Appliquer Poppins partout dans l'app
+        textTheme: GoogleFonts.poppinsTextTheme(
+          Theme.of(
+            context,
+          ).textTheme, // <-- important pour l’héritage des styles
+        ),
       ),
+      //theme: ThemeData(textTheme: GoogleFonts.poppinsTextTheme()),
     );
   }
 }
@@ -32,7 +38,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
