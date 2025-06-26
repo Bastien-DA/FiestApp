@@ -10,7 +10,6 @@ class CustomTitle extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Text(
       text,
-      // Vous n'avez pas besoin d'interpolation de chaîne ici si text est déjà une chaîne
       style: TextStyle(
         color: Colors.black,
         fontSize: 18,
