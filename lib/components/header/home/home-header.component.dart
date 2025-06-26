@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:fiestapp/components/header/home/top_header.dart';
+import 'package:fiestapp/components/header/home/top-home-header.component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -12,8 +12,8 @@ class HomeHeader extends ConsumerWidget {
     return Flexible(
       child: ClipRRect(
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(20),
-          bottomRight: Radius.circular(20),
+          bottomLeft: Radius.circular(40),
+          bottomRight: Radius.circular(40),
         ),
         child: Container(
           decoration: BoxDecoration(
@@ -23,14 +23,15 @@ class HomeHeader extends ConsumerWidget {
             ),
           ),
           width: double.infinity,
-          height: MediaQuery.sizeOf(context).height / 2.9,
+          height: MediaQuery
+              .sizeOf(context)
+              .height / 2.9,
           child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
             child: Container(
-              color: Colors.black.withOpacity(0.3), // Ajoutez votre couleur semi-transparente ici
-              child: Center(
-                child: TopHeader(name: "Marikatou")
-              ),
+                color: Color(0xFFE15B42).withValues(alpha: 0.3),
+                // 50% de transparence              child: Center(
+                child: TopHomeHeader(name: "Marikatou")
             ),
           ),
         ),

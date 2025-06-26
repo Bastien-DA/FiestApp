@@ -1,9 +1,9 @@
-import 'package:fiestapp/components/icon-button/profil_icon_button.dart';
+import 'package:fiestapp/components/icon-button/profil-icon-button.component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class TopHeader extends ConsumerWidget {
-  const TopHeader({
+class TopHomeHeader extends ConsumerWidget {
+  const TopHomeHeader({
     super.key,
     required this.name
   });

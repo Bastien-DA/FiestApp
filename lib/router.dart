@@ -1,9 +1,9 @@
-import 'package:fiestapp/pages/home.dart';
-import 'package:fiestapp/pages/profil.dart';
+import 'package:fiestapp/pages/profil.page.dart';
 import 'package:fiestapp/pages/details.page.dart';
+import 'package:fiestapp/pages/home.page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'enum/app_route.dart';
+import 'enum/app-route.enum.dart';
 
 GoRouter router = GoRouter(
   initialLocation: AppRoute.details.path,
