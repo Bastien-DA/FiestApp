@@ -3,8 +3,8 @@ import 'package:fiestapp/router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 
-class ProfilIconButton extends ConsumerWidget {
-  const ProfilIconButton({
+class ProfilImageButton extends ConsumerWidget {
+  const ProfilImageButton({
     super.key,
     required this.imagePath,
   });
@@ -18,12 +18,8 @@ class ProfilIconButton extends ConsumerWidget {
         router.push(AppRoute.profil.path);
       },
       child: CircleAvatar(
-        radius: 20,
-        backgroundColor: Colors.white,
-        child: CircleAvatar(
-          radius: 18,
-          backgroundImage: NetworkImage(imagePath),
-        ),
+        radius: 22,
+        backgroundImage: NetworkImage(imagePath),
       ),
     );
   }

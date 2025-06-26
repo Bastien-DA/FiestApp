@@ -1,7 +1,9 @@
 import 'package:fiestapp/pages/profil.page.dart';
 import 'package:fiestapp/pages/details.page.dart';
 import 'package:fiestapp/pages/home.page.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:fiestapp/pages/profil.page.dart';
+import 'package:fiestapp/pages/notification.page.dart';
+import 'package:flutter/material.dart' hide Notification;
 import 'package:go_router/go_router.dart';
 import 'enum/app-route.enum.dart';
 
@@ -29,6 +31,13 @@ GoRouter router = GoRouter(
         return const Details();
       },
     ),
+    GoRoute(
+      path: AppRoute.notification.path,
+      name: AppRoute.notification.name,
+      builder: (BuildContext context, GoRouterState state) {
+        return const Notification();
+      },
+    )
   ]
 );
 

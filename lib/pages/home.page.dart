@@ -8,6 +8,7 @@ class Home extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         children: [
           HomeHeader()
