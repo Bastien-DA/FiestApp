@@ -2,7 +2,7 @@
 
 import 'dart:ui';
 
-import 'package:fiestapp/components/header/home/top-home-header.component.dart';
+import 'top-home-header.component.dart';
 import 'package:fiestapp/components/search-bar/generic-search-bar.component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

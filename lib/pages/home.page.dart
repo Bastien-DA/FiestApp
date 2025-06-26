@@ -1,4 +1,4 @@
-import 'package:fiestapp/components/header/home/home-header.component.dart';
+import 'package:fiestapp/components/home/header/home-header.component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
