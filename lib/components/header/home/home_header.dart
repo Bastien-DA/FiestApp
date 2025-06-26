@@ -26,8 +26,11 @@ class HomeHeader extends ConsumerWidget {
           height: MediaQuery.sizeOf(context).height / 2.9,
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-            child: Center(
-              child: TopHeader(name: "Marikatou")
+            child: Container(
+              color: Colors.black.withOpacity(0.3), // Ajoutez votre couleur semi-transparente ici
+              child: Center(
+                child: TopHeader(name: "Marikatou")
+              ),
             ),
           ),
         ),
