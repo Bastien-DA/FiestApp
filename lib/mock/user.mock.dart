@@ -1,5 +1,16 @@
 import '../utils/types/user.dart';
 
+final User mockCurrentUser = User(
+  userGuid: '1',
+  username: 'Alice',
+  biologicalGender: 'female',
+  age: 25,
+  height: 165,
+  weight: 60,
+  alcoholConsumption: 'occasionally',
+  ppLink: 'https://randomuser.me/api/portraits/women/1.jpg',
+);
+
 final List<User> mockUsers = [
   User(
     userGuid: '1',
