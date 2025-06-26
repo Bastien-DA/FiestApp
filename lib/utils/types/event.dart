@@ -6,8 +6,8 @@ class Event {
   final String title;
   final String description;
   final String location;
-  final int latitute; // peut-être à corriger en latitude ?
-  final int longitude;
+  final double latitute; // peut-être à corriger en latitude ?
+  final double longitude;
   final int date;
   final User organazer;
   final List<User> participants;
@@ -32,8 +32,8 @@ class Event {
       title: json['title'] as String,
       description: json['description'] as String,
       location: json['location'] as String,
-      latitute: json['latitude'] as int,
-      longitude: json['longitude'] as int,
+      latitute: json['latitude'] as double,
+      longitude: json['longitude'] as double,
       date: json['date'] as int,
       organazer: User.fromJson(json['organazer']),
       participants: (json['paticipants'] as List)

@@ -1,4 +1,4 @@
-import 'package:fiestapp/components/event/planning-data.component.dart';
+import 'package:fiestapp/components/details/planning-data.component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

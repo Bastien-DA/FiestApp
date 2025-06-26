@@ -1,6 +1,6 @@
-import 'package:fiestapp/components/event/event-description.component.dart';
-import 'package:fiestapp/components/event/event-title.component.dart';
-import 'package:fiestapp/components/event/planning-data-block.component.dart';
+import 'package:fiestapp/components/details/event-description.component.dart';
+import 'package:fiestapp/components/details/event-title.component.dart';
+import 'package:fiestapp/components/details/planning-data-block.component.dart';
 import 'package:fiestapp/utils/types/event.dart';
 import 'package:fiestapp/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +16,7 @@ class EventData extends ConsumerWidget {
     return Container(
       padding: EdgeInsets.all(10),
       child: Column(
-        spacing: 5,
+        spacing: 10,
         children: [
           PlanningDataBlock(
             date: formatDate(event.date),

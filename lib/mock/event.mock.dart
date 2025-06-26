@@ -2,14 +2,14 @@ import '../utils/types/event.dart';
 import '../utils/types/user.dart';
 
 final mockEvent = Event(
-  guid: 'event-001',
+  guid: 'details-001',
   title: 'Soirée Karaoké & Cocktails',
   description:
       'Une super soirée avec du chant, des cocktails maison, et plein de fun !',
   location: '25 Rue du Chant, Lyon',
-  latitute: 45,
+  latitute: 44.833328,
   // latitude fictive
-  longitude: 4,
+  longitude: -0.56667,
   // longitude fictive
   date: 1750940247,
 

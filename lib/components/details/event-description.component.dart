@@ -10,12 +10,17 @@ class EventDescription extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      spacing: 5,
-      children: [
-        CustomTitle(text: "A propos"),
-        Text(description),
-      ],
+    return Container(
+      width: double.infinity,
+      alignment: Alignment.centerLeft,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: 5,
+        children: [
+          CustomTitle(text: "A propos"),
+          Text(description),
+        ],
+      ),
     );
   }
 }

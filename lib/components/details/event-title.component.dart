@@ -10,12 +10,17 @@ class EventTitle extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      spacing: 5,
-      children: [
-        CustomTitle(text: title),
-        Text("📍 ${adress}"),
-      ],
+    return Container(
+      width: double.infinity,
+      alignment: Alignment.centerLeft,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: 5,
+        children: [
+          CustomTitle(text: title),
+          Text("📍 ${adress}"),
+        ],
+      ),
     );
   }
 }
