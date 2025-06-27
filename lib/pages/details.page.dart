@@ -1,9 +1,12 @@
 import 'package:fiestapp/components/details/event-data.component.dart';
 import 'package:fiestapp/components/header/details/details_header.component.dart';
+import 'package:fiestapp/components/icon-button/icon_button.component.dart';
+import 'package:fiestapp/components/page-switcher/page-switcher.component.dart';
 import 'package:fiestapp/mock/event.mock.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -17,6 +20,7 @@ class Details extends ConsumerStatefulWidget {
 class DetailState extends ConsumerState<Details> {
   MapboxMap? _mapboxMap;
   bool _mapInitialized = false;
+  bool isMapExpanded = false;
 
   CameraOptions camera = CameraOptions(
     center: Point(
@@ -26,6 +30,12 @@ class DetailState extends ConsumerState<Details> {
     bearing: 0,
     pitch: 0,
   );
+
+  void ExpandMap() {
+    setState(() {
+      isMapExpanded = !isMapExpanded;
+    });
+  }
 
   void _onMapCreated(MapboxMap mapboxMap) async {
     try {
@@ -116,48 +126,75 @@ class DetailState extends ConsumerState<Details> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xffF4F1F7),
-      body: Column(
-        children: [
-          const DetailsHeader(),
-          const SizedBox(height: 10), // Replace spacing parameter
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-              children: [
-                EventData(event: mockEvent),
-                const SizedBox(height: 10),
-                Container(
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(40),
-                  ),
-                  width: double.infinity,
-                  height: 200,
-                  child: Stack(
-                    children: [
-                      MapWidget(
-                        key: const ValueKey('stable-mapbox-map'),
-                        textureView: false,
-                        // Changed to false to reduce buffer issues
-                        cameraOptions: camera,
-                        onMapCreated: _onMapCreated,
+    return SafeArea(
+      top: false,
+      child: Scaffold(
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.all(15),
+          child: PageSwitcher(),
+        ),
+        backgroundColor: const Color(0xffF4F1F7),
+        body: SafeArea(
+          child: Column(
+            spacing: 10,
+            children: [
+              if (!isMapExpanded) DetailsHeader(),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  spacing: 10,
+                  children: [
+                    if (!isMapExpanded) EventData(event: mockEvent),
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 200),
+                      curve: Curves.easeInOut,
+                      clipBehavior: Clip.hardEdge,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(40),
                       ),
-                      if (!_mapInitialized)
-                        Container(
-                          color: Colors.grey.shade200,
-                          child: const Center(
-                            child: CircularProgressIndicator(),
+                      width: double.infinity,
+                      height: isMapExpanded
+                          ? MediaQuery.of(context).size.height *
+                                0.78 // 78% de la hauteur d'écran quand expansé
+                          : 200,
+                      child: Stack(
+                        children: [
+                          MapWidget(
+                            key: const ValueKey('stable-mapbox-map'),
+                            textureView: false,
+                            // Changed to false to reduce buffer issues
+                            cameraOptions: camera,
+                            onMapCreated: _onMapCreated,
                           ),
-                        ),
-                    ],
-                  ),
+                          Positioned(
+                            bottom: 10,
+                            right: 10,
+                            child: CustomIconButton(
+                              icon:
+                                  FontAwesomeIcons.upRightAndDownLeftFromCenter,
+                              backgroundColor: Colors.black.withValues(
+                                alpha: 0.2,
+                              ),
+                              iconColor: Colors.white,
+                              onClick: ExpandMap,
+                            ),
+                          ),
+                          if (!_mapInitialized)
+                            Container(
+                              color: Colors.grey.shade200,
+                              child: const Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
