@@ -1,9 +1,10 @@
 import 'package:fiestapp/components/details/event-data-with-map.dart';
-import 'package:fiestapp/components/details/organisation.component.dart';
 import 'package:fiestapp/components/header/details/details_header.component.dart';
 import 'package:fiestapp/components/page-switcher/page-switcher.component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../components/organisation/organisation-bloc.component.dart';
 
 class Details extends ConsumerStatefulWidget {
   const Details({super.key});

@@ -1,3 +1,4 @@
+import 'package:fiestapp/components/organisation/sondage.component.dart';
 import 'package:flutter/material.dart';
 
 class Organisation extends StatefulWidget {
@@ -10,6 +11,9 @@ class Organisation extends StatefulWidget {
 class _OrganisationState extends State<Organisation> {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('Organisation'));
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Column(children: [Sondage()]),
+    );
   }
 }

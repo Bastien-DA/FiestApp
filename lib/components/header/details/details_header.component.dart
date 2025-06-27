@@ -1,4 +1,3 @@
-import 'package:fiestapp/components/avatar-group/avatar-group-back.component.dart';
 import 'package:fiestapp/components/icon-button/icon_button.component.dart';
 import 'package:fiestapp/enum/app-route.enum.dart';
 import 'package:fiestapp/mock/user.mock.dart';
@@ -6,6 +5,8 @@ import 'package:fiestapp/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../../avatar-group/avatar-group.component.dart';
 
 class DetailsHeader extends ConsumerWidget {
   const DetailsHeader({super.key, required this.height});
@@ -50,7 +51,13 @@ class DetailsHeader extends ConsumerWidget {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: [AvatarGroupBack(users: mockUsers)],
+                  children: [
+                    AvatarGroup(
+                      users: mockUsers,
+                      haveBackground: true,
+                      textColor: Colors.white,
+                    ),
+                  ],
                 ),
               ],
             ),
