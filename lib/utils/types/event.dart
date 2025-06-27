@@ -1,3 +1,5 @@
+import 'package:fiestapp/utils/utils.dart';
+
 import 'expense.dart';
 import 'user.dart';
 
@@ -9,6 +11,8 @@ class Event {
   final int latitute; // peut-être à corriger en latitude ?
   final int longitude;
   final int date;
+
+  String get formattedDate => formatDate(date);
   final User organazer;
   final List<User> participants;
   final List<LightExpenseDto> expenses;
