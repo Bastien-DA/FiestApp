@@ -5,11 +5,14 @@
 
     <application
         android:name="${applicationName}"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="fiestapp">
+        android:label="fiestapp"
+        android:largeHeap="true">
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:enableOnBackInvokedCallback="true"
             android:exported="true"
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"
@@ -23,6 +26,11 @@
             <meta-data
                 android:name="io.flutter.embedding.android.NormalTheme"
                 android:resource="@style/NormalTheme" />
+
+            <meta-data
+                android:name="android.graphics.HDRSupport"
+                android:value="false" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
