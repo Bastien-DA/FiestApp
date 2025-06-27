@@ -8,7 +8,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DetailsHeader extends ConsumerWidget {
-  const DetailsHeader({super.key});
+  const DetailsHeader({super.key, required this.height});
+
+  final double height;
 
   void goBack() {
     router.push(AppRoute.home.path);
@@ -22,9 +24,10 @@ class DetailsHeader extends ConsumerWidget {
           bottomLeft: Radius.circular(40),
           bottomRight: Radius.circular(40),
         ),
-        child: Container(
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
           width: double.infinity,
-          height: MediaQuery.sizeOf(context).height / 3,
+          height: height,
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/ImageEvent.jpg'),

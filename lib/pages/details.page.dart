@@ -21,6 +21,7 @@ class DetailState extends ConsumerState<Details> {
   MapboxMap? _mapboxMap;
   bool _mapInitialized = false;
   bool isMapExpanded = false;
+  int currentPage = 0;
 
   CameraOptions camera = CameraOptions(
     center: Point(
@@ -118,6 +119,12 @@ class DetailState extends ConsumerState<Details> {
     }
   }
 
+  void changePage(int index) {
+    setState(() {
+      currentPage = index;
+    });
+  }
+
   @override
   void dispose() {
     _mapboxMap = null;
@@ -131,14 +138,25 @@ class DetailState extends ConsumerState<Details> {
       child: Scaffold(
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.all(15),
-          child: PageSwitcher(),
+          child: PageSwitcher(
+            onPageChanged: changePage,
+            currentPage: 0,
+            firstPage: 'Informations',
+            secondPage: 'Organisation',
+          ),
         ),
         backgroundColor: const Color(0xffF4F1F7),
         body: SafeArea(
+          top: false,
           child: Column(
             spacing: 10,
             children: [
-              if (!isMapExpanded) DetailsHeader(),
+              if (!isMapExpanded)
+                DetailsHeader(
+                  height:
+                      MediaQuery.sizeOf(context).height /
+                      (currentPage == 0 ? 3 : 3.8),
+                ),
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: Column(

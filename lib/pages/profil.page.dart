@@ -79,9 +79,15 @@ class Profil extends ConsumerWidget {
           ),
         ],
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(15),
-        child: PageSwitcher(),
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: PageSwitcher(
+            currentPage: 0,
+            firstPage: 'Informations',
+            secondPage: 'Évènements',
+          ),
+        ),
       ),
     );
   }
