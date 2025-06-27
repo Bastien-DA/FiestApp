@@ -2,17 +2,21 @@ import 'package:fiestapp/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
   await dotenv.load(fileName: '.env');
   String MAPBOX_TOKEN = dotenv.env['MAPBOX_TOKEN'] ?? '';
+
   MapboxOptions.setAccessToken(MAPBOX_TOKEN);
-  runApp(const MyApp());
+  FlutterNativeSplash.remove();
   runApp(ProviderScope(child: const MyApp()));
 }
 
