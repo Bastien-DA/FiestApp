@@ -1,4 +1,4 @@
-import 'package:fiestapp/components/custom-card/custom-card.component.dart';
+import 'package:fiestapp/components/custom-card/next-evenement-card.component.dart';
 import 'package:fiestapp/components/text/custom-title.component.dart';
 import 'package:fiestapp/provider/event-provider.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +30,7 @@ class _NextEventState extends ConsumerState<NextEvent> {
               left: 0,
               child: Transform.scale(
                 scale: 0.95,
-                child: CustomCard(event: events[1]),
+                child: NextEvenementCard(event: events[1]),
               ),
             ),
             Dismissible(
@@ -39,7 +39,7 @@ class _NextEventState extends ConsumerState<NextEvent> {
               onDismissed: (direction) {
                 ref.read(eventProvider.notifier).inversEvents();
               },
-              child: CustomCard(event: events[0]),
+              child: NextEvenementCard(event: events[0]),
             ),
           ],
         ),

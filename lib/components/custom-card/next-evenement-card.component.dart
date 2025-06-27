@@ -3,8 +3,8 @@ import 'package:fiestapp/components/custom-card/card-header.component.dart';
 import 'package:fiestapp/utils/types/event.dart';
 import 'package:flutter/material.dart';
 
-class CustomCard extends StatelessWidget {
-  const CustomCard({super.key, required this.event});
+class NextEvenementCard extends StatelessWidget {
+  const NextEvenementCard({super.key, required this.event});
 
   final Event event;
 
