@@ -6,7 +6,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ProfilTopHeader extends ConsumerWidget {
-  const ProfilTopHeader({super.key});
+  const ProfilTopHeader({super.key, this.allowEdit = true});
+
+  final bool allowEdit;
 
   void goBack() {
     router.push(AppRoute.home.path);
@@ -24,12 +26,13 @@ class ProfilTopHeader extends ConsumerWidget {
           iconColor: Colors.white,
           onClick: goBack,
         ),
-        CustomIconButton(
-          icon: FontAwesomeIcons.pen,
-          backgroundColor: Colors.black.withValues(alpha: 0.2),
-          iconColor: Colors.white,
-          onClick: () => {},
-        ),
+        if (allowEdit)
+          CustomIconButton(
+            icon: FontAwesomeIcons.pen,
+            backgroundColor: Colors.black.withValues(alpha: 0.2),
+            iconColor: Colors.white,
+            onClick: () => {},
+          ),
       ],
     );
   }

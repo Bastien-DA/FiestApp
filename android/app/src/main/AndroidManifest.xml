@@ -7,7 +7,7 @@
         android:name="${applicationName}"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="fiestapp"
+        android:label="FiestApp"
         android:largeHeap="true">
         <activity
             android:name=".MainActivity"

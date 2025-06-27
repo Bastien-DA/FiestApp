@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ProfilHeader extends ConsumerWidget {
-  const ProfilHeader({super.key});
+  const ProfilHeader({super.key, this.allowEdit = true});
+
+  final bool allowEdit;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -36,7 +38,9 @@ class ProfilHeader extends ConsumerWidget {
                     child: SafeArea(
                       minimum: EdgeInsets.only(top: 45, left: 10, right: 10),
                       bottom: false,
-                      child: Column(children: [ProfilTopHeader()]),
+                      child: Column(
+                        children: [ProfilTopHeader(allowEdit: allowEdit)],
+                      ),
                     ),
                   ),
                 ),
