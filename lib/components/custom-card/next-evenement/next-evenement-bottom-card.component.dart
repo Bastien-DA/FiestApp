@@ -1,8 +1,8 @@
 import 'package:fiestapp/components/custom-card/creator-event-name/creator-event-name.component.dart';
 import 'package:flutter/material.dart';
 
-class CardBottom extends StatelessWidget {
-  const CardBottom({
+class NextEvenementBottomCard extends StatelessWidget {
+  const NextEvenementBottomCard({
     super.key,
     required this.eventName,
     required this.eventLocation,
@@ -18,7 +18,7 @@ class CardBottom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 10, left: 20.0, right: 20.0),
+      padding: const EdgeInsets.only(top: 10, left: 25.0, right: 25.0),
       child: Column(
         spacing: 7.5,
         crossAxisAlignment: CrossAxisAlignment.center,
