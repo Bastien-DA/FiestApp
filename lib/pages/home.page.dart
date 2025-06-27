@@ -1,4 +1,5 @@
 import 'package:fiestapp/components/home/header/home-header.component.dart';
+import 'package:fiestapp/components/home/next-event/next-event.component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -8,10 +9,17 @@ class Home extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      backgroundColor: Color(0xffF4F1F7),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        spacing: 35,
         children: [
-          HomeHeader()
+          HomeHeader(),
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+            child: NextEvent(),
+          ),
         ],
       ),
     );
