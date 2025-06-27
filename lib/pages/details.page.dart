@@ -15,6 +15,9 @@ class Details extends ConsumerStatefulWidget {
 }
 
 class DetailState extends ConsumerState<Details> {
+  MapboxMap? _mapboxMap;
+  bool _mapInitialized = false;
+
   CameraOptions camera = CameraOptions(
     center: Point(
       coordinates: Position(mockEvent.longitude, mockEvent.latitute),
@@ -25,67 +28,106 @@ class DetailState extends ConsumerState<Details> {
   );
 
   void _onMapCreated(MapboxMap mapboxMap) async {
-    await mapboxMap.scaleBar.updateSettings(ScaleBarSettings(enabled: false));
+    try {
+      _mapboxMap = mapboxMap;
 
-    // Demander la permission de localisation
-    await _requestLocationPermission();
+      // Wait a frame to ensure the map is fully rendered
+      await Future.delayed(const Duration(milliseconds: 100));
 
-    // Activer la localisation de l'utilisateur
-    await mapboxMap.location.updateSettings(
-      LocationComponentSettings(
-        enabled: true,
-        puckBearingEnabled: true, // Affiche la direction
-        pulsingEnabled: true, // Animation pulsante
-        showAccuracyRing: true, // Cercle de précision
-      ),
-    );
+      if (!mounted) return;
 
-    PointAnnotationManager pointAnnotationManager = await mapboxMap.annotations
-        .createPointAnnotationManager();
+      await mapboxMap.scaleBar.updateSettings(ScaleBarSettings(enabled: false));
 
-    // Load the image from assets
-    final ByteData bytes = await rootBundle.load('assets/marker.png');
-    final Uint8List imageData = bytes.buffer.asUint8List();
+      // Request location permission
+      await _requestLocationPermission();
 
-    // Create a PointAnnotationOptions
-    PointAnnotationOptions pointAnnotationOptions = PointAnnotationOptions(
-      geometry: Point(coordinates: Position(-0.56667, 44.833328)),
-      // Example coordinates
-      image: imageData,
-      iconSize: 0.8,
-    );
+      // Enable user location with error handling
+      try {
+        await mapboxMap.location.updateSettings(
+          LocationComponentSettings(
+            enabled: true,
+            puckBearingEnabled: true,
+            pulsingEnabled: true,
+            showAccuracyRing: true,
+          ),
+        );
+      } catch (e) {
+        debugPrint('Location settings error: $e');
+      }
 
-    // Add the annotation to the map
-    pointAnnotationManager.create(pointAnnotationOptions);
+      // Create annotation manager
+      PointAnnotationManager pointAnnotationManager = await mapboxMap
+          .annotations
+          .createPointAnnotationManager();
+
+      // Load and add marker
+      await _addMarker(pointAnnotationManager);
+
+      setState(() {
+        _mapInitialized = true;
+      });
+    } catch (e) {
+      debugPrint('Map initialization error: $e');
+    }
+  }
+
+  Future<void> _addMarker(PointAnnotationManager manager) async {
+    try {
+      // Load the image from assets
+      final ByteData bytes = await rootBundle.load('assets/marker.png');
+      final Uint8List imageData = bytes.buffer.asUint8List();
+
+      // Create a PointAnnotationOptions
+      PointAnnotationOptions pointAnnotationOptions = PointAnnotationOptions(
+        geometry: Point(coordinates: Position(-0.56667, 44.833328)),
+        image: imageData,
+        iconSize: 0.8,
+      );
+
+      // Add the annotation to the map
+      await manager.create(pointAnnotationOptions);
+    } catch (e) {
+      debugPrint('Marker creation error: $e');
+    }
   }
 
   Future<void> _requestLocationPermission() async {
-    var status = await Permission.locationWhenInUse.request();
-    if (status.isDenied) {
-      // Gérer le cas où la permission est refusée
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Permission de localisation nécessaire pour afficher votre position',
+    try {
+      var status = await Permission.locationWhenInUse.request();
+      if (status.isDenied && mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              'Permission de localisation nécessaire pour afficher votre position',
+            ),
           ),
-        ),
-      );
+        );
+      }
+    } catch (e) {
+      debugPrint('Permission request error: $e');
     }
+  }
+
+  @override
+  void dispose() {
+    _mapboxMap = null;
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffF4F1F7),
+      backgroundColor: const Color(0xffF4F1F7),
       body: Column(
-        spacing: 10,
         children: [
-          DetailsHeader(),
+          const DetailsHeader(),
+          const SizedBox(height: 10), // Replace spacing parameter
           Padding(
             padding: const EdgeInsets.all(10),
             child: Column(
               children: [
                 EventData(event: mockEvent),
+                const SizedBox(height: 10),
                 Container(
                   clipBehavior: Clip.hardEdge,
                   decoration: BoxDecoration(
@@ -93,9 +135,23 @@ class DetailState extends ConsumerState<Details> {
                   ),
                   width: double.infinity,
                   height: 200,
-                  child: MapWidget(
-                    cameraOptions: camera,
-                    onMapCreated: _onMapCreated,
+                  child: Stack(
+                    children: [
+                      MapWidget(
+                        key: const ValueKey('stable-mapbox-map'),
+                        textureView: false,
+                        // Changed to false to reduce buffer issues
+                        cameraOptions: camera,
+                        onMapCreated: _onMapCreated,
+                      ),
+                      if (!_mapInitialized)
+                        Container(
+                          color: Colors.grey.shade200,
+                          child: const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        ),
+                    ],
                   ),
                 ),
               ],
