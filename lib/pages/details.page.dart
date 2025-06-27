@@ -155,7 +155,7 @@ class DetailState extends ConsumerState<Details> {
                       width: double.infinity,
                       height: isMapExpanded
                           ? MediaQuery.of(context).size.height *
-                                0.78 // 78% de la hauteur d'écran quand expansé
+                                0.77 // 78% de la hauteur d'écran quand expansé
                           : 200,
                       child: Stack(
                         children: [
