@@ -35,7 +35,7 @@ class DetailState extends ConsumerState<Details> {
       top: false,
       child: Scaffold(
         bottomNavigationBar: Padding(
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsets.only(bottom: 15, left: 15, right: 15),
           child: PageSwitcher(
             onPageChanged: changePage,
             currentPage: 0,
@@ -44,18 +44,18 @@ class DetailState extends ConsumerState<Details> {
           ),
         ),
         backgroundColor: const Color(0xffF4F1F7),
-        body: SafeArea(
-          top: false,
-          child: Column(
-            spacing: 10,
-            children: [
-              if (!isMapExpanded)
-                DetailsHeader(
-                  height:
-                      MediaQuery.sizeOf(context).height /
-                      (currentPage == 0 ? 3 : 3.8),
-                ),
-              Padding(
+        body: Column(
+          spacing: 10,
+          children: [
+            if (!isMapExpanded)
+              DetailsHeader(
+                height:
+                    MediaQuery.sizeOf(context).height /
+                    (currentPage == 0 ? 3 : 3.8),
+              ),
+            Expanded(
+              flex: 2,
+              child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: AnimatedSwitcher(
                   duration: Duration(milliseconds: 200),
@@ -67,8 +67,8 @@ class DetailState extends ConsumerState<Details> {
                         ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

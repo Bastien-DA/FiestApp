@@ -12,7 +12,6 @@ void main() async {
   await dotenv.load(fileName: '.env');
   String MAPBOX_TOKEN = dotenv.env['MAPBOX_TOKEN'] ?? '';
   MapboxOptions.setAccessToken(MAPBOX_TOKEN);
-  runApp(const MyApp());
   runApp(ProviderScope(child: const MyApp()));
 }
 

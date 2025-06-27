@@ -19,48 +19,46 @@ class DetailsHeader extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Flexible(
-      child: ClipRRect(
-        borderRadius: const BorderRadius.only(
-          bottomLeft: Radius.circular(40),
-          bottomRight: Radius.circular(40),
-        ),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          width: double.infinity,
-          height: height,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/ImageEvent.jpg'),
-              fit: BoxFit.cover,
-            ),
+    return ClipRRect(
+      borderRadius: const BorderRadius.only(
+        bottomLeft: Radius.circular(40),
+        bottomRight: Radius.circular(40),
+      ),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        width: double.infinity,
+        height: height,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/ImageEvent.jpg'),
+            fit: BoxFit.cover,
           ),
-          child: SafeArea(
-            minimum: EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 45),
-            bottom: false,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // Bouton retour
-                CustomIconButton(
-                  icon: FontAwesomeIcons.arrowLeft,
-                  backgroundColor: Colors.black.withValues(alpha: 0.2),
-                  iconColor: Colors.white,
-                  onClick: goBack,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    AvatarGroup(
-                      users: mockUsers,
-                      haveBackground: true,
-                      textColor: Colors.white,
-                    ),
-                  ],
-                ),
-              ],
-            ),
+        ),
+        child: SafeArea(
+          minimum: EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 45),
+          bottom: false,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              // Bouton retour
+              CustomIconButton(
+                icon: FontAwesomeIcons.arrowLeft,
+                backgroundColor: Colors.black.withValues(alpha: 0.2),
+                iconColor: Colors.white,
+                onClick: goBack,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  AvatarGroup(
+                    users: mockUsers,
+                    haveBackground: true,
+                    textColor: Colors.white,
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:fiestapp/components/organisation/courseList/course_list.component.dart';
 import 'package:fiestapp/components/organisation/poll/poll.component.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,13 @@ class _OrganisationState extends State<Organisation> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10),
-      child: Column(children: [Sondage()]),
+      child: SingleChildScrollView(
+        child: Column(
+          spacing: 10,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [Sondage(), CouseList(), Sondage(), Sondage()],
+        ),
+      ),
     );
   }
 }
