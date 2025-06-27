@@ -1,4 +1,5 @@
 import 'package:fiestapp/components/details/event-data.component.dart';
+import 'package:fiestapp/components/details/organisation.component.dart';
 import 'package:fiestapp/components/header/details/details_header.component.dart';
 import 'package:fiestapp/components/icon-button/icon_button.component.dart';
 import 'package:fiestapp/components/page-switcher/page-switcher.component.dart';
@@ -159,55 +160,61 @@ class DetailState extends ConsumerState<Details> {
                 ),
               Padding(
                 padding: const EdgeInsets.all(10),
-                child: Column(
-                  spacing: 10,
-                  children: [
-                    if (!isMapExpanded) EventData(event: mockEvent),
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 200),
-                      curve: Curves.easeInOut,
-                      clipBehavior: Clip.hardEdge,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(40),
-                      ),
-                      width: double.infinity,
-                      height: isMapExpanded
-                          ? MediaQuery.of(context).size.height *
-                                0.77 // 78% de la hauteur d'écran quand expansé
-                          : 200,
-                      child: Stack(
-                        children: [
-                          MapWidget(
-                            key: const ValueKey('stable-mapbox-map'),
-                            textureView: false,
-                            // Changed to false to reduce buffer issues
-                            cameraOptions: camera,
-                            onMapCreated: _onMapCreated,
-                          ),
-                          Positioned(
-                            bottom: 10,
-                            right: 10,
-                            child: CustomIconButton(
-                              icon:
-                                  FontAwesomeIcons.upRightAndDownLeftFromCenter,
-                              backgroundColor: Colors.black.withValues(
-                                alpha: 0.2,
+                child: AnimatedSwitcher(
+                  duration: Duration(milliseconds: 200),
+                  child: currentPage == 1
+                      ? Organisation()
+                      : Column(
+                          spacing: 10,
+                          children: [
+                            if (!isMapExpanded) EventData(event: mockEvent),
+                            SafeArea(
+                              child: AnimatedContainer(
+                                duration: const Duration(milliseconds: 200),
+                                curve: Curves.easeInOut,
+                                clipBehavior: Clip.hardEdge,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(40),
+                                ),
+                                width: double.infinity,
+                                height: isMapExpanded
+                                    ? MediaQuery.of(context).size.height *
+                                          0.77 // 78% de la hauteur d'écran quand expansé
+                                    : 200,
+                                child: Stack(
+                                  children: [
+                                    MapWidget(
+                                      key: const ValueKey('stable-mapbox-map'),
+                                      textureView: false,
+                                      // Changed to false to reduce buffer issues
+                                      cameraOptions: camera,
+                                      onMapCreated: _onMapCreated,
+                                    ),
+                                    Positioned(
+                                      bottom: 10,
+                                      right: 10,
+                                      child: CustomIconButton(
+                                        icon: FontAwesomeIcons
+                                            .upRightAndDownLeftFromCenter,
+                                        backgroundColor: Colors.black
+                                            .withValues(alpha: 0.2),
+                                        iconColor: Colors.white,
+                                        onClick: ExpandMap,
+                                      ),
+                                    ),
+                                    if (!_mapInitialized)
+                                      Container(
+                                        color: Colors.grey.shade200,
+                                        child: const Center(
+                                          child: CircularProgressIndicator(),
+                                        ),
+                                      ),
+                                  ],
+                                ),
                               ),
-                              iconColor: Colors.white,
-                              onClick: ExpandMap,
                             ),
-                          ),
-                          if (!_mapInitialized)
-                            Container(
-                              color: Colors.grey.shade200,
-                              child: const Center(
-                                child: CircularProgressIndicator(),
-                              ),
-                            ),
-                        ],
-                      ),
-                    ),
-                  ],
+                          ],
+                        ),
                 ),
               ),
             ],
