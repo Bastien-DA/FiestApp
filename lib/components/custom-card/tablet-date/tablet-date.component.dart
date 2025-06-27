@@ -10,6 +10,8 @@ class TabletDate extends StatelessWidget {
 
   String get month => getMonth(date);
 
+  String get monthName => getMonthName(date);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,6 +22,7 @@ class TabletDate extends StatelessWidget {
         color: Color(0xFF000000).withValues(alpha: 0.21),
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             day,
@@ -27,9 +30,10 @@ class TabletDate extends StatelessWidget {
               fontSize: 18,
               fontWeight: FontWeight.bold,
               color: Colors.white,
+              height: 0.9,
             ),
           ),
-          Text(month, style: TextStyle(fontSize: 10, color: Colors.white)),
+          Text(monthName, style: TextStyle(fontSize: 10, color: Colors.white)),
         ],
       ),
     );

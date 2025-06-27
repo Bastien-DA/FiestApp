@@ -23,7 +23,14 @@ class CardHeader extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          child: TabletDate(date: date),
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [TabletDate(date: date)],
+            ),
+          ),
         ),
       ),
     );

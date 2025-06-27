@@ -4,15 +4,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await initializeDateFormatting('fr_FR', null);
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await dotenv.load(fileName: '.env');
   String MAPBOX_TOKEN = dotenv.env['MAPBOX_TOKEN'] ?? '';
   MapboxOptions.setAccessToken(MAPBOX_TOKEN);
-  runApp(const MyApp());
   runApp(ProviderScope(child: const MyApp()));
 }
 
