@@ -1,3 +1,4 @@
+import 'package:fiestapp/components/custom-card/tablet-date/tablet-date.component.dart';
 import 'package:flutter/material.dart';
 
 class CardHeader extends StatelessWidget {
@@ -8,17 +9,21 @@ class CardHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: const BorderRadius.all(Radius.circular(40)),
-      child: Container(
-        height: 201,
-        width: 350,
-        decoration: BoxDecoration(
-          color: const Color(0xffFFFFFF),
-          image: DecorationImage(
-            image: AssetImage(pathImage),
-            fit: BoxFit.cover,
+    return Padding(
+      padding: const EdgeInsets.only(top: 5, right: 5, left: 5),
+      child: ClipRRect(
+        borderRadius: const BorderRadius.all(Radius.circular(40)),
+        child: Container(
+          height: 122,
+          width: 322,
+          decoration: BoxDecoration(
+            color: const Color(0xffFFFFFF),
+            image: DecorationImage(
+              image: AssetImage(pathImage),
+              fit: BoxFit.cover,
+            ),
           ),
+          child: TabletDate(date: date),
         ),
       ),
     );

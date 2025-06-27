@@ -10,6 +10,7 @@ class Home extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       backgroundColor: Color(0xffF4F1F7),
+      resizeToAvoidBottomInset: false,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
