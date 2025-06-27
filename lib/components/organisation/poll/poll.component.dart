@@ -1,4 +1,4 @@
-import 'package:fiestapp/components/organisation/sondage-card-bloc.component.dart';
+import 'package:fiestapp/components/organisation/poll/poll-card-bloc.component.dart';
 import 'package:fiestapp/components/text/custom-title-expand.component.dart';
 import 'package:flutter/material.dart';
 

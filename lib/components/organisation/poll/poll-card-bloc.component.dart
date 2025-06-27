@@ -1,5 +1,5 @@
 import 'package:fiestapp/components/organisation-item/add.component.dart';
-import 'package:fiestapp/components/organisation/sondage-card.component.dart';
+import 'package:fiestapp/components/organisation/poll/poll-card.component.dart';
 import 'package:flutter/material.dart';
 
 class SondageCardBloc extends StatefulWidget {

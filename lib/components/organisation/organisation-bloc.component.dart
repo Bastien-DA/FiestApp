@@ -1,4 +1,4 @@
-import 'package:fiestapp/components/organisation/sondage.component.dart';
+import 'package:fiestapp/components/organisation/poll/poll.component.dart';
 import 'package:flutter/material.dart';
 
 class Organisation extends StatefulWidget {
