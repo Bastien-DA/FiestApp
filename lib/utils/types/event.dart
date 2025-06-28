@@ -8,7 +8,7 @@ class Event {
   final String title;
   final String description;
   final String location;
-  final double latitute; // peut-être à corriger en latitude ?
+  final double latitute;
   final double longitude;
   final int date;
 

@@ -1,5 +1,7 @@
-import 'package:fiestapp/components/organisation/courseList/course_list.component.dart';
+import 'package:fiestapp/components/organisation/course-list/course_list.component.dart';
 import 'package:fiestapp/components/organisation/poll/poll.component.dart';
+import 'package:fiestapp/components/organisation/where-sleep/where-sleep.component.dart';
+import 'package:fiestapp/components/organisation/who-drive/who-drive.component.dart';
 import 'package:flutter/material.dart';
 
 class Organisation extends StatefulWidget {
@@ -18,7 +20,7 @@ class _OrganisationState extends State<Organisation> {
         child: Column(
           spacing: 10,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [Sondage(), CouseList(), Sondage(), Sondage()],
+          children: [Sondage(), CouseList(), WhoDrive(), WhereSleep()],
         ),
       ),
     );
