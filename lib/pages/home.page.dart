@@ -1,8 +1,12 @@
 import 'package:fiestapp/components/home/header/home-header.component.dart';
 import 'package:fiestapp/components/home/next-event/next-event.component.dart';
 import 'package:fiestapp/components/home/participation/you-participate.component.dart';
+import 'package:fiestapp/components/icon-button/icon_button.component.dart';
+import 'package:fiestapp/enum/app-route.enum.dart';
+import 'package:fiestapp/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Home extends ConsumerWidget {
   const Home({super.key});
@@ -12,6 +16,17 @@ class Home extends ConsumerWidget {
     return Scaffold(
       backgroundColor: Color(0xffF4F1F7),
       resizeToAvoidBottomInset: false,
+      floatingActionButton: CustomIconButton(
+        icon: FontAwesomeIcons.calendarPlus,
+        backgroundColor: Color(0xffE15B42),
+        iconColor: Colors.white,
+        height: 60,
+        width: 60,
+        size: 20,
+        onClick: () {
+          router.push(AppRoute.addEvent.path);
+        },
+      ),
       body: Column(
         children: [
           HomeHeader(),
