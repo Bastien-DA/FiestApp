@@ -22,15 +22,6 @@ class EventNotifier extends StateNotifier<List<Event>> {
     listEvents.add(listEvents.removeAt(0));
     state = listEvents;
   }
-
-  void removeEvent() {
-    final currentEvents = state;
-    if (currentEvents.isNotEmpty) {
-      var listEvents = List<Event>.from(currentEvents);
-      listEvents.removeAt(0);
-      state = listEvents;
-    }
-  }
 }
 
 final eventProvider = StateNotifierProvider<EventNotifier, List<Event>>(

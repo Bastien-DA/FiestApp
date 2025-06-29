@@ -6,6 +6,8 @@ class CustomIconButton extends ConsumerWidget {
   const CustomIconButton({
     super.key,
     this.size = 14.0,
+    this.height = 44.0,
+    this.width = 44.0,
     required this.icon,
     required this.backgroundColor,
     required this.iconColor,
@@ -17,6 +19,8 @@ class CustomIconButton extends ConsumerWidget {
   final double size;
   final Color iconColor;
   final Function() onClick;
+  final double height;
+  final double width;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -30,7 +34,7 @@ class CustomIconButton extends ConsumerWidget {
         ),
         height: 44,
         width: 44,
-        child: FaIcon(icon, color: iconColor, size: 14),
+        child: FaIcon(icon, color: iconColor, size: size),
       ),
     );
   }

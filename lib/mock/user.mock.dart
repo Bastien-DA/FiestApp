@@ -8,7 +8,8 @@ final User mockCurrentUser = User(
   height: 165,
   weight: 60,
   alcoholConsumption: 'occasionally',
-  ppLink: 'https://randomuser.me/api/portraits/women/1.jpg',
+  ppLink:
+      'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpm1.narvii.com%2F6479%2Fd14cc25834ff36a45a29ecd0e9c7ec92021c96fd_hq.jpg&f=1&nofb=1&ipt=126ff8a7eaf3122eda206063efe488f8fd16990c30d9b4953ab709bbd47962a0',
 );
 
 final List<User> mockUsers = [

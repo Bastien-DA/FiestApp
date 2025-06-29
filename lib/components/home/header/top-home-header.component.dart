@@ -1,7 +1,9 @@
 import 'package:fiestapp/components/icon-button/icon_button.component.dart';
 import 'package:fiestapp/components/image-button/profil-image-button.component.dart';
 import 'package:fiestapp/enum/app-route.enum.dart';
+import 'package:fiestapp/provider/user-provider.dart';
 import 'package:fiestapp/router.dart';
+import 'package:fiestapp/utils/constant/global-pp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -13,6 +15,7 @@ class TopHomeHeader extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.watch(userProvider);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,10 +54,7 @@ class TopHomeHeader extends ConsumerWidget {
                 router.push(AppRoute.notification.path);
               },
             ),
-            ProfilImageButton(
-              imagePath:
-                  'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpm1.narvii.com%2F6479%2Fd14cc25834ff36a45a29ecd0e9c7ec92021c96fd_hq.jpg&f=1&nofb=1&ipt=126ff8a7eaf3122eda206063efe488f8fd16990c30d9b4953ab709bbd47962a0',
-            ),
+            ProfilImageButton(imagePath: user?.ppLink ?? globalPP),
           ],
         ),
       ],

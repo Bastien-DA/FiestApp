@@ -16,7 +16,7 @@ class YouParticipate extends ConsumerWidget {
       spacing: 10,
       children: [
         CustomTitle(text: "Vous y participez"),
-        YouParticipateCard(event: events[0]),
+        ...events.map((event) => YouParticipateCard(event: event)),
       ],
     );
   }

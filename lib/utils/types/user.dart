@@ -6,7 +6,7 @@ class User {
   final int height;
   final int weight;
   final String alcoholConsumption;
-  final String ppLink;
+  final String? ppLink;
 
   User({
     required this.userGuid,

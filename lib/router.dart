@@ -1,3 +1,4 @@
+import 'package:fiestapp/pages/add-event.page.dart';
 import 'package:fiestapp/pages/details.page.dart';
 import 'package:fiestapp/pages/home.page.dart';
 import 'package:fiestapp/pages/invitation.page.dart';
@@ -44,6 +45,13 @@ GoRouter router = GoRouter(
       name: AppRoute.notification.name,
       builder: (BuildContext context, GoRouterState state) {
         return const Notification();
+      },
+    ),
+    GoRoute(
+      path: AppRoute.addEvent.path,
+      name: AppRoute.addEvent.name,
+      builder: (BuildContext context, GoRouterState state) {
+        return const AddEvent(); // Placeholder for add event page
       },
     ),
   ],

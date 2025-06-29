@@ -38,7 +38,9 @@ class NextEvenementCard extends StatelessWidget {
             eventName: event.title,
             eventLocation: event.location,
             eventCreatorName: event.organazer.username,
-            eventCreatorImage: event.organazer.ppLink,
+            eventCreatorImage:
+                event.organazer.ppLink ??
+                'https://avatar.iran.liara.run/public',
           ),
         ],
       ),

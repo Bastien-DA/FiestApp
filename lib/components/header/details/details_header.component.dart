@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fiestapp/components/avatar-group/avatar-group.component.dart';
 import 'package:fiestapp/components/icon-button/icon_button.component.dart';
 import 'package:fiestapp/components/modal/invitation-modal.dart';
@@ -28,6 +29,8 @@ class DetailsHeader extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final String usersLengthText =
+        "${mockUsers.length} participant${mockUsers.length == 1 ? '' : 's'}";
     return ClipRRect(
       borderRadius: const BorderRadius.only(
         bottomLeft: Radius.circular(40),
@@ -39,7 +42,9 @@ class DetailsHeader extends ConsumerWidget {
         height: height,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/ImageEvent.jpg'),
+            image: CachedNetworkImageProvider(
+              'https://www.sncf-connect.com/assets/styles/scale_and_crop_705x355/public/media/2022-07/fete.jpg?itok=ukqq2qKW',
+            ),
             fit: BoxFit.cover,
           ),
         ),
@@ -86,6 +91,7 @@ class DetailsHeader extends ConsumerWidget {
                     users: mockUsers,
                     haveBackground: true,
                     textColor: Colors.white,
+                    text: usersLengthText,
                   ),
                 ],
               ),

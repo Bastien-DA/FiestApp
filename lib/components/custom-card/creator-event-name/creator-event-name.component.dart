@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class CreatorEventName extends StatelessWidget {
@@ -17,7 +18,7 @@ class CreatorEventName extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 11.5,
-          backgroundImage: NetworkImage(eventCreatorImage),
+          backgroundImage: CachedNetworkImageProvider(eventCreatorImage),
         ),
         Text(
           eventCreatorName,
