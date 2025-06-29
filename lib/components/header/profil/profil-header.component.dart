@@ -55,7 +55,10 @@ class ProfilHeader extends ConsumerWidget {
                 backgroundColor: Color(0xffF4F1F7),
                 child: CircleAvatar(
                   radius: 61.5,
-                  backgroundImage: NetworkImage(mockCurrentUser.ppLink),
+                  backgroundImage: NetworkImage(
+                    mockCurrentUser.ppLink ??
+                        'https://avatar.iran.liara.run/public',
+                  ),
                 ),
               ),
             ),

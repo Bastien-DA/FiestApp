@@ -49,7 +49,7 @@ class _WhoDriveCardState extends State<WhoDriveCard>
             borderRadius: BorderRadius.circular(30),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.05),
+                color: Colors.black.withValues(alpha: 0.05),
                 blurRadius: 10,
                 offset: const Offset(0, 2),
               ),
@@ -106,7 +106,7 @@ class _WhoDriveCardState extends State<WhoDriveCard>
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
           decoration: BoxDecoration(
-            color: const Color(0xffE15B42).withOpacity(0.1),
+            color: const Color(0xffE15B42).withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(20),
           ),
           child: Text(
@@ -123,6 +123,8 @@ class _WhoDriveCardState extends State<WhoDriveCard>
   }
 
   Widget _buildExpandedContent() {
+    final String usersLengthText =
+        "${mockUsers.length} participant${mockUsers.length == 1 ? '' : 's'}";
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -136,6 +138,7 @@ class _WhoDriveCardState extends State<WhoDriveCard>
               users: mockUsers,
               haveBackground: true,
               textColor: Colors.white,
+              text: usersLengthText,
             ),
             CustomButton(
               label: "Valider",

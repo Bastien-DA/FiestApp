@@ -30,7 +30,6 @@ class _SondageCardState extends State<SondageCard>
       setState(() {
         _hasValidated = true;
       });
-      print("Réponse validée : $_selected");
     }
   }
 
@@ -69,6 +68,8 @@ class _SondageCardState extends State<SondageCard>
   }
 
   Widget _buildCollapsedContent() {
+    final String usersLengthText =
+        "${mockUsers.length} participant${mockUsers.length == 1 ? '' : 's'}";
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -84,6 +85,7 @@ class _SondageCardState extends State<SondageCard>
               users: mockUsers,
               haveBackground: false,
               textColor: Colors.black,
+              text: usersLengthText,
             ),
           ],
         ),

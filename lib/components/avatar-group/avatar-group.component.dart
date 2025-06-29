@@ -1,3 +1,4 @@
+import 'package:fiestapp/utils/constant/global-pp.dart';
 import 'package:fiestapp/utils/types/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,12 +8,14 @@ class AvatarGroup extends ConsumerWidget {
     super.key,
     required this.users,
     required this.haveBackground,
-    required this.textColor,
+    this.textColor,
+    this.text,
   });
 
   final List<User> users;
   final bool haveBackground;
-  final Color textColor;
+  final Color? textColor;
+  final String? text;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -33,18 +36,13 @@ class AvatarGroup extends ConsumerWidget {
                 left: index * 18,
                 child: CircleAvatar(
                   radius: 15,
-                  backgroundImage: NetworkImage(
-                    user.ppLink ?? 'https://avatar.iran.liara.run/public',
-                  ),
+                  backgroundImage: NetworkImage(user.ppLink ?? globalPP),
                 ),
               );
             }),
           ),
         ),
-        Text(
-          "${users.length} participant${users.length == 1 ? '' : 's'}",
-          style: TextStyle(color: textColor),
-        ),
+        if (text != null) Text(text!, style: TextStyle(color: textColor)),
       ],
     );
 

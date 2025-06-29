@@ -19,6 +19,8 @@ class DetailsHeader extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final String usersLengthText =
+        "${mockUsers.length} participant${mockUsers.length == 1 ? '' : 's'}";
     return ClipRRect(
       borderRadius: const BorderRadius.only(
         bottomLeft: Radius.circular(40),
@@ -55,6 +57,7 @@ class DetailsHeader extends ConsumerWidget {
                     users: mockUsers,
                     haveBackground: true,
                     textColor: Colors.white,
+                    text: usersLengthText,
                   ),
                 ],
               ),
