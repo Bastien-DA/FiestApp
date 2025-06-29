@@ -23,6 +23,7 @@ class _CourseListGridState extends State<CourseListGrid> {
       mainAxisSpacing: 10,
       crossAxisSpacing: 10,
       childAspectRatio: 0.70,
+      physics: const NeverScrollableScrollPhysics(),
       children: [
         AddCard(height: 4, width: 20, radius: 30, onClick: onClick),
         IllustrationCard(
