@@ -3,6 +3,6 @@ import 'package:fiestapp/utils/types/event.dart';
 
 class EventService {
   List<Event> fetchAllEvents() {
-    return [mockEvent];
+    return [mockEvent, mockEvent, mockEvent];
   }
 }
