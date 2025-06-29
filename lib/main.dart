@@ -1,9 +1,11 @@
+import 'package:app_links/app_links.dart';
 import 'package:fiestapp/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
@@ -19,6 +21,17 @@ void main() async {
   MapboxOptions.setAccessToken(MAPBOX_TOKEN);
   FlutterNativeSplash.remove();
   runApp(ProviderScope(child: const MyApp()));
+
+  initDeepLinkListener(router);
+}
+
+void initDeepLinkListener(GoRouter router) {
+  AppLinks().uriLinkStream.listen((uri) {
+    final path = [uri.host, ...uri.pathSegments].join('/');
+    final fullPath = '/$path';
+    print('➡️ Navigation vers $fullPath');
+    router.go(fullPath);
+  });
 }
 
 class MyApp extends StatelessWidget {

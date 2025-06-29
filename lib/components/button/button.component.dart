@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomButton extends StatelessWidget {
+  final IconData? icon;
   final String label;
   final VoidCallback? onPressed;
 
-  const CustomButton({super.key, required this.label, this.onPressed});
+  const CustomButton({
+    super.key,
+    required this.label,
+    this.onPressed,
+    this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +29,7 @@ class CustomButton extends StatelessWidget {
           spacing: 5,
           children: [
             Text(label, style: TextStyle(color: Colors.white)),
-            FaIcon(FontAwesomeIcons.arrowRight, color: Colors.white, size: 15),
+            FaIcon(icon, color: Colors.white, size: 15),
           ],
         ),
       ),
