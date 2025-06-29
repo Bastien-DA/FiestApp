@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fiestapp/components/search-bar/generic-search-bar.component.dart';
+import 'package:fiestapp/provider/user-provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -11,7 +12,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'top-home-header.component.dart';
 
 class HomeHeader extends ConsumerWidget {
-  const HomeHeader({super.key});
+  const HomeHeader({super.key, required this.userName});
+
+  final String userName;
 
   String search() {
     return "Rechercher";
@@ -53,7 +56,7 @@ class HomeHeader extends ConsumerWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: TopHomeHeader(name: "Marikatou"),
+                    child: TopHomeHeader(name: userName),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(7.0),
