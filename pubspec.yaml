@@ -27,6 +27,7 @@ dependencies:
   flutter_native_splash: ^2.4.6
   app_links: ^6.4.0
   intl: ^0.20.2
+  pretty_qr_code: ^3.4.0
 
 flutter_native_splash:
   color: "#FB8257"

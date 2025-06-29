@@ -5,6 +5,7 @@ import 'package:fiestapp/mock/event.mock.dart';
 import 'package:fiestapp/mock/user.mock.dart';
 import 'package:fiestapp/utils/types/enum.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class WhoDriveCard extends StatefulWidget {
   const WhoDriveCard({super.key, required this.type});
@@ -138,6 +139,7 @@ class _WhoDriveCardState extends State<WhoDriveCard>
               textColor: Colors.white,
             ),
             CustomButton(
+              icon: FontAwesomeIcons.arrowRight,
               label: "Valider",
               onPressed: () {
                 // simple action si besoin

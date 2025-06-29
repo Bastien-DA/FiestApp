@@ -130,6 +130,7 @@ class _SondageCardState extends State<SondageCard>
         Align(
           alignment: Alignment.centerRight,
           child: CustomButton(
+            icon: FontAwesomeIcons.arrowRight,
             label: "Valider",
             onPressed: _selected == null ? null : onValidate,
           ),

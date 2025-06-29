@@ -1,12 +1,12 @@
+import 'package:fiestapp/components/avatar-group/avatar-group.component.dart';
 import 'package:fiestapp/components/icon-button/icon_button.component.dart';
+import 'package:fiestapp/components/modal/invitation-modal.dart';
 import 'package:fiestapp/enum/app-route.enum.dart';
 import 'package:fiestapp/mock/user.mock.dart';
 import 'package:fiestapp/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import '../../avatar-group/avatar-group.component.dart';
 
 class DetailsHeader extends ConsumerWidget {
   const DetailsHeader({super.key, required this.height});
@@ -15,6 +15,15 @@ class DetailsHeader extends ConsumerWidget {
 
   void goBack() {
     router.push(AppRoute.home.path);
+  }
+
+  Future<void> _dialogBuilder(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(content: InvitationModal());
+      },
+    );
   }
 
   @override
@@ -42,11 +51,33 @@ class DetailsHeader extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // Bouton retour
-              CustomIconButton(
-                icon: FontAwesomeIcons.arrowLeft,
-                backgroundColor: Colors.black.withValues(alpha: 0.2),
-                iconColor: Colors.white,
-                onClick: goBack,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomIconButton(
+                    icon: FontAwesomeIcons.arrowLeft,
+                    backgroundColor: Colors.black.withValues(alpha: 0.2),
+                    iconColor: Colors.white,
+                    onClick: goBack,
+                  ),
+                  Row(
+                    spacing: 5,
+                    children: [
+                      CustomIconButton(
+                        icon: FontAwesomeIcons.userPlus,
+                        backgroundColor: Colors.black.withValues(alpha: 0.2),
+                        iconColor: Colors.white,
+                        onClick: () => _dialogBuilder(context),
+                      ),
+                      CustomIconButton(
+                        icon: FontAwesomeIcons.pen,
+                        backgroundColor: Colors.black.withValues(alpha: 0.2),
+                        iconColor: Colors.white,
+                        onClick: () => {},
+                      ),
+                    ],
+                  ),
+                ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
