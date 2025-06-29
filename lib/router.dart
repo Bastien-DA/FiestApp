@@ -1,5 +1,6 @@
 import 'package:fiestapp/pages/details.page.dart';
 import 'package:fiestapp/pages/home.page.dart';
+import 'package:fiestapp/pages/invitation.page.dart';
 import 'package:fiestapp/pages/notification.page.dart';
 import 'package:fiestapp/pages/profil.page.dart';
 import 'package:flutter/material.dart' hide Notification;
@@ -8,7 +9,7 @@ import 'package:go_router/go_router.dart';
 import 'enum/app-route.enum.dart';
 
 GoRouter router = GoRouter(
-  initialLocation: AppRoute.home.path,
+  initialLocation: AppRoute.invitation.path,
   routes: [
     GoRoute(
       path: AppRoute.home.path,
@@ -29,6 +30,13 @@ GoRouter router = GoRouter(
       name: AppRoute.details.name,
       builder: (BuildContext context, GoRouterState state) {
         return const Details();
+      },
+    ),
+    GoRoute(
+      path: AppRoute.invitation.path,
+      name: AppRoute.invitation.name,
+      builder: (BuildContext context, GoRouterState state) {
+        return const Invitation();
       },
     ),
     GoRoute(
