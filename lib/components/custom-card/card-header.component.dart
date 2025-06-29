@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fiestapp/components/custom-card/tablet-date/tablet-date.component.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,7 @@ class CardHeader extends StatelessWidget {
           decoration: BoxDecoration(
             color: const Color(0xffFFFFFF),
             image: DecorationImage(
-              image: NetworkImage(pathImage),
+              image: CachedNetworkImageProvider(pathImage),
               fit: BoxFit.cover,
             ),
           ),

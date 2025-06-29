@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fiestapp/components/icon-button/icon_button.component.dart';
 import 'package:fiestapp/enum/app-route.enum.dart';
 import 'package:fiestapp/mock/user.mock.dart';
@@ -32,7 +33,9 @@ class DetailsHeader extends ConsumerWidget {
         height: height,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/ImageEvent.jpg'),
+            image: CachedNetworkImageProvider(
+              'https://www.sncf-connect.com/assets/styles/scale_and_crop_705x355/public/media/2022-07/fete.jpg?itok=ukqq2qKW',
+            ),
             fit: BoxFit.cover,
           ),
         ),

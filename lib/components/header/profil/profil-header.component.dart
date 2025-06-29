@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fiestapp/components/header/profil/profil-top-header.component.dart';
 import 'package:fiestapp/mock/user.mock.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,9 @@ class ProfilHeader extends ConsumerWidget {
               child: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/images/ImageSoiree.jpg'),
+                    image: CachedNetworkImageProvider(
+                      'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    ),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -55,7 +58,7 @@ class ProfilHeader extends ConsumerWidget {
                 backgroundColor: Color(0xffF4F1F7),
                 child: CircleAvatar(
                   radius: 61.5,
-                  backgroundImage: NetworkImage(
+                  backgroundImage: CachedNetworkImageProvider(
                     mockCurrentUser.ppLink ??
                         'https://avatar.iran.liara.run/public',
                   ),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fiestapp/utils/constant/global-pp.dart';
 import 'package:fiestapp/utils/types/user.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,9 @@ class AvatarGroup extends ConsumerWidget {
                 left: index * 18,
                 child: CircleAvatar(
                   radius: 15,
-                  backgroundImage: NetworkImage(user.ppLink ?? globalPP),
+                  backgroundImage: CachedNetworkImageProvider(
+                    user.ppLink ?? globalPP,
+                  ),
                 ),
               );
             }),
