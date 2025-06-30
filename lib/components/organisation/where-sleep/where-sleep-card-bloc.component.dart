@@ -1,5 +1,5 @@
 import 'package:fiestapp/components/organisation-item/add.component.dart';
-import 'package:fiestapp/components/organisation/who-card.component.dart';
+import 'package:fiestapp/components/organisation-item/who-card.component.dart';
 import 'package:fiestapp/utils/types/enum.dart';
 import 'package:flutter/material.dart';
 

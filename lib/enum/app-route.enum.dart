@@ -1,5 +1,6 @@
 enum AppRoute {
   home(name: 'home', path: '/'),
+  register(name: 'register', path: '/register'),
   profil(name: 'profile', path: '/profile'),
   details(name: 'details', path: '/details'),
   invitation(name: 'invitation', path: '/invitation'),
