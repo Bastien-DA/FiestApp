@@ -17,7 +17,7 @@ class RegisterHeader extends ConsumerWidget {
             image: DecorationImage(image: AssetImage('assets/logodark.png')),
           ),
         ),
-        CustomTitle(text: 'Dites nous en plus'),
+        CustomTitle(text: 'Création de votre profil'),
       ],
     );
   }

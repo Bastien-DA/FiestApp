@@ -7,14 +7,12 @@ class MinimalEnumSelector<T> extends StatelessWidget {
   final T value;
   final List<T> values;
   final ValueChanged<T?>? onChanged;
-  final String Function(T) labelBuilder;
 
   const MinimalEnumSelector({
     super.key,
     required this.label,
     required this.value,
     required this.values,
-    required this.labelBuilder,
     this.onChanged,
   });
 
@@ -44,10 +42,7 @@ class MinimalEnumSelector<T> extends StatelessWidget {
           .map(
             (v) => DropdownMenuItem<T>(
               value: v,
-              child: Text(
-                labelBuilder(v),
-                style: const TextStyle(color: Colors.white),
-              ),
+              child: Text(label, style: const TextStyle(color: Colors.white)),
             ),
           )
           .toList(),

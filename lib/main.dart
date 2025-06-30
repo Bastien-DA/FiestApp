@@ -3,6 +3,7 @@ import 'package:fiestapp/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -42,8 +43,22 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'FiestApp',
       routerConfig: router,
+      localizationsDelegates: GlobalMaterialLocalizations.delegates,
+      supportedLocales: [const Locale('fr')],
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(textTheme: GoogleFonts.poppinsTextTheme()),
+      theme: ThemeData(
+        textTheme: GoogleFonts.poppinsTextTheme(),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Color(0xffE15B42), // ta couleur principale ici
+          brightness: Brightness.light,
+        ),
+        timePickerTheme: TimePickerThemeData(
+          backgroundColor: Colors.white,
+          hourMinuteTextColor: Color(0xffE15B42),
+          dialHandColor: Color(0xffE15B42),
+          entryModeIconColor: Color(0xffE15B42),
+        ),
+      ),
     );
   }
 }
