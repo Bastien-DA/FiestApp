@@ -1,3 +1,4 @@
+import 'package:fiestapp/components/modal/create-poll-modal.dart';
 import 'package:fiestapp/components/organisation-item/add.component.dart';
 import 'package:fiestapp/components/organisation/poll/poll-card.component.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +11,13 @@ class SondageCardBloc extends StatefulWidget {
 }
 
 class _SondageCardBlocState extends State<SondageCardBloc> {
-  void onClick() {
-    print("SondageCardBloc");
+  Future<void> onClick() {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(child: CreatePollModal());
+      },
+    );
   }
 
   @override

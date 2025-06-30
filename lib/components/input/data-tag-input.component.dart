@@ -72,16 +72,16 @@ class DataTagInput extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
+              spacing: 2,
               children: [
                 Text(
                   title,
                   style: const TextStyle(
                     color: Color(0xffE15B42),
-                    fontSize: 13,
+                    fontSize: 12,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(height: 4),
                 _buildInputByType(context),
               ],
             ),
@@ -248,6 +248,63 @@ class DataTagInput extends ConsumerWidget {
               ),
             ),
           ),
+        );
+      case InputType.counter:
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            GestureDetector(
+              onTap: () {
+                final currentValue = int.tryParse(controller.text) ?? 0;
+                if (currentValue > 0) {
+                  controller.text = (currentValue - 1).toString();
+                  if (onChanged != null) onChanged!(controller.text);
+                }
+              },
+              child: FaIcon(
+                FontAwesomeIcons.minus,
+                color: Color(0xffE15B42),
+                size: 18,
+              ),
+            ),
+            SizedBox(
+              width: 50,
+              child: TextField(
+                textAlign: TextAlign.center,
+                controller: controller,
+                enabled: enabled,
+                keyboardType: TextInputType.numberWithOptions(
+                  decimal: false,
+                  signed: false,
+                ),
+                onChanged: onChanged,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
+                decoration: InputDecoration.collapsed(
+                  hintText: placeholder,
+                  hintStyle: TextStyle(
+                    color: Colors.grey.shade400,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                final currentValue = int.tryParse(controller.text) ?? 0;
+                controller.text = (currentValue + 1).toString();
+                if (onChanged != null) onChanged!(controller.text);
+              },
+              child: FaIcon(
+                FontAwesomeIcons.plus,
+                color: Color(0xffE15B42),
+                size: 18,
+              ),
+            ),
+          ],
         );
     }
   }

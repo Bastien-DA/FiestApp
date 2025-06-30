@@ -137,8 +137,8 @@ class _WhoDriveCardState extends State<WhoDriveCard>
           children: [
             AvatarGroup(
               users: mockUsers,
-              haveBackground: true,
-              textColor: Colors.white,
+              haveBackground: false,
+              textColor: Colors.black,
               text: usersLengthText,
             ),
             CustomButton(
