@@ -27,22 +27,22 @@ class _CourseListGridState extends State<CourseListGrid> {
       children: [
         AddCard(height: 4, width: 20, radius: 30, onClick: onClick),
         IllustrationCard(
-          illustration: 'assets/images/profil/weight.png',
+          s3ImageUrl: "https://fiestapp-s3.mizury.fr/fiestapp/asset/eau.webp",
           principalLabel: '2',
           secondaryLabel: 'Eau',
         ),
         IllustrationCard(
-          illustration: 'assets/images/profil/age.png',
+          s3ImageUrl: "https://fiestapp-s3.mizury.fr/fiestapp/asset/biere.webp",
           principalLabel: '10',
           secondaryLabel: 'Biere',
         ),
         IllustrationCard(
-          illustration: 'assets/images/profil/age.png',
+          s3ImageUrl: "https://fiestapp-s3.mizury.fr/fiestapp/asset/pizza.webp",
           principalLabel: '3',
           secondaryLabel: 'Pizza',
         ),
         IllustrationCard(
-          illustration: 'assets/images/profil/age.png',
+          s3ImageUrl: "https://fiestapp-s3.mizury.fr/fiestapp/asset/chips.webp",
           principalLabel: '4',
           secondaryLabel: 'Paquet de chips',
         ),

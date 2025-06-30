@@ -1,7 +1,9 @@
-import 'package:fiestapp/components/register/form_component.dart';
+import 'package:fiestapp/components/button/button.component.dart';
 import 'package:fiestapp/components/register/header.component.dart';
+import 'package:fiestapp/components/register/informations_block.component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Register extends ConsumerWidget {
   const Register({super.key});
@@ -12,7 +14,25 @@ class Register extends ConsumerWidget {
       backgroundColor: Color(0xffF4F1F7),
       resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: Column(children: [RegisterHeader(), RegisterForm()]),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(children: [RegisterHeader(), InformationsBlock()]),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  CustomButton(
+                    label: "Créer le compte",
+                    icon: FontAwesomeIcons.arrowRight,
+                    onPressed: () => {print("Créer le compte")},
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

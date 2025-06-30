@@ -27,18 +27,21 @@ class ProfilInformations extends ConsumerWidget {
             childAspectRatio: 0.70,
             children: [
               IllustrationCard(
-                illustration: 'assets/images/profil/size.png',
+                s3ImageUrl:
+                    "https://fiestapp-s3.mizury.fr/fiestapp/asset/soda.webp",
                 principalLabel: 'Taille',
                 secondaryLabel:
                     '${mockCurrentUser.height ~/ 100}m${mockCurrentUser.height % 100}',
               ),
               IllustrationCard(
-                illustration: 'assets/images/profil/weight.png',
+                s3ImageUrl:
+                    "https://fiestapp-s3.mizury.fr/fiestapp/asset/soda.webp",
                 principalLabel: 'Poids',
                 secondaryLabel: '${mockCurrentUser.weight} kg',
               ),
               IllustrationCard(
-                illustration: 'assets/images/profil/age.png',
+                s3ImageUrl:
+                    "https://fiestapp-s3.mizury.fr/fiestapp/asset/soda.webp",
                 principalLabel: 'Age',
                 secondaryLabel: '${mockCurrentUser.age} ans',
               ),

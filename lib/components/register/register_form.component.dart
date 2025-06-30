@@ -1,8 +1,10 @@
-import 'package:fiestapp/components/button/input/data-tag-input.component.dart';
+import 'package:fiestapp/components/input/data-tag-input.component.dart';
+import 'package:fiestapp/components/input/select_text_input.component.dart';
+import 'package:fiestapp/components/input/slider.component.dart';
+import 'package:fiestapp/components/register/genre.component.dart';
 import 'package:fiestapp/utils/types/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class RegisterForm extends ConsumerStatefulWidget {
   const RegisterForm({super.key});
@@ -40,54 +42,67 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          spacing: 10,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: 20,
+      children: [
+        Row(
+          spacing: 20,
           children: [
-            DataTagInput(
-              title: "Nom complet",
-              placeholder: "Entrez votre nom",
-              inputType: InputType.text,
-              controller: _nameController,
-              onChanged: (value) => print("Nom: $value"),
+            Expanded(
+              flex: 2,
+              child: DataTagInput(
+                title: "Comment doit-on vous appeler ?",
+                placeholder: "Votre nom",
+                inputType: InputType.text,
+                controller: _nameController,
+                onChanged: (value) => print("Nom: $value"),
+              ),
             ),
-
-            DataTagInput(
-              title: "Téléphone",
-              iconColor: Color(0xffE15B42),
-              placeholder: "06 12 34 56 78",
-              inputType: InputType.number,
-              controller: _phoneController,
-              icon: FontAwesomeIcons.phone,
-              onChanged: (value) => print("Téléphone: $value"),
-            ),
-
-            const Spacer(),
-
-            // Bouton de validation
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: _submitForm,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xffE15B42),
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                child: const Text(
-                  'S\'inscrire',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
+            Expanded(
+              flex: 1,
+              child: DataTagInput(
+                title: "Quel age avez-vous ?",
+                iconColor: Color(0xffE15B42),
+                placeholder: "25",
+                inputType: InputType.number,
+                controller: _phoneController,
+                onChanged: (value) => print("Age: $value"),
               ),
             ),
           ],
         ),
-      ),
+
+        GenderSelector(),
+        CustomSlider(
+          title: "Quelle est votre taille ?",
+          min: 120,
+          max: 240,
+          value: 170,
+          unit: "cm",
+          onChanged: (value) => print("Taille: $value cm"),
+        ),
+        MinimalEnumSelector<AlcoholConsumption>(
+          width: MediaQuery.sizeOf(context).width * 0.6,
+          title: "Quel buveur êtes-vous ?",
+          value: AlcoholConsumption.occasionally,
+          values: AlcoholConsumption.values,
+          labelBuilder: (val) {
+            switch (val) {
+              case AlcoholConsumption.occasionally:
+                return "Occasionnel";
+              case AlcoholConsumption.regularly:
+                return "Régulier";
+              case AlcoholConsumption.seasoned:
+                return "Aguerri";
+            }
+          },
+          onChanged: (newValue) {
+            // Faire quelque chose avec la nouvelle valeur
+            print("Nouveau choix : $newValue");
+          },
+        ),
+      ],
     );
   }
 

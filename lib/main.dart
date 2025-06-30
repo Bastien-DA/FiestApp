@@ -47,6 +47,13 @@ class MyApp extends StatelessWidget {
       supportedLocales: [const Locale('fr')],
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        popupMenuTheme: PopupMenuThemeData(
+          color: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+            side: BorderSide(color: Color(0xffE15B42), width: 1.5),
+          ),
+        ),
         textTheme: GoogleFonts.poppinsTextTheme(),
         colorScheme: ColorScheme.fromSeed(
           seedColor: Color(0xffE15B42), // ta couleur principale ici
