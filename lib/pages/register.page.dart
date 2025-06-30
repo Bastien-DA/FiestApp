@@ -1,6 +1,8 @@
 import 'package:fiestapp/components/button/button.component.dart';
 import 'package:fiestapp/components/register/header.component.dart';
 import 'package:fiestapp/components/register/informations_block.component.dart';
+import 'package:fiestapp/enum/app-route.enum.dart';
+import 'package:fiestapp/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -26,7 +28,7 @@ class Register extends ConsumerWidget {
                   CustomButton(
                     label: "Créer le compte",
                     icon: FontAwesomeIcons.arrowRight,
-                    onPressed: () => {print("Créer le compte")},
+                    onPressed: () => {router.push(AppRoute.home.path)},
                   ),
                 ],
               ),
