@@ -10,7 +10,7 @@ import 'package:go_router/go_router.dart';
 import 'enum/app-route.enum.dart';
 
 GoRouter router = GoRouter(
-  initialLocation: AppRoute.details.path,
+  initialLocation: AppRoute.addEvent.path,
   routes: [
     GoRoute(
       path: AppRoute.home.path,

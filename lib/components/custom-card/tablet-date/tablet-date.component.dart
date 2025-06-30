@@ -1,4 +1,4 @@
-import 'package:fiestapp/utils/utils.dart';
+import 'package:fiestapp/utils/date.utils.dart';
 import 'package:flutter/material.dart';
 
 class TabletDate extends StatelessWidget {
