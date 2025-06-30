@@ -53,7 +53,7 @@ class _ImageSelectorState extends State<ImageSelector> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(FontAwesomeIcons.image, size: 40, color: Color(0xFFE15B42)),
+            FaIcon(FontAwesomeIcons.image, size: 40, color: Color(0xFFE15B42)),
             Text(
               widget.title,
               style: TextStyle(

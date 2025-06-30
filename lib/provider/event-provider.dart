@@ -16,7 +16,7 @@ class EventNotifier extends StateNotifier<List<Event>> {
     state = data;
   }
 
-  void inversEvents() {
+  void inverseEvents() {
     final currentEvents = state;
     var listEvents = List<Event>.from(currentEvents);
     listEvents.add(listEvents.removeAt(0));

@@ -1,4 +1,6 @@
 import 'package:fiestapp/components/organisation/course-list/course_list_grid.component.dart';
+import 'package:fiestapp/components/organisation/course-list/suggestion_bloc.dart'
+    show SuggestionBloc;
 import 'package:fiestapp/components/text/custom-title-expand.component.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +13,7 @@ class CouseList extends StatefulWidget {
 
 class _CouseListState extends State<CouseList> {
   void onClick() {
-    print("CouseList");
+    print("CourseList");
   }
 
   @override
@@ -24,6 +26,7 @@ class _CouseListState extends State<CouseList> {
           text: "Tout voir",
           onClick: onClick,
         ),
+        SuggestionBloc(),
         CourseListGrid(),
       ],
     );

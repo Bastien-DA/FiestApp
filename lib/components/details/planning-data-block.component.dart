@@ -1,4 +1,4 @@
-import 'package:fiestapp/components/details/planning-data.component.dart';
+import 'package:fiestapp/components/text/data-tag.component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -14,12 +14,12 @@ class PlanningDataBlock extends ConsumerWidget {
     return Row(
       spacing: 5,
       children: [
-        PlanningData(
+        DataTag(
           text: date,
           icon: FontAwesomeIcons.calendar,
           iconColor: Color(0xffE15B42),
         ),
-        PlanningData(
+        DataTag(
           text: "$hour h",
           icon: FontAwesomeIcons.clock,
           iconColor: Color(0xffE15B42),

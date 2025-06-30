@@ -1,76 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class IllustrationCard extends StatelessWidget {
-  const IllustrationCard({
+class DataTag extends ConsumerWidget {
+  const DataTag({
     super.key,
+    required this.text,
     this.icon,
     this.iconColor,
     this.backgroundColor,
     this.s3ImageUrl,
     this.imageSize = 20,
-    this.onClick,
-    this.isSelected = false,
-    this.gradient,
-    required this.principalLabel,
-    required this.secondaryLabel,
-  });
+  }) : assert(
+         (icon != null && s3ImageUrl == null) ||
+             (icon == null && s3ImageUrl != null),
+         'Vous devez fournir soit une icône soit une URL S3, mais pas les deux',
+       );
 
-  final String principalLabel;
-  final String secondaryLabel;
+  final String text;
   final IconData? icon;
   final Color? iconColor;
   final Color? backgroundColor;
   final String? s3ImageUrl;
   final double imageSize;
-  final VoidCallback? onClick;
-  final bool isSelected;
-  final Gradient? gradient;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
-        gradient: isSelected ? gradient : null,
-        color: isSelected ? null : Colors.white,
-        borderRadius: BorderRadius.circular(30),
+        color: backgroundColor ?? Colors.white,
+        borderRadius: BorderRadius.circular(5),
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _buildIcon(),
-          Text(
-            principalLabel,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: isSelected ? Colors.white : Colors.black,
-            ),
-          ),
-          Text(
-            secondaryLabel,
-            style: TextStyle(
-              fontSize: 12,
-              color: isSelected ? Colors.white70 : Colors.black54,
-            ),
-          ),
-        ],
-      ),
+      child: Row(spacing: 5, children: [_buildIcon(), Text(text)]),
     );
   }
 
   Widget _buildIcon() {
     if (icon != null) {
-      return FaIcon(
-        icon!,
-        color: isSelected == true
-            ? Colors
-                  .white // couleur quand sélectionné
-            : (iconColor ?? Colors.black), // sinon, valeur par défaut
-        size: imageSize,
-      );
+      return FaIcon(icon!, color: iconColor ?? Colors.black, size: imageSize);
     } else if (s3ImageUrl != null) {
       return Image.network(
         s3ImageUrl!,

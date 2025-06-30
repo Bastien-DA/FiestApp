@@ -39,7 +39,7 @@ class _NextEventState extends ConsumerState<NextEvent> {
                 key: UniqueKey(),
                 direction: DismissDirection.horizontal,
                 onDismissed: (direction) {
-                  ref.read(eventProvider.notifier).inversEvents();
+                  ref.read(eventProvider.notifier).inverseEvents();
                 },
                 child: NextEvenementCard(event: events[0]),
               ),
