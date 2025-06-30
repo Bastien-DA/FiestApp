@@ -17,8 +17,8 @@ void main() async {
   await initializeDateFormatting('fr_FR', null);
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await dotenv.load(fileName: '.env');
-  String MAPBOX_TOKEN = dotenv.env['MAPBOX_TOKEN'] ?? '';
-  MapboxOptions.setAccessToken(MAPBOX_TOKEN);
+  String mapboxToken = dotenv.env['MAPBOX_TOKEN'] ?? '';
+  MapboxOptions.setAccessToken(mapboxToken);
   FlutterNativeSplash.remove();
   runApp(ProviderScope(child: const MyApp()));
 

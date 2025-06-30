@@ -18,7 +18,7 @@ class EventTitle extends ConsumerWidget {
         spacing: 5,
         children: [
           CustomTitle(text: title),
-          Text("📍 ${adress}"),
+          Text("📍 $adress"),
         ],
       ),
     );

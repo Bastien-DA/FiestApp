@@ -20,7 +20,7 @@ class PlanningDataBlock extends ConsumerWidget {
           iconColor: Color(0xffE15B42),
         ),
         PlanningData(
-          text: "${hour} h",
+          text: "$hour h",
           icon: FontAwesomeIcons.clock,
           iconColor: Color(0xffE15B42),
         ),
