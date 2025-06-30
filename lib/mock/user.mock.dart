@@ -36,11 +36,11 @@ final List<User> mockUsers = [
   User(
     userGuid: '3',
     username: 'Charlie',
-    biologicalGender: 'non-binary',
+    biologicalGender: 'male',
     age: 22,
     height: 170,
     weight: 65,
-    alcoholConsumption: 'never',
+    alcoholConsumption: 'seasoned',
     ppLink: 'https://randomuser.me/api/portraits/men/3.jpg',
   ),
   User(
@@ -50,7 +50,7 @@ final List<User> mockUsers = [
     age: 28,
     height: 160,
     weight: 58,
-    alcoholConsumption: 'socially',
+    alcoholConsumption: 'seasoned',
     ppLink: 'https://randomuser.me/api/portraits/women/4.jpg',
   ),
 ];
