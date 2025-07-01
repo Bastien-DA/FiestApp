@@ -1,6 +1,8 @@
 import 'package:fiestapp/components/button/icon-button.component.dart';
 import 'package:fiestapp/components/details/event-data.component.dart';
 import 'package:fiestapp/mock/event.mock.dart';
+import 'package:fiestapp/utils/constant/constant.dart';
+import 'package:fiestapp/utils/image-converter.utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -80,7 +82,9 @@ class _EventDetailsWithMapState extends State<EventDetailsWithMap> {
   Future<void> _addMarker(PointAnnotationManager manager) async {
     try {
       final ByteData bytes = await rootBundle.load('assets/marker.png');
-      final Uint8List imageData = bytes.buffer.asUint8List();
+      Uint8List customMarkerImage = await createCustomMarker(
+        '${S3_enpoint}event/event.webp', //${mockEvents[0].guid}
+      );
 
       await manager.create(
         PointAnnotationOptions(
@@ -90,8 +94,8 @@ class _EventDetailsWithMapState extends State<EventDetailsWithMap> {
               mockEvents[0].latitute,
             ),
           ),
-          image: imageData,
-          iconSize: 0.8,
+          image: customMarkerImage,
+          iconSize: 1,
         ),
       );
     } catch (e) {
