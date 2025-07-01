@@ -35,10 +35,11 @@ GoRouter router = GoRouter(
       },
     ),
     GoRoute(
-      path: AppRoute.invitation.path,
+      path: "${AppRoute.invitation.path}/:id",
       name: AppRoute.invitation.name,
       builder: (BuildContext context, GoRouterState state) {
-        return const Invitation();
+        final id = state.pathParameters['id']!;
+        return Invitation(id: id);
       },
     ),
     GoRoute(

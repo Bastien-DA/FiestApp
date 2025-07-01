@@ -5,6 +5,7 @@ import 'package:fiestapp/components/modal/invitation-modal.dart';
 import 'package:fiestapp/enum/app-route.enum.dart';
 import 'package:fiestapp/mock/event.mock.dart';
 import 'package:fiestapp/mock/user.mock.dart';
+import 'package:fiestapp/provider/event/selected-event.provider.dart';
 import 'package:fiestapp/router.dart';
 import 'package:fiestapp/utils/constant/constant.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,8 @@ class DetailsHeader extends ConsumerWidget {
 
   final double height;
 
-  void goBack() {
+  void goBack(WidgetRef ref) {
+    ref.read(selectedEventProvider.notifier).clear();
     router.push(AppRoute.home.path);
   }
 
@@ -59,7 +61,7 @@ class DetailsHeader extends ConsumerWidget {
               fit: BoxFit.cover,
             ),
           ),
-          child: headerContent(context, usersLengthText),
+          child: headerContent(context, usersLengthText, ref),
         ),
         imageBuilder: (context, imageProvider) => Container(
           width: double.infinity,
@@ -67,13 +69,13 @@ class DetailsHeader extends ConsumerWidget {
           decoration: BoxDecoration(
             image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
           ),
-          child: headerContent(context, usersLengthText),
+          child: headerContent(context, usersLengthText, ref),
         ),
       ),
     );
   }
 
-  Widget headerContent(context, usersLengthText) {
+  Widget headerContent(context, usersLengthText, WidgetRef ref) {
     return SafeArea(
       minimum: const EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 45),
       bottom: false,
@@ -89,7 +91,7 @@ class DetailsHeader extends ConsumerWidget {
                 icon: FontAwesomeIcons.arrowLeft,
                 backgroundColor: Colors.black.withOpacity(0.2),
                 iconColor: Colors.white,
-                onClick: goBack,
+                onClick: () => goBack(ref),
               ),
               Row(
                 children: [

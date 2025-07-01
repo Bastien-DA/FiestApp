@@ -1,7 +1,6 @@
 import 'package:fiestapp/components/details/details-header.component.dart';
 import 'package:fiestapp/components/details/event-data-with-map.component.dart';
 import 'package:fiestapp/components/page-switcher/page-switcher.component.dart';
-import 'package:fiestapp/provider/event/selected-event.provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -32,7 +31,6 @@ class DetailState extends ConsumerState<Details> {
 
   @override
   void dispose() {
-    ref.read(selectedEventProvider.notifier).dispose();
     super.dispose();
   }
 

@@ -1,15 +1,18 @@
 import 'package:fiestapp/components/custom-card/illustration-card/illustration-card.component.dart';
 import 'package:fiestapp/components/text/custom-title.component.dart';
-import 'package:fiestapp/mock/user.mock.dart';
+import 'package:fiestapp/provider/user.provider.dart';
 import 'package:fiestapp/utils/constant/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class ProfilInformations extends ConsumerWidget {
   const ProfilInformations({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final currentUser = ref.watch(userProvider);
+
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Column(
@@ -28,20 +31,28 @@ class ProfilInformations extends ConsumerWidget {
             childAspectRatio: 0.70,
             children: [
               IllustrationCard(
-                s3ImageUrl: "${S3_enpoint}asset/soda.webp",
+                imageSize: 50,
+                s3ImageUrl: "${S3_enpoint}asset/taille.webp",
                 principalLabel: 'Taille',
-                secondaryLabel:
-                    '${mockCurrentUser.height ~/ 100}m${mockCurrentUser.height % 100}',
+                secondaryLabel: currentUser != null
+                    ? '${currentUser.height ~/ 100}m${currentUser.height % 100}'
+                    : BoneMock.name,
               ),
               IllustrationCard(
-                s3ImageUrl: "${S3_enpoint}asset/soda.webp",
+                imageSize: 50,
+                s3ImageUrl: "${S3_enpoint}asset/poid.webp",
                 principalLabel: 'Poids',
-                secondaryLabel: '${mockCurrentUser.weight} kg',
+                secondaryLabel: currentUser != null
+                    ? '${currentUser.weight} kg'
+                    : BoneMock.name,
               ),
               IllustrationCard(
-                s3ImageUrl: "${S3_enpoint}asset/soda.webp",
+                imageSize: 50,
+                s3ImageUrl: "${S3_enpoint}asset/age.webp",
                 principalLabel: 'Age',
-                secondaryLabel: '${mockCurrentUser.age} ans',
+                secondaryLabel: currentUser != null
+                    ? '${currentUser.age} ans'
+                    : BoneMock.name,
               ),
             ],
           ),
