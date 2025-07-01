@@ -85,15 +85,15 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
         MinimalEnumSelector<AlcoholConsumption>(
           width: MediaQuery.sizeOf(context).width * 0.6,
           title: "Quel buveur êtes-vous ?",
-          value: AlcoholConsumption.occasionally,
+          value: AlcoholConsumption.Occasional,
           values: AlcoholConsumption.values,
           labelBuilder: (val) {
             switch (val) {
-              case AlcoholConsumption.occasionally:
+              case AlcoholConsumption.Occasional:
                 return "Occasionnel";
-              case AlcoholConsumption.regularly:
+              case AlcoholConsumption.Regular:
                 return "Régulier";
-              case AlcoholConsumption.seasoned:
+              case AlcoholConsumption.Veteran:
                 return "Aguerri";
             }
           },

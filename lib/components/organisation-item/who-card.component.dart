@@ -95,7 +95,7 @@ class _WhoDriveCardState extends State<WhoDriveCard>
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      mockEvent.location,
+                      mockEvents[0].location,
                       style: const TextStyle(fontSize: 12, color: Colors.grey),
                     ),
                   ],

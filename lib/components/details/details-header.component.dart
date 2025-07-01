@@ -31,9 +31,6 @@ class DetailsHeader extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print("${S3_enpoint}event/${mockEvent.guid}.webp");
-    print("${S3_enpoint}event/event.webp");
-
     final String usersLengthText =
         "${mockUsers.length} participant${mockUsers.length == 1 ? '' : 's'}";
 
@@ -43,7 +40,7 @@ class DetailsHeader extends ConsumerWidget {
         bottomRight: Radius.circular(40),
       ),
       child: CachedNetworkImage(
-        imageUrl: "${S3_enpoint}event/${mockEvent.guid}.webp",
+        imageUrl: "${S3_enpoint}event/${mockEvents[0].guid}.webp",
         width: double.infinity,
         height: height,
         fit: BoxFit.cover,

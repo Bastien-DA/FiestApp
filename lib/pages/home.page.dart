@@ -3,17 +3,33 @@ import 'package:fiestapp/components/home/header/home-header.component.dart';
 import 'package:fiestapp/components/home/next-event/next-event.component.dart';
 import 'package:fiestapp/components/home/participation/you-participate.component.dart';
 import 'package:fiestapp/enum/app-route.enum.dart';
+import 'package:fiestapp/provider/event/event.provider.dart';
 import 'package:fiestapp/provider/user.provider.dart';
 import 'package:fiestapp/router.dart';
+import 'package:fiestapp/utils/types/event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
-class Home extends ConsumerWidget {
+class Home extends ConsumerStatefulWidget {
   const Home({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<Home> createState() => _HomeState();
+}
+
+class _HomeState extends ConsumerState<Home> {
+  late Future<List<Event>> _future;
+
+  @override
+  void initState() {
+    super.initState();
+    _future = ref.read(eventProvider.notifier).fetchAllEvents();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final user = ref.watch(userProvider);
     return Scaffold(
       backgroundColor: Color(0xffF4F1F7),
@@ -22,8 +38,8 @@ class Home extends ConsumerWidget {
         icon: FontAwesomeIcons.calendarPlus,
         backgroundColor: Color(0xffE15B42),
         iconColor: Colors.white,
-        height: 60,
-        width: 60,
+        height: 80,
+        width: 80,
         size: 20,
         onClick: () {
           router.push(AppRoute.addEvent.path);
@@ -34,22 +50,27 @@ class Home extends ConsumerWidget {
           HomeHeader(userName: user?.username ?? "Utilisateur"),
           Expanded(
             child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(height: 35),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                    child: NextEvent(),
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 35),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: FutureBuilder(
+                    future: _future,
+                    builder: (context, snapshot) {
+                      final isLoading =
+                          snapshot.connectionState == ConnectionState.waiting;
+                      return Skeletonizer(
+                        enabled: isLoading,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          spacing: 35,
+                          children: [NextEvent(), YouParticipate()],
+                        ),
+                      );
+                    },
                   ),
-                  SizedBox(height: 35),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                    child: YouParticipate(),
-                  ),
-                  SizedBox(height: 35),
-                ],
+                ),
               ),
             ),
           ),

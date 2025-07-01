@@ -1,14 +1,19 @@
 import 'package:fiestapp/components/custom-card/you-participate/you-participate-card.component.dart';
 import 'package:fiestapp/components/text/custom-title.component.dart';
-import 'package:fiestapp/provider/event.provider.dart';
+import 'package:fiestapp/provider/event/event.provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class YouParticipate extends ConsumerWidget {
+class YouParticipate extends ConsumerStatefulWidget {
   const YouParticipate({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<YouParticipate> createState() => _YouParticipateState();
+}
+
+class _YouParticipateState extends ConsumerState<YouParticipate> {
+  @override
+  Widget build(BuildContext context) {
     final events = ref.watch(eventProvider);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

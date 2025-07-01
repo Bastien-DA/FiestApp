@@ -1,6 +1,6 @@
 import 'package:fiestapp/components/custom-card/next-evenement/next-evenement-card.component.dart';
 import 'package:fiestapp/components/text/custom-title.component.dart';
-import 'package:fiestapp/provider/event.provider.dart';
+import 'package:fiestapp/provider/event/event.provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -15,14 +15,37 @@ class _NextEventState extends ConsumerState<NextEvent> {
   @override
   Widget build(BuildContext context) {
     final events = ref.watch(eventProvider);
+
+    if (events.isEmpty) {
+      return const SizedBox(
+        height: 237,
+        width: double.infinity,
+        child: Center(child: Text("Aucun évènement disponible")),
+      );
+    }
+
+    if (events.length == 1) {
+      return SizedBox(
+        height: 237,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const CustomTitle(text: "Prochains évènements"),
+            const SizedBox(height: 10),
+            NextEvenementCard(event: events[0]),
+          ],
+        ),
+      );
+    }
+
+    // >= 2 events
     return SizedBox(
       height: 237,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        spacing: 10,
         children: [
-          CustomTitle(text: "Prochains évènements"),
+          const CustomTitle(text: "Prochains évènements"),
+          const SizedBox(height: 10),
           Stack(
             clipBehavior: Clip.none,
             children: [

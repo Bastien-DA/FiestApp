@@ -27,7 +27,7 @@ class _EventDetailsWithMapState extends State<EventDetailsWithMap> {
 
   final CameraOptions camera = CameraOptions(
     center: Point(
-      coordinates: Position(mockEvent.longitude, mockEvent.latitute),
+      coordinates: Position(mockEvents[0].longitude, mockEvents[0].latitute),
     ),
     zoom: 15,
     bearing: 0,
@@ -85,7 +85,10 @@ class _EventDetailsWithMapState extends State<EventDetailsWithMap> {
       await manager.create(
         PointAnnotationOptions(
           geometry: Point(
-            coordinates: Position(mockEvent.longitude, mockEvent.latitute),
+            coordinates: Position(
+              mockEvents[0].longitude,
+              mockEvents[0].latitute,
+            ),
           ),
           image: imageData,
           iconSize: 0.8,
@@ -118,7 +121,7 @@ class _EventDetailsWithMapState extends State<EventDetailsWithMap> {
     return Column(
       spacing: 10,
       children: [
-        if (!widget.isMapExpanded) EventData(event: mockEvent),
+        if (!widget.isMapExpanded) EventData(event: mockEvents[0]),
         SafeArea(
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),

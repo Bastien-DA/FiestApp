@@ -4,16 +4,19 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CurrentUserNotifier extends StateNotifier<User?> {
   final Ref ref;
-  final userServiceProvider = Provider((ref) => UserService());
+  final userService = UserService();
 
   CurrentUserNotifier(this.ref) : super(null) {
     getCurrentUser();
   }
 
-  void getCurrentUser() {
-    final userService = ref.read(userServiceProvider);
-    final data = userService.getCurrentUser();
+  Future<void> getCurrentUser() async {
+    final data = await userService.getCurrentUser();
     state = data;
+  }
+
+  void clear() {
+    state = null;
   }
 }
 

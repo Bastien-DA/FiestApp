@@ -4,16 +4,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class EventNotifier extends StateNotifier<List<Event>> {
   final Ref ref;
-  final eventServiceProvider = Provider((ref) => EventService());
+  final eventService = EventService();
 
-  EventNotifier(this.ref) : super([]) {
-    fetchAllEvents();
-  }
+  EventNotifier(this.ref) : super([]);
 
-  void fetchAllEvents() {
-    final eventService = ref.read(eventServiceProvider);
-    final data = eventService.fetchAllEvents();
+  Future<List<Event>> fetchAllEvents() async {
+    final data = await eventService.getEvents();
     state = data;
+    return data;
   }
 
   void inverseEvents() {
@@ -21,6 +19,10 @@ class EventNotifier extends StateNotifier<List<Event>> {
     var listEvents = List<Event>.from(currentEvents);
     listEvents.add(listEvents.removeAt(0));
     state = listEvents;
+  }
+
+  void clear() {
+    state = [];
   }
 }
 
