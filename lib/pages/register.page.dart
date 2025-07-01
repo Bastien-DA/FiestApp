@@ -1,4 +1,5 @@
 import 'package:fiestapp/components/button/button.component.dart';
+import 'package:fiestapp/components/image-selector/image-selector.component.dart';
 import 'package:fiestapp/components/register/header.component.dart';
 import 'package:fiestapp/components/register/informations_block.component.dart';
 import 'package:fiestapp/enum/app-route.enum.dart';
@@ -19,7 +20,16 @@ class Register extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(children: [RegisterHeader(), RegisterInformationsBlock()]),
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: RegisterHeader(),
+                ),
+                ImageSelector(title: "Sélectionnez une image", height: 130),
+                RegisterInformationsBlock(),
+              ],
+            ),
             Padding(
               padding: const EdgeInsets.all(20),
               child: Row(

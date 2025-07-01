@@ -7,18 +7,14 @@ class RegisterHeader extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      spacing: 5,
-      children: [
-        Container(
-          height: 100,
-          width: 100,
-          decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage('assets/logodark.png')),
-          ),
-        ),
-        CustomTitle(text: 'Création de votre profil'),
-      ],
+    return SizedBox(
+      height: 40,
+      child: const Stack(
+        alignment: Alignment.center,
+        children: [
+          Center(child: CustomTitle(text: "Création de votre profil")),
+        ],
+      ),
     );
   }
 }
