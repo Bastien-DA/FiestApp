@@ -54,7 +54,12 @@ class TopHomeHeader extends ConsumerWidget {
                 router.push(AppRoute.notification.path);
               },
             ),
-            ProfilImageButton(imagePath: user?.ppLink ?? globalPP),
+            ProfilImageButton(
+              imagePath: user?.ppLink ?? globalPP,
+              onClick: () {
+                router.push(AppRoute.profil.path);
+              },
+            ),
           ],
         ),
       ],
