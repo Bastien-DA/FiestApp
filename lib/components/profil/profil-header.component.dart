@@ -1,8 +1,9 @@
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:fiestapp/components/header/profil/profil-top-header.component.dart';
+import 'package:fiestapp/components/profil/profil-top-header.component.dart';
 import 'package:fiestapp/mock/user.mock.dart';
+import 'package:fiestapp/utils/constant/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -59,8 +60,7 @@ class ProfilHeader extends ConsumerWidget {
                 child: CircleAvatar(
                   radius: 61.5,
                   backgroundImage: CachedNetworkImageProvider(
-                    mockCurrentUser.ppLink ??
-                        'https://avatar.iran.liara.run/public',
+                    mockCurrentUser.ppLink ?? defaultProfilImage,
                   ),
                 ),
               ),

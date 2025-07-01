@@ -1,6 +1,6 @@
 import 'package:fiestapp/components/avatar-group/avatar-group.component.dart';
 import 'package:fiestapp/components/button/button.component.dart';
-import 'package:fiestapp/components/image-button/profil-image-button.component.dart';
+import 'package:fiestapp/components/button/profil-image-button.component.dart';
 import 'package:fiestapp/mock/event.mock.dart';
 import 'package:fiestapp/mock/user.mock.dart';
 import 'package:fiestapp/utils/types/enum.dart';

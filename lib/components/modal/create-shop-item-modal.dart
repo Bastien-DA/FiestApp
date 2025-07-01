@@ -18,6 +18,43 @@ class _CreateShopItemModalState extends State<CreateShopItemModal> {
   final TextEditingController _nameController = TextEditingController();
 
   late String selectedImage;
+  late bool isImageSelectorVisible = false;
+
+  final List<String> imagesName = [
+    "assiette",
+    "biere",
+    "boisson_energisante",
+    "bonbon",
+    "cacahuette",
+    "chips",
+    "citron",
+    "cookie",
+    "cornichon",
+    "couvert",
+    "croissant",
+    "eau",
+    "fromage",
+    "glace",
+    "glacon",
+    "gobelet",
+    "grillade",
+    "jet",
+    "jus_de_fruit",
+    "nappe",
+    "olive",
+    "pain",
+    "pizza",
+    "carotte",
+    "rhum",
+    "ricard",
+    "sac_poubelle",
+    "saucisson",
+    "serviette",
+    "sirop",
+    "soda",
+    "sucre",
+    "tomate",
+  ];
 
   @override
   void dispose() {
@@ -56,9 +93,14 @@ class _CreateShopItemModalState extends State<CreateShopItemModal> {
               children: [
                 Stack(
                   children: [
-                    Image.network(
-                      "https://fiestapp-s3.mizury.fr/fiestapp/asset/$selectedImage.webp",
-                      height: 80,
+                    GestureDetector(
+                      onTap: () => setState(() {
+                        isImageSelectorVisible = !isImageSelectorVisible;
+                      }),
+                      child: Image.network(
+                        "https://fiestapp-s3.mizury.fr/fiestapp/asset/$selectedImage.webp",
+                        height: 80,
+                      ),
                     ),
                     Positioned(
                       top: 0,
@@ -96,6 +138,29 @@ class _CreateShopItemModalState extends State<CreateShopItemModal> {
                 ),
               ],
             ),
+            if (isImageSelectorVisible)
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      for (final imageName in imagesName)
+                        if (imageName != selectedImage)
+                          GestureDetector(
+                            onTap: () => setState(() {
+                              selectedImage = imageName;
+                              isImageSelectorVisible = false;
+                            }),
+                            child: Image.network(
+                              "https://fiestapp-s3.mizury.fr/fiestapp/asset/$imageName.webp",
+                              height: 48,
+                            ),
+                          ),
+                    ],
+                  ),
+                ),
+              ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

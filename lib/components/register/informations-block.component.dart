@@ -1,4 +1,4 @@
-import 'package:fiestapp/components/register/register_form.component.dart';
+import 'package:fiestapp/components/register/register-form.component.dart';
 import 'package:fiestapp/components/text/custom-title.component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

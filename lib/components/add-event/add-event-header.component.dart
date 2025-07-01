@@ -9,7 +9,7 @@ class AddEventHeader extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
-      height: 40, // ou ajuste selon ta maquette
+      height: 40,
       child: Stack(
         alignment: Alignment.center,
         children: [

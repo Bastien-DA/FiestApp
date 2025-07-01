@@ -1,7 +1,7 @@
 import 'package:fiestapp/components/button/button.component.dart';
 import 'package:fiestapp/components/image-selector/image-selector.component.dart';
 import 'package:fiestapp/components/register/header.component.dart';
-import 'package:fiestapp/components/register/informations_block.component.dart';
+import 'package:fiestapp/components/register/informations-block.component.dart';
 import 'package:fiestapp/enum/app-route.enum.dart';
 import 'package:fiestapp/router.dart';
 import 'package:flutter/material.dart';

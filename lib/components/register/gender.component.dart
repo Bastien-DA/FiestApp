@@ -1,4 +1,4 @@
-import 'package:fiestapp/components/card/illustration-card/illustration-card.component.dart';
+import 'package:fiestapp/components/custom-card/illustration-card/illustration-card.component.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

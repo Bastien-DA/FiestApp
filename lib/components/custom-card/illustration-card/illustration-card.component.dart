@@ -1,4 +1,4 @@
-import 'package:fiestapp/components/image-button/profil-image-button.component.dart';
+import 'package:fiestapp/components/button/profil-image-button.component.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -86,6 +86,8 @@ class IllustrationCard extends StatelessWidget {
         fit: BoxFit.cover,
         errorBuilder: (context, error, stackTrace) {
           // Widget de fallback en cas d'erreur de chargement
+          print(error);
+
           return FaIcon(
             FontAwesomeIcons.image,
             color: Colors.grey,
