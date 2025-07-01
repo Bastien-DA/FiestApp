@@ -65,6 +65,8 @@ class MyApp extends StatelessWidget {
           dialHandColor: Color(0xffE15B42),
           entryModeIconColor: Color(0xffE15B42),
         ),
+        dialogTheme: DialogThemeData(backgroundColor: Colors.white),
+        bottomSheetTheme: BottomSheetThemeData(backgroundColor: Colors.white),
       ),
     );
   }

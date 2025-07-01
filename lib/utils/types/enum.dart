@@ -4,4 +4,4 @@ enum WhoCardType { drive, sleep }
 
 enum AlcoholConsumption { occasionally, regularly, seasoned }
 
-enum InputType { text, number, date, time }
+enum InputType { text, number, date, time, counter }

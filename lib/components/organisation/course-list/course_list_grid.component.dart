@@ -1,4 +1,5 @@
 import 'package:fiestapp/components/card/illustration-card/illustration-card.component.dart';
+import 'package:fiestapp/components/modal/create-shop-item-modal.dart';
 import 'package:fiestapp/components/organisation-item/add.component.dart';
 import 'package:flutter/material.dart';
 
@@ -10,8 +11,13 @@ class CourseListGrid extends StatefulWidget {
 }
 
 class _CourseListGridState extends State<CourseListGrid> {
-  void onClick() {
-    print('click');
+  Future<void> onClick() {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(child: CreateShopItemModal());
+      },
+    );
   }
 
   @override

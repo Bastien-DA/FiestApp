@@ -1,3 +1,4 @@
+import 'package:fiestapp/components/modal/create-transport-modal.dart';
 import 'package:fiestapp/components/organisation-item/add.component.dart';
 import 'package:fiestapp/components/organisation-item/who-card.component.dart';
 import 'package:fiestapp/utils/types/enum.dart';
@@ -11,8 +12,13 @@ class WhoDriveCardBloc extends StatefulWidget {
 }
 
 class _WhoDriveCardBlocState extends State<WhoDriveCardBloc> {
-  void onClick() {
-    print("WhoDriveCardBloc");
+  Future<void> onClick() {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(child: CreateTransportModal());
+      },
+    );
   }
 
   @override
