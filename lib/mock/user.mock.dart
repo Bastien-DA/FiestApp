@@ -3,7 +3,7 @@ import '../utils/types/user.dart';
 final User mockCurrentUser = User(
   userGuid: '1',
   username: 'Alice',
-  biologicalGender: 'female',
+  gender: 'female',
   age: 25,
   height: 165,
   weight: 60,
@@ -16,7 +16,7 @@ final List<User> mockUsers = [
   User(
     userGuid: '1',
     username: 'Alice',
-    biologicalGender: 'female',
+    gender: 'female',
     age: 25,
     height: 165,
     weight: 60,
@@ -26,7 +26,7 @@ final List<User> mockUsers = [
   User(
     userGuid: '2',
     username: 'Bob',
-    biologicalGender: 'male',
+    gender: 'male',
     age: 30,
     height: 180,
     weight: 75,
@@ -36,7 +36,7 @@ final List<User> mockUsers = [
   User(
     userGuid: '3',
     username: 'Charlie',
-    biologicalGender: 'male',
+    gender: 'male',
     age: 22,
     height: 170,
     weight: 65,
@@ -46,7 +46,7 @@ final List<User> mockUsers = [
   User(
     userGuid: '4',
     username: 'Diana',
-    biologicalGender: 'female',
+    gender: 'female',
     age: 28,
     height: 160,
     weight: 58,

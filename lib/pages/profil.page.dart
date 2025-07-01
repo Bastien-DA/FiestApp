@@ -44,12 +44,12 @@ class ProfilState extends ConsumerState<Profil> {
                       spacing: 2,
                       children: [
                         FaIcon(
-                          mockCurrentUser.biologicalGender == 'female'
+                          mockCurrentUser.gender == 'female'
                               ? FontAwesomeIcons.venus
                               : FontAwesomeIcons.mars,
                           size: 16,
                           color: Color(
-                            mockCurrentUser.biologicalGender == 'female'
+                            mockCurrentUser.gender == 'female'
                                 ? 0xffFB8257
                                 : 0xff87D5C8,
                           ),

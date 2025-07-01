@@ -1,7 +1,7 @@
 class User {
   final String userGuid;
   final String username;
-  final String biologicalGender;
+  final String gender;
   final int age;
   final int height;
   final int weight;
@@ -11,7 +11,7 @@ class User {
   User({
     required this.userGuid,
     required this.username,
-    required this.biologicalGender,
+    required this.gender,
     required this.age,
     required this.height,
     required this.weight,
@@ -23,11 +23,11 @@ class User {
     return User(
       userGuid: json['id'] as String,
       username: json['username'] as String,
-      biologicalGender: json['biologicalGender'] as String,
+      gender: json['gender'] as String,
       age: json['age'] as int,
       height: json['height'] as int,
       weight: json['weight'] as int,
-      alcoholConsumption: json['biologicalGender'] as String,
+      alcoholConsumption: json['gender'] as String,
       ppLink: json['pp_link'] as String,
     );
   }
@@ -36,7 +36,7 @@ class User {
     return {
       'id': userGuid,
       'username': username,
-      'biologicalGender': biologicalGender,
+      'gender': gender,
       'age': age,
       'weight': weight,
       'height': height,

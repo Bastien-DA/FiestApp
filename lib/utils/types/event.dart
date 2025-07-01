@@ -13,9 +13,9 @@ class Event {
   final int date;
 
   String get formattedDate => formatDate(date);
-  final User organazer;
+  final User organizer;
   final List<User> participants;
-  final List<LightExpenseDto> expenses;
+  final List<Expense> expenses;
 
   Event({
     required this.guid,
@@ -25,7 +25,7 @@ class Event {
     required this.latitute,
     required this.longitude,
     required this.date,
-    required this.organazer,
+    required this.organizer,
     required this.participants,
     required this.expenses,
   });
@@ -39,12 +39,12 @@ class Event {
       latitute: json['latitude'] as double,
       longitude: json['longitude'] as double,
       date: json['date'] as int,
-      organazer: User.fromJson(json['organazer']),
+      organizer: User.fromJson(json['organizer']),
       participants: (json['paticipants'] as List)
           .map((e) => User.fromJson(e))
           .toList(),
       expenses: (json['expenses'] as List)
-          .map((e) => LightExpenseDto.fromJson(e))
+          .map((e) => Expense.fromJson(e))
           .toList(),
     );
   }
@@ -58,7 +58,7 @@ class Event {
       'latitude': latitute,
       'longitude': longitude,
       'date': date,
-      'organazer': organazer.toJson(),
+      'organizer': organizer.toJson(),
       'paticipants': participants.map((e) => e.toJson()).toList(),
       'expenses': expenses.map((e) => e.toJson()).toList(),
     };

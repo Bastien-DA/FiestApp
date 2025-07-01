@@ -1,20 +1,20 @@
 import 'package:fiestapp/utils/types/user.dart';
 
-class Expense {
+class CourseList {
   final String guid;
   final User payer;
   final String label;
   final double amount;
 
-  Expense({
+  CourseList({
     required this.guid,
     required this.payer,
     required this.label,
     required this.amount,
   });
 
-  factory Expense.fromJson(Map<String, dynamic> json) {
-    return Expense(
+  factory CourseList.fromJson(Map<String, dynamic> json) {
+    return CourseList(
       guid: json['id'] as String,
       payer: User.fromJson(json['payer']),
       label: json['label'] as String,

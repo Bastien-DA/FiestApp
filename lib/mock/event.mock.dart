@@ -14,10 +14,10 @@ final mockEvent = Event(
   date: 1750940247,
 
   // timestamp correspondant à 26/06/2025
-  organazer: User(
+  organizer: User(
     userGuid: 'user-001',
     username: 'Alice',
-    biologicalGender: 'female',
+    gender: 'female',
     age: 28,
     height: 165,
     weight: 60,
@@ -29,7 +29,7 @@ final mockEvent = Event(
     User(
       userGuid: 'user-001',
       username: 'Alice',
-      biologicalGender: 'female',
+      gender: 'female',
       age: 28,
       height: 165,
       weight: 60,
@@ -39,7 +39,7 @@ final mockEvent = Event(
     User(
       userGuid: 'user-002',
       username: 'Bob',
-      biologicalGender: 'male',
+      gender: 'male',
       age: 30,
       height: 180,
       weight: 80,
@@ -49,7 +49,7 @@ final mockEvent = Event(
     User(
       userGuid: 'user-003',
       username: 'Charlie',
-      biologicalGender: 'non-binary',
+      gender: 'non-binary',
       age: 26,
       height: 170,
       weight: 70,
