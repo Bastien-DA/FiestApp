@@ -1,3 +1,4 @@
+import 'package:fiestapp/components/image-button/profil-image-button.component.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -12,6 +13,7 @@ class IllustrationCard extends StatelessWidget {
     this.onClick,
     this.isSelected = false,
     this.gradient,
+    this.isUser = false,
     required this.principalLabel,
     required this.secondaryLabel,
   });
@@ -26,6 +28,7 @@ class IllustrationCard extends StatelessWidget {
   final VoidCallback? onClick;
   final bool isSelected;
   final Gradient? gradient;
+  final bool isUser;
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +54,7 @@ class IllustrationCard extends StatelessWidget {
           ),
           Text(
             secondaryLabel,
+            textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 12,
               color: isSelected ? Colors.white70 : Colors.black54,
@@ -62,6 +66,9 @@ class IllustrationCard extends StatelessWidget {
   }
 
   Widget _buildIcon() {
+    if (isUser && s3ImageUrl != null) {
+      return ProfilImageButton(imagePath: s3ImageUrl!);
+    }
     if (icon != null) {
       return FaIcon(
         icon!,
