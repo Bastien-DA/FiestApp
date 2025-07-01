@@ -1,4 +1,4 @@
-import 'package:fiestapp/components/organisation/course-list/course_list.component.dart';
+import 'package:fiestapp/components/organisation/course-list/course-list.component.dart';
 import 'package:fiestapp/components/organisation/expenses/expenses.component.dart';
 import 'package:fiestapp/components/organisation/poll/poll.component.dart';
 import 'package:fiestapp/components/organisation/where-sleep/where-sleep.component.dart';

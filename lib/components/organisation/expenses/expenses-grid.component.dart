@@ -1,6 +1,7 @@
-import 'package:fiestapp/components/card/illustration-card/illustration-card.component.dart';
+import 'package:fiestapp/components/custom-card/illustration-card/illustration-card.component.dart';
 import 'package:fiestapp/components/modal/create-expense-modal.dart';
 import 'package:fiestapp/components/organisation-item/add.component.dart';
+import 'package:fiestapp/utils/constant/constant.dart';
 import 'package:flutter/material.dart';
 
 class ExpensesGrid extends StatefulWidget {
@@ -33,28 +34,28 @@ class _ExpensesGridState extends State<ExpensesGrid> {
       children: [
         AddCard(height: 4, width: 20, radius: 30, onClick: onClick),
         IllustrationCard(
-          s3ImageUrl: "https://fiestapp-s3.mizury.fr/fiestapp/user/user.webp",
+          s3ImageUrl: "${S3_enpoint}user/user.webp",
           isUser: true,
           imageSize: 50,
           principalLabel: '20€',
           secondaryLabel: 'Eau',
         ),
         IllustrationCard(
-          s3ImageUrl: "https://fiestapp-s3.mizury.fr/fiestapp/user/user.webp",
+          s3ImageUrl: "${S3_enpoint}user/user.webp",
           isUser: true,
           imageSize: 50,
           principalLabel: '10€',
           secondaryLabel: 'Biere',
         ),
         IllustrationCard(
-          s3ImageUrl: "https://fiestapp-s3.mizury.fr/fiestapp/user/user.webp",
+          s3ImageUrl: "${S3_enpoint}user/user.webp",
           isUser: true,
           imageSize: 50,
           principalLabel: '3€',
           secondaryLabel: 'Pizza',
         ),
         IllustrationCard(
-          s3ImageUrl: "https://fiestapp-s3.mizury.fr/fiestapp/user/user.webp",
+          s3ImageUrl: "${S3_enpoint}user/user.webp",
           isUser: true,
           imageSize: 50,
           principalLabel: '4.50€',

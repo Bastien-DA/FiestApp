@@ -1,6 +1,7 @@
-import 'package:fiestapp/components/card/illustration-card/illustration-card.component.dart';
+import 'package:fiestapp/components/custom-card/illustration-card/illustration-card.component.dart';
 import 'package:fiestapp/components/text/custom-title.component.dart';
 import 'package:fiestapp/mock/user.mock.dart';
+import 'package:fiestapp/utils/constant/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -27,21 +28,18 @@ class ProfilInformations extends ConsumerWidget {
             childAspectRatio: 0.70,
             children: [
               IllustrationCard(
-                s3ImageUrl:
-                    "https://fiestapp-s3.mizury.fr/fiestapp/asset/soda.webp",
+                s3ImageUrl: "${S3_enpoint}asset/soda.webp",
                 principalLabel: 'Taille',
                 secondaryLabel:
                     '${mockCurrentUser.height ~/ 100}m${mockCurrentUser.height % 100}',
               ),
               IllustrationCard(
-                s3ImageUrl:
-                    "https://fiestapp-s3.mizury.fr/fiestapp/asset/soda.webp",
+                s3ImageUrl: "${S3_enpoint}asset/soda.webp",
                 principalLabel: 'Poids',
                 secondaryLabel: '${mockCurrentUser.weight} kg',
               ),
               IllustrationCard(
-                s3ImageUrl:
-                    "https://fiestapp-s3.mizury.fr/fiestapp/asset/soda.webp",
+                s3ImageUrl: "${S3_enpoint}asset/soda.webp",
                 principalLabel: 'Age',
                 secondaryLabel: '${mockCurrentUser.age} ans',
               ),

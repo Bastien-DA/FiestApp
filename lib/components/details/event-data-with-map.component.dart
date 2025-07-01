@@ -1,5 +1,5 @@
+import 'package:fiestapp/components/button/icon-button.component.dart';
 import 'package:fiestapp/components/details/event-data.component.dart';
-import 'package:fiestapp/components/icon-button/icon_button.component.dart';
 import 'package:fiestapp/mock/event.mock.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

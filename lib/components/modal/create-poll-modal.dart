@@ -1,5 +1,5 @@
 import 'package:fiestapp/components/button/button.component.dart';
-import 'package:fiestapp/components/icon-button/icon_button.component.dart';
+import 'package:fiestapp/components/button/icon-button.component.dart';
 import 'package:fiestapp/components/input/data-tag-input.component.dart';
 import 'package:fiestapp/utils/types/enum.dart';
 import 'package:flutter/material.dart';

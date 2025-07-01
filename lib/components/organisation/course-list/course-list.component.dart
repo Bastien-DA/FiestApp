@@ -1,5 +1,5 @@
-import 'package:fiestapp/components/organisation/course-list/course_list_grid.component.dart';
-import 'package:fiestapp/components/organisation/course-list/suggestion_bloc.dart'
+import 'package:fiestapp/components/organisation/course-list/course-list-grid.component.dart';
+import 'package:fiestapp/components/organisation/course-list/suggestion-bloc.dart'
     show SuggestionBloc;
 import 'package:fiestapp/components/text/custom-title-expand.component.dart';
 import 'package:flutter/material.dart';

@@ -1,9 +1,9 @@
-import 'package:fiestapp/components/icon-button/icon_button.component.dart';
-import 'package:fiestapp/components/image-button/profil-image-button.component.dart';
+import 'package:fiestapp/components/button/icon-button.component.dart';
+import 'package:fiestapp/components/button/profil-image-button.component.dart';
 import 'package:fiestapp/enum/app-route.enum.dart';
-import 'package:fiestapp/provider/user-provider.dart';
+import 'package:fiestapp/provider/user.provider.dart';
 import 'package:fiestapp/router.dart';
-import 'package:fiestapp/utils/constant/global-pp.dart';
+import 'package:fiestapp/utils/constant/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -55,7 +55,7 @@ class TopHomeHeader extends ConsumerWidget {
               },
             ),
             ProfilImageButton(
-              imagePath: user?.ppLink ?? globalPP,
+              imagePath: user?.ppLink ?? defaultProfilImage,
               onClick: () {
                 router.push(AppRoute.profil.path);
               },

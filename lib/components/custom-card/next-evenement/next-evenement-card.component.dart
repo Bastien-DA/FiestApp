@@ -1,5 +1,6 @@
 import 'package:fiestapp/components/custom-card/card-header.component.dart';
 import 'package:fiestapp/components/custom-card/next-evenement/next-evenement-bottom-card.component.dart';
+import 'package:fiestapp/utils/constant/constant.dart';
 import 'package:fiestapp/utils/types/event.dart';
 import 'package:flutter/material.dart';
 
@@ -38,9 +39,7 @@ class NextEvenementCard extends StatelessWidget {
             eventName: event.title,
             eventLocation: event.location,
             eventCreatorName: event.organazer.username,
-            eventCreatorImage:
-                event.organazer.ppLink ??
-                'https://avatar.iran.liara.run/public',
+            eventCreatorImage: event.organazer.ppLink ?? defaultProfilImage,
           ),
         ],
       ),

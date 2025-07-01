@@ -1,9 +1,9 @@
+import 'package:fiestapp/components/button/icon-button.component.dart';
 import 'package:fiestapp/components/home/header/home-header.component.dart';
 import 'package:fiestapp/components/home/next-event/next-event.component.dart';
 import 'package:fiestapp/components/home/participation/you-participate.component.dart';
-import 'package:fiestapp/components/icon-button/icon_button.component.dart';
 import 'package:fiestapp/enum/app-route.enum.dart';
-import 'package:fiestapp/provider/user-provider.dart';
+import 'package:fiestapp/provider/user.provider.dart';
 import 'package:fiestapp/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

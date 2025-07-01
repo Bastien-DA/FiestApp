@@ -337,32 +337,6 @@ class DataTagInput extends ConsumerWidget {
     }
   }
 
-  Future<void> _selectTime(BuildContext context) async {
-    final TimeOfDay initialTime =
-        _parseTime(controller.text) ?? TimeOfDay.now();
-
-    final TimeOfDay? pickedTime = await showTimePicker(
-      context: context,
-      initialTime: initialTime,
-      builder: (context, child) {
-        return Theme(
-          data: Theme.of(context).copyWith(
-            colorScheme: Theme.of(
-              context,
-            ).colorScheme.copyWith(primary: const Color(0xffE15B42)),
-          ),
-          child: child!,
-        );
-      },
-    );
-
-    if (pickedTime != null) {
-      final formattedTime = _formatTime(pickedTime);
-      controller.text = formattedTime;
-      onChanged?.call(formattedTime);
-    }
-  }
-
   DateTime? _parseDate(String dateString) {
     if (dateString.isEmpty) return null;
     try {
@@ -370,28 +344,6 @@ class DataTagInput extends ConsumerWidget {
     } catch (e) {
       return null;
     }
-  }
-
-  TimeOfDay? _parseTime(String timeString) {
-    if (timeString.isEmpty) return null;
-    try {
-      final parts = timeString.split(':');
-      if (parts.length == 2) {
-        return TimeOfDay(
-          hour: int.parse(parts[0]),
-          minute: int.parse(parts[1]),
-        );
-      }
-      return null;
-    } catch (e) {
-      return null;
-    }
-  }
-
-  String _formatTime(TimeOfDay time) {
-    final hour = time.hour.toString().padLeft(2, '0');
-    final minute = time.minute.toString().padLeft(2, '0');
-    return '$hour:$minute';
   }
 }
 

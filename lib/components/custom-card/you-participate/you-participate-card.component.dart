@@ -1,6 +1,6 @@
 import 'package:fiestapp/components/custom-card/card-header.component.dart';
 import 'package:fiestapp/components/custom-card/you-participate/you-participate-bottom-card.component.dart';
-import 'package:fiestapp/utils/constant/global-pp.dart';
+import 'package:fiestapp/utils/constant/constant.dart';
 import 'package:fiestapp/utils/types/event.dart';
 import 'package:flutter/material.dart';
 
@@ -29,15 +29,14 @@ class YouParticipateCard extends StatelessWidget {
       child: Column(
         children: [
           CardHeader(
-            pathImage:
-                "https://imageflow.rausgegangen.de/url/https://s3.eu-central-1.amazonaws.com/rausgegangen/ZhSGv4ktQTiussPmc9Ir_real-jansen-ljkcb2kkowu-unsplash.jpg?width=1000&height=750&mode=crop",
+            pathImage: "${S3_enpoint}event/${event.guid}.webp",
             date: "12/07/2025",
             height: 140,
             width: 340,
           ),
           YouParticipateBottomCardComponent(
             eventCreatorName: event.organazer.username,
-            eventCreatorImage: event.organazer.ppLink ?? globalPP,
+            eventCreatorImage: event.organazer.ppLink ?? defaultProfilImage,
             users: event.participants,
             eventName: event.title,
             eventLocation: event.location,

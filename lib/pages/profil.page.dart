@@ -1,6 +1,6 @@
-import 'package:fiestapp/components/header/profil/profil-header.component.dart';
 import 'package:fiestapp/components/page-switcher/page-switcher.component.dart';
 import 'package:fiestapp/components/profil/profil-events.component.dart';
+import 'package:fiestapp/components/profil/profil-header.component.dart';
 import 'package:fiestapp/components/profil/profil-informations.component.dart';
 import 'package:fiestapp/mock/user.mock.dart';
 import 'package:flutter/material.dart';
