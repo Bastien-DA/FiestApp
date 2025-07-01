@@ -8,9 +8,10 @@ class SelectedEventNotifier extends StateNotifier<Event?> {
 
   SelectedEventNotifier(this.ref) : super(null);
 
-  Future<void> fetchSelectedEvent(String id) async {
+  Future<Event> fetchSelectedEvent(String id) async {
     final data = await eventService.getEventById(id);
     state = data;
+    return data;
   }
 
   void clear() {

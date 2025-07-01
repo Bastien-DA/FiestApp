@@ -17,7 +17,8 @@ class EventData extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    bool isInvitation = router.state.path == AppRoute.invitation.path;
+    bool isInvitation =
+        router.state.path?.startsWith(AppRoute.invitation.path) ?? false;
     return Container(
       padding: EdgeInsets.all(10),
       child: Column(
