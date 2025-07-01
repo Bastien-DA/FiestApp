@@ -86,6 +86,8 @@ class IllustrationCard extends StatelessWidget {
         fit: BoxFit.cover,
         errorBuilder: (context, error, stackTrace) {
           // Widget de fallback en cas d'erreur de chargement
+          print(error);
+
           return FaIcon(
             FontAwesomeIcons.image,
             color: Colors.grey,

@@ -16,26 +16,29 @@ class SuggestionBloc extends ConsumerWidget {
       spacing: 5,
       children: [
         CustomSubTitle(title: "Recommandations"),
-        Row(
-          spacing: 5,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            DataTag(
-              s3ImageUrl:
-                  "https://fiestapp-s3.mizury.fr/fiestapp/asset/biere.webp",
-              text: "${suggestion.beer} Bières",
-            ),
-            DataTag(
-              s3ImageUrl:
-                  "https://fiestapp-s3.mizury.fr/fiestapp/asset/soda.webp",
-              text: "${suggestion.soft} Softs",
-            ),
-            DataTag(
-              s3ImageUrl:
-                  "https://fiestapp-s3.mizury.fr/fiestapp/asset/pizza.webp",
-              text: "${suggestion.pizza} Pizzas",
-            ),
-          ],
+        Opacity(
+          opacity: 0.6,
+          child: Row(
+            spacing: 5,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              DataTag(
+                s3ImageUrl:
+                    "https://fiestapp-s3.mizury.fr/fiestapp/asset/biere.webp",
+                text: "${suggestion.beer} Bières",
+              ),
+              DataTag(
+                s3ImageUrl:
+                    "https://fiestapp-s3.mizury.fr/fiestapp/asset/soda.webp",
+                text: "${suggestion.soft} Softs",
+              ),
+              DataTag(
+                s3ImageUrl:
+                    "https://fiestapp-s3.mizury.fr/fiestapp/asset/pizza.webp",
+                text: "${suggestion.pizza} Pizzas",
+              ),
+            ],
+          ),
         ),
       ],
     );
