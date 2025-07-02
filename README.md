@@ -30,6 +30,11 @@ The application stores all your data in a Postgres Database and in a S3 minio.
 
 #### View
 
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/7b3f296f-838d-443a-bfe1-a568f1c15cd2" width="45%" style="margin-right:10px;" />
+  <img src="https://github.com/user-attachments/assets/855c6ffc-b3a7-44ca-a891-bcd4ea07573f" width="38%" />
+</div>
+
 ### ⚙️ Technologies used :
 
 <img alt="Flutter badge" src="https://img.shields.io/badge/SDK-Flutter-blue">
