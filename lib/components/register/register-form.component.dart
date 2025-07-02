@@ -2,7 +2,8 @@ import 'package:fiestapp/components/input/data-tag-input.component.dart';
 import 'package:fiestapp/components/input/select-text-input.component.dart';
 import 'package:fiestapp/components/input/slider.component.dart';
 import 'package:fiestapp/components/register/gender.component.dart';
-import 'package:fiestapp/models/enum.dart';
+import 'package:fiestapp/provider/form/register-form.provider.dart';
+import 'package:fiestapp/utils/constant/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -14,128 +15,162 @@ class RegisterForm extends ConsumerStatefulWidget {
 }
 
 class _RegisterFormState extends ConsumerState<RegisterForm> {
-  // Déclaration des controllers
-  late TextEditingController _dateController;
-  late TextEditingController _timeController;
+  late TextEditingController _heightController;
+  late TextEditingController _weightController;
   late TextEditingController _nameController;
-  late TextEditingController _phoneController;
+  late TextEditingController _ageController;
+  late TextEditingController _genderController;
+  late TextEditingController _fileController;
+  late TextEditingController _alcoholConsumptionController;
 
   @override
   void initState() {
     super.initState();
-    // Initialisation des controllers
-    _dateController = TextEditingController();
-    _timeController = TextEditingController();
+
+    _heightController = TextEditingController();
+    _weightController = TextEditingController();
+    _genderController = TextEditingController();
     _nameController = TextEditingController();
-    _phoneController = TextEditingController();
+    _ageController = TextEditingController();
+    _fileController = TextEditingController();
+    _alcoholConsumptionController = TextEditingController();
+    // Lier chaque controller au provider
+    _heightController.addListener(() {
+      final value = int.tryParse(_heightController.text);
+      if (value != null) {
+        ref.read(registerFormProvider.notifier).updateHeight(value);
+      }
+    });
+
+    _weightController.addListener(() {
+      final value = int.tryParse(_weightController.text);
+      if (value != null) {
+        ref.read(registerFormProvider.notifier).updateWeight(value);
+      }
+    });
+
+    _genderController.addListener(() {
+      ref
+          .read(registerFormProvider.notifier)
+          .updateGender(_genderController.text);
+    });
+
+    _nameController.addListener(() {
+      ref
+          .read(registerFormProvider.notifier)
+          .updateUsername(_nameController.text);
+    });
+
+    _ageController.addListener(() {
+      final value = int.tryParse(_ageController.text);
+      if (value != null) {
+        ref.read(registerFormProvider.notifier).updateAge(value);
+      }
+    });
+
+    _fileController.addListener(() {
+      ref
+          .read(registerFormProvider.notifier)
+          .updatePpLink(_fileController.text);
+    });
+
+    _alcoholConsumptionController.addListener(() {
+      ref
+          .read(registerFormProvider.notifier)
+          .updateAlcohol(_alcoholConsumptionController.text);
+    });
   }
 
   @override
   void dispose() {
-    // Libération de la mémoire
-    _dateController.dispose();
+    _heightController.dispose();
+    _weightController.dispose();
     _nameController.dispose();
-    _timeController.dispose();
-    _phoneController.dispose();
+    _genderController.dispose();
+    _ageController.dispose();
+    _fileController.dispose();
+    _alcoholConsumptionController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: 20,
-      children: [
-        Row(
-          spacing: 20,
-          children: [
-            Expanded(
-              flex: 2,
-              child: DataTagInput(
-                title: "Comment doit-on vous appeler ?",
-                placeholder: "Votre nom",
-                inputType: InputType.text,
-                controller: _nameController,
-                onChanged: (value) => print("Nom: $value"),
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 20),
+          Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: DataTagInput(
+                  title: "Comment doit-on vous appeler ?",
+                  placeholder: "Votre nom",
+                  inputType: InputType.text,
+                  controller: _nameController,
+                  onChanged: (value) => print("Nom: $value"),
+                ),
               ),
-            ),
-            Expanded(
-              flex: 1,
-              child: DataTagInput(
-                title: "Quel age avez-vous ?",
-                iconColor: Color(0xffE15B42),
-                placeholder: "25",
-                inputType: InputType.number,
-                controller: _phoneController,
-                onChanged: (value) => print("Age: $value"),
+              const SizedBox(width: 20),
+              Expanded(
+                flex: 1,
+                child: DataTagInput(
+                  title: "Quel âge avez-vous ?",
+                  iconColor: const Color(0xffE15B42),
+                  placeholder: "25",
+                  inputType: InputType.number,
+                  controller: _ageController,
+                  onChanged: (value) => print("Âge: $value"),
+                ),
               ),
-            ),
-          ],
-        ),
-
-        GenderSelector(),
-        CustomSlider(
-          title: "Quelle est votre taille ?",
-          min: 120,
-          max: 240,
-          value: 170,
-          unit: "cm",
-          onChanged: (value) => print("Taille: $value cm"),
-        ),
-        MinimalEnumSelector<AlcoholConsumption>(
-          width: MediaQuery.sizeOf(context).width * 0.6,
-          title: "Quel buveur êtes-vous ?",
-          value: AlcoholConsumption.Occasional,
-          values: AlcoholConsumption.values,
-          labelBuilder: (val) {
-            switch (val) {
-              case AlcoholConsumption.Occasional:
-                return "Occasionnel";
-              case AlcoholConsumption.Regular:
-                return "Régulier";
-              case AlcoholConsumption.Veteran:
-                return "Aguerri";
-            }
-          },
-          onChanged: (newValue) {
-            // Faire quelque chose avec la nouvelle valeur
-            print("Nouveau choix : $newValue");
-          },
-        ),
-      ],
-    );
-  }
-
-  void _submitForm() {
-    // Récupération des valeurs
-    final name = _nameController.text.trim();
-    final phone = _phoneController.text.trim();
-    final birthDate = _dateController.text;
-
-    // Validation basique
-    if (name.isEmpty) {
-      _showError("Le nom est requis");
-      return;
-    }
-
-    if (birthDate.isEmpty) {
-      _showError("La date de naissance est requise");
-      return;
-    }
-
-    // Traitement des données
-    print("=== Inscription ===");
-    print("Nom: $name");
-    print("Téléphone: $phone");
-    print("Date de naissance: $birthDate");
-
-    // Ici vous pouvez appeler votre API d'inscription
-    // ref.read(authProvider.notifier).register(name, email, phone, birthDate);
-  }
-
-  void _showError(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message), backgroundColor: Colors.red),
+            ],
+          ),
+          const SizedBox(height: 20),
+          GenderSelector(controller: _genderController),
+          const SizedBox(height: 20),
+          CustomSlider(
+            title: "Quelle est votre taille ?",
+            min: 120,
+            max: 240,
+            value: 170,
+            unit: "cm",
+            controller: _heightController,
+            onChanged: (value) => print("Taille: $value cm"),
+          ),
+          const SizedBox(height: 20),
+          CustomSlider(
+            title: "Quel est votre poids ?",
+            min: 30,
+            max: 120,
+            value: 70,
+            unit: "kg",
+            controller: _weightController,
+            onChanged: (value) => print("Poids: $value kg"),
+          ),
+          const SizedBox(height: 20),
+          MinimalEnumSelector<AlcoholConsumption>(
+            width: MediaQuery.sizeOf(context).width * 0.6,
+            title: "Quel buveur êtes-vous ?",
+            value: AlcoholConsumption.Occasional,
+            values: AlcoholConsumption.values,
+            controller: _alcoholConsumptionController,
+            labelBuilder: (val) {
+              switch (val) {
+                case AlcoholConsumption.Occasional:
+                  return "Occasionnel";
+                case AlcoholConsumption.Regular:
+                  return "Régulier";
+                case AlcoholConsumption.Veteran:
+                  return "Aguerri";
+              }
+            },
+            onChanged: (newValue) {
+              print("Alcool sélectionné : $newValue");
+            },
+          ),
+        ],
+      ),
     );
   }
 }

@@ -9,6 +9,7 @@ import 'package:fiestapp/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddEvent extends ConsumerWidget {
   const AddEvent({super.key});
@@ -34,6 +35,7 @@ class AddEvent extends ConsumerWidget {
                       ImageSelector(
                         title: "Sélectionnez une image",
                         height: 130,
+                        onImageSelect: (XFile? image) {},
                       ),
                       AddEventDateTime(),
                       AddEvenInformationsBlock(),
@@ -51,7 +53,9 @@ class AddEvent extends ConsumerWidget {
                   CustomButton(
                     label: "Créer l'évènement",
                     icon: FontAwesomeIcons.arrowRight,
-                    onPressed: () => {ref.read(router).push(AppRoute.home.path)},
+                    onPressed: () => {
+                      ref.read(routerProvider).push(AppRoute.home.path),
+                    },
                   ),
                 ],
               ),

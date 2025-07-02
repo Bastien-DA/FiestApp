@@ -17,7 +17,7 @@ class NextEvenementCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTap: () {
-        ref.read(router).pushNamed(AppRoute.details.name);
+        ref.read(routerProvider).pushNamed(AppRoute.details.name);
         ref.read(selectedEventProvider.notifier).fetchSelectedEvent(event.guid);
       },
       child: Container(

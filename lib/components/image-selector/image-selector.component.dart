@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
@@ -6,10 +8,12 @@ class ImageSelector extends StatefulWidget {
   final String title;
   final double width;
   final double height;
+  final Function(XFile?) onImageSelect;
 
   const ImageSelector({
     super.key,
     required this.title,
+    required this.onImageSelect,
     this.width = 350,
     this.height = 180,
   });
@@ -29,6 +33,7 @@ class _ImageSelectorState extends State<ImageSelector> {
       setState(() {
         _selectedImage = image.path;
         print('Image selected: $_selectedImage');
+        widget.onImageSelect(image);
       });
     }
   }
@@ -42,28 +47,36 @@ class _ImageSelectorState extends State<ImageSelector> {
         height: widget.height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
-          border: Border(
-            top: BorderSide(color: Color(0xFFE15B42), width: 3),
-            bottom: BorderSide(color: Color(0xFFE15B42), width: 3),
-            left: BorderSide(color: Color(0xFFE15B42), width: 3),
-            right: BorderSide(color: Color(0xFFE15B42), width: 3),
-          ),
+          border: Border.all(color: const Color(0xFFE15B42), width: 3),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            FaIcon(FontAwesomeIcons.image, size: 40, color: Color(0xFFE15B42)),
-            Text(
-              widget.title,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
+        clipBehavior: Clip.antiAlias,
+        // pour arrondir l'image
+        child: _selectedImage == null
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const FaIcon(
+                    FontAwesomeIcons.image,
+                    size: 40,
+                    color: Color(0xFFE15B42),
+                  ),
+                  Text(
+                    widget.title,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              )
+            : Image.file(
+                File(_selectedImage!),
+                fit: BoxFit.cover,
+                width: widget.width,
+                height: widget.height,
               ),
-            ),
-          ],
-        ),
       ),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:fiestapp/components/modal/create-transport-modal.dart';
 import 'package:fiestapp/components/organisation-item/add.component.dart';
 import 'package:fiestapp/components/organisation-item/who-card.component.dart';
-import 'package:fiestapp/models/enum.dart';
+import 'package:fiestapp/utils/constant/enum.dart';
 import 'package:flutter/material.dart';
 
 class WhoDriveCardBloc extends StatefulWidget {

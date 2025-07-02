@@ -44,4 +44,26 @@ class User {
       'ppLink': ppLink,
     };
   }
+
+  User copyWith({
+    String? userGuid,
+    String? username,
+    String? gender,
+    int? age,
+    int? height,
+    int? weight,
+    String? alcoholConsumption,
+    String? ppLink,
+  }) {
+    return User(
+      userGuid: userGuid ?? this.userGuid,
+      username: username ?? this.username,
+      gender: gender ?? this.gender,
+      age: age ?? this.age,
+      height: height ?? this.height,
+      weight: weight ?? this.weight,
+      alcoholConsumption: alcoholConsumption ?? this.alcoholConsumption,
+      ppLink: ppLink ?? this.ppLink,
+    );
+  }
 }

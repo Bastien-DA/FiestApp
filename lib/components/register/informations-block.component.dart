@@ -24,7 +24,7 @@ class _RegisterInformationsBlockState
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CustomTitle(text: "Informations"),
-          RegisterForm(),
+          Expanded(child: RegisterForm()),
         ],
       ),
     );

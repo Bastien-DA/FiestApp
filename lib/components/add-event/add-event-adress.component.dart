@@ -1,5 +1,5 @@
 import 'package:fiestapp/components/input/data-tag-input.component.dart';
-import 'package:fiestapp/models/enum.dart';
+import 'package:fiestapp/utils/constant/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

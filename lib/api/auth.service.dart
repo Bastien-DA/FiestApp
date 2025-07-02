@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
@@ -8,9 +9,6 @@ class AuthService {
   static final String baseUrl = dotenv.env['API_ENDPOINT'] ?? '';
 
   static Future<bool> checkFingerprintAccount() async {
-
-    print("heeeeeeeeeeeeeeeeeeeeeeeeeeeeere");
-
     // 2. Obtiens un identifiant unique du téléphone (exemple ici)
     final String deviceFingerprint = await _getDeviceFingerprint();
 

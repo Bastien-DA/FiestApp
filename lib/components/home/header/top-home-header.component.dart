@@ -51,13 +51,13 @@ class TopHomeHeader extends ConsumerWidget {
               iconColor: Colors.black,
               backgroundColor: Colors.white,
               onClick: () {
-                ref.read(router).push(AppRoute.notification.path);
+                ref.read(routerProvider).push(AppRoute.notification.path);
               },
             ),
             ProfilImageButton(
               imagePath: user?.ppLink ?? defaultProfilImage,
               onClick: () {
-                ref.read(router).push(AppRoute.profil.path);
+                ref.read(routerProvider).push(AppRoute.profil.path);
               },
             ),
           ],

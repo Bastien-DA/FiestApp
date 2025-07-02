@@ -19,7 +19,7 @@ class DetailsHeader extends ConsumerWidget {
 
   void goBack(WidgetRef ref) {
     ref.read(selectedEventProvider.notifier).clear();
-    ref.read(router).push(AppRoute.home.path);
+    ref.read(routerProvider).push(AppRoute.home.path);
   }
 
   Future<void> _dialogBuilder(BuildContext context) {

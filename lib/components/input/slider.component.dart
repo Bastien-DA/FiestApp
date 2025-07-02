@@ -6,6 +6,7 @@ class CustomSlider extends StatefulWidget {
     required this.min,
     required this.max,
     required this.value,
+    required this.controller,
     this.onChanged,
     this.backgroundColor,
     this.title = "",
@@ -15,6 +16,7 @@ class CustomSlider extends StatefulWidget {
   final int min;
   final int max;
   final int value;
+  final TextEditingController controller;
   final Color? backgroundColor;
   final String title;
   final String unit;
@@ -26,11 +28,12 @@ class CustomSlider extends StatefulWidget {
 }
 
 class _CustomSliderState extends State<CustomSlider> {
-  late int _sliderValue;
+  late int _sliderValue = widget.value;
 
   @override
   void initState() {
     super.initState();
+    widget.controller.text = _sliderValue.toString();
     _sliderValue = widget.value;
   }
 

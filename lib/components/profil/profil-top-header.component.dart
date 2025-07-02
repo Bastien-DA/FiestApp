@@ -11,7 +11,7 @@ class ProfilTopHeader extends ConsumerWidget {
   final bool allowEdit;
 
   void goBack(WidgetRef ref) {
-    ref.read(router).push(AppRoute.home.path);
+    ref.read(routerProvider).push(AppRoute.home.path);
   }
 
   @override
@@ -24,7 +24,7 @@ class ProfilTopHeader extends ConsumerWidget {
           icon: FontAwesomeIcons.arrowLeft,
           backgroundColor: Colors.black.withValues(alpha: 0.2),
           iconColor: Colors.white,
-          onClick: ()=>goBack(ref),
+          onClick: () => goBack(ref),
         ),
         if (allowEdit)
           CustomIconButton(

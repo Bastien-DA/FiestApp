@@ -1,4 +1,6 @@
 import 'package:app_links/app_links.dart';
+import 'package:fiestapp/api/auth.service.dart';
+import 'package:fiestapp/provider/auth.provider.dart';
 import 'package:fiestapp/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,7 +22,12 @@ void main() async {
   await dotenv.load(fileName: '.env');
   String mapboxToken = dotenv.env['MAPBOX_TOKEN'] ?? '';
   MapboxOptions.setAccessToken(mapboxToken);
-  FlutterNativeSplash.remove();
+
+  final container = ProviderContainer();
+
+  final isSessionExist = await AuthService.checkFingerprintAccount();
+
+  container.read(authProvider.notifier).state = isSessionExist;
   runApp(ProviderScope(child: const MyApp()));
 }
 
@@ -38,11 +45,14 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    initDeepLinkListener(ref.read(router));
+    final router = ref.watch(routerProvider);
+    initDeepLinkListener(router);
+
+    FlutterNativeSplash.remove();
 
     return MaterialApp.router(
       title: 'FiestApp',
-      routerConfig: ref.read(router),
+      routerConfig: router,
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
       supportedLocales: [const Locale('fr')],
       debugShowCheckedModeBanner: false,

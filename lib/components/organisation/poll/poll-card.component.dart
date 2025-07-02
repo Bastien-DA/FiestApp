@@ -2,7 +2,7 @@ import 'package:fiestapp/components/avatar-group/avatar-group.component.dart';
 import 'package:fiestapp/components/button/button.component.dart';
 import 'package:fiestapp/components/organisation/poll/poll-choice.composent.dart';
 import 'package:fiestapp/mock/user.mock.dart';
-import 'package:fiestapp/models/enum.dart';
+import 'package:fiestapp/utils/constant/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
