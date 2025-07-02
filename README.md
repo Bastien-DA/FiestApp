@@ -1,7 +1,6 @@
 # <img src="./assets/images/appicon.png" width="40" style="vertical-align: middle; border-radius: 10px"/> FiestApp
 
-Project by [__ARCAS__ Manon](https://github.com/Manon-Arc), [__MACE
-__ Léo](https://github.com/LeoMa33), [__DE AMEZAGA__ Bastien](https://github.com/Bastien-DA) and [__BARBOTEAU__ Mathieu](https://github.com/Kilecon).
+Project by [__ARCAS__ Manon](https://github.com/Manon-Arc), [__MACE__ Léo](https://github.com/LeoMa33), [__DE AMEZAGA__ Bastien](https://github.com/Bastien-DA) and [__BARBOTEAU__ Mathieu](https://github.com/Kilecon).
 
 Welcome to the FiestApp project ! <br>
 
@@ -40,8 +39,8 @@ The application stores all your data in a Postgres Database and in a S3 minio.
 <img alt="Flutter badge" src="https://img.shields.io/badge/SDK-Flutter-blue">
 <img alt="Nest badge" src="https://img.shields.io/badge/Framework-Nest-red">
 <img alt="Postgres badge" src="https://img.shields.io/badge/DB-Postgres-blue">
-<img alt="Minio badge" src="https://img.shields.io/badge/Stockage-Minio-red">
-<img alt="Docker badge" src="https://img.shields.io/badge/Language-Docker-blue">
+<img alt="Minio badge" src="https://img.shields.io/badge/Storage-Minio-red">
+<img alt="Docker badge" src="https://img.shields.io/badge/Deploy-Docker-blue">
 
 ### 🌟 Availables Features :
 
@@ -209,7 +208,6 @@ S3_ENDPOINT="https://s3.example.com"
 ```
 
 ___
-Developed with ❤️ by  [__ARCAS__ Manon](https://github.com/Manon-Arc), [__MACE
-__ Léo](https://github.com/LeoMa33), [__DE AMEZAGA__ Bastien](https://github.com/Bastien-DA) and [_
-_BARBOTEAU__ Mathieu](https://github.com/Kilecon)
+
+> Developed with ❤️ for the **[FiestApp](https://github.com/Bastien-DA/FiestApp.git)** ecosystem.  
 
