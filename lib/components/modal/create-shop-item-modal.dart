@@ -1,6 +1,6 @@
 import 'package:fiestapp/components/button/button.component.dart';
 import 'package:fiestapp/components/input/data-tag-input.component.dart';
-import 'package:fiestapp/utils/types/enum.dart';
+import 'package:fiestapp/models/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

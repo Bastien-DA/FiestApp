@@ -1,4 +1,4 @@
-import '../utils/types/user.dart';
+import 'package:fiestapp/models/user.dart';
 
 final User mockCurrentUser = mockUsers[0];
 

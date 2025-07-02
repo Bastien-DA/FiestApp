@@ -1,10 +1,10 @@
 import 'package:fiestapp/components/custom-card/card-header.component.dart';
 import 'package:fiestapp/components/custom-card/next-evenement/next-evenement-bottom-card.component.dart';
 import 'package:fiestapp/enum/app-route.enum.dart';
+import 'package:fiestapp/models/event.dart';
 import 'package:fiestapp/provider/event/selected-event.provider.dart';
 import 'package:fiestapp/router.dart';
 import 'package:fiestapp/utils/constant/constant.dart';
-import 'package:fiestapp/utils/types/event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

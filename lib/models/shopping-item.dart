@@ -1,4 +1,4 @@
-import 'package:fiestapp/utils/types/user.dart';
+import 'package:fiestapp/models/user.dart';
 
 class ShoppingItem {
   final String guid;

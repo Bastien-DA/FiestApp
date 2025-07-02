@@ -1,4 +1,4 @@
-import 'package:fiestapp/utils/types/event.dart';
+import 'package:fiestapp/models/event.dart';
 
 import '../mock/user.mock.dart';
 

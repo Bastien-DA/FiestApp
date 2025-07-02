@@ -2,7 +2,7 @@ import 'package:fiestapp/components/input/data-tag-input.component.dart';
 import 'package:fiestapp/components/input/select-text-input.component.dart';
 import 'package:fiestapp/components/input/slider.component.dart';
 import 'package:fiestapp/components/register/gender.component.dart';
-import 'package:fiestapp/utils/types/enum.dart';
+import 'package:fiestapp/models/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

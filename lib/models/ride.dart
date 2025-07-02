@@ -1,5 +1,5 @@
-import 'package:fiestapp/utils/types/event.dart';
-import 'package:fiestapp/utils/types/user.dart';
+import 'package:fiestapp/models/event.dart';
+import 'package:fiestapp/models/user.dart';
 
 class Ride {
   final String guid;

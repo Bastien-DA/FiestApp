@@ -1,5 +1,5 @@
-import 'package:fiestapp/utils/types/event.dart';
-import 'package:fiestapp/utils/types/poll-option.dart';
+import 'package:fiestapp/models/event.dart';
+import 'package:fiestapp/models/poll-option.dart';
 
 class Poll {
   final String guid;

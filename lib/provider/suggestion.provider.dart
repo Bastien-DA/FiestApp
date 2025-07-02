@@ -1,5 +1,5 @@
 import 'package:fiestapp/api/suggestion-service.dart';
-import 'package:fiestapp/utils/types/suggestion.dart';
+import 'package:fiestapp/models/suggestion.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SuggestionNotifier extends StateNotifier<Suggestion> {

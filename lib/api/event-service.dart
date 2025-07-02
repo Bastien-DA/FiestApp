@@ -1,5 +1,5 @@
 import 'package:fiestapp/mock/event.mock.dart';
-import 'package:fiestapp/utils/types/event.dart';
+import 'package:fiestapp/models/event.dart';
 
 class EventService {
   Future<List<Event>> getEvents() async {

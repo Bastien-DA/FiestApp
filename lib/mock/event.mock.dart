@@ -1,5 +1,5 @@
 import 'package:fiestapp/mock/user.mock.dart';
-import 'package:fiestapp/utils/types/event.dart';
+import 'package:fiestapp/models/event.dart';
 
 final mockEvents = [
   Event(

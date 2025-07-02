@@ -1,4 +1,4 @@
-import 'package:fiestapp/utils/types/enum.dart';
+import 'package:fiestapp/models/enum.dart';
 import 'package:flutter/material.dart';
 
 class PollChoice extends StatelessWidget {

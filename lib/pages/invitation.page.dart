@@ -1,7 +1,7 @@
 import 'package:fiestapp/components/details/details-header.component.dart';
 import 'package:fiestapp/components/details/event-data-with-map.component.dart';
+import 'package:fiestapp/models/event.dart';
 import 'package:fiestapp/provider/event/selected-event.provider.dart';
-import 'package:fiestapp/utils/types/event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skeletonizer/skeletonizer.dart';
