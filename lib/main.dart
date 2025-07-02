@@ -22,8 +22,6 @@ void main() async {
   MapboxOptions.setAccessToken(mapboxToken);
   FlutterNativeSplash.remove();
   runApp(ProviderScope(child: const MyApp()));
-
-  initDeepLinkListener(router);
 }
 
 void initDeepLinkListener(GoRouter router) {
@@ -35,14 +33,16 @@ void initDeepLinkListener(GoRouter router) {
   });
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    initDeepLinkListener(ref.read(router));
+
     return MaterialApp.router(
       title: 'FiestApp',
-      routerConfig: router,
+      routerConfig: ref.read(router),
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
       supportedLocales: [const Locale('fr')],
       debugShowCheckedModeBanner: false,

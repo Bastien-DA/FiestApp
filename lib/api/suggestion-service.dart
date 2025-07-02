@@ -9,6 +9,7 @@ class SuggestionService {
   Future<Suggestion> getSuggestion() async {
     String serviceUrl = dotenv.env['SERVICE_ENDPOINT'] ?? '';
     String url = '$serviceUrl/predict';
+    
     final response = await http.post(
       Uri.parse(url),
       headers: <String, String>{

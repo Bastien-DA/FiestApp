@@ -35,6 +35,8 @@ dependencies:
   image_picker: ^1.1.2
   http: ^1.4.0
   skeletonizer: ^2.0.1
+  device_info_plus: ^11.5.0
+  local_auth: ^2.3.0
 
 flutter_native_splash:
   color: "#FB8257"

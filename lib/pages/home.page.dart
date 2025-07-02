@@ -42,7 +42,7 @@ class _HomeState extends ConsumerState<Home> {
         width: 80,
         size: 20,
         onClick: () {
-          router.push(AppRoute.addEvent.path);
+          ref.read(router).push(AppRoute.addEvent.path);
         },
       ),
       body: Column(

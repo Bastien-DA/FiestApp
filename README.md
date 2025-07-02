@@ -131,7 +131,7 @@ The mobile application (this repository) is designed for user interaction.
 - **AI service integration** for food and drink recommendations
 - **Multimedia content management** through file upload and storage
 
-**Tech Stack:** Flutter, Provider, Mapbox
+**Tech Stack:** Flutter, Riverpod, Mapbox
 
 #### 2. REST API :
 
@@ -205,6 +205,7 @@ Create a `.env` file with:
 MAPBOX_TOKEN=pk.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 SERVICE_ENDPOINT="https://fiestapp-service.example.com"
 S3_ENDPOINT="https://s3.example.com"
+API_ENDPOINT="https://api.example.com"
 ```
 
 ___

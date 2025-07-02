@@ -5,22 +5,33 @@ import 'package:fiestapp/utils/constant/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SuggestionBloc extends ConsumerWidget {
+class SuggestionBloc extends ConsumerStatefulWidget {
   const SuggestionBloc({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<SuggestionBloc> createState() => _SuggestionBlocState();
+}
+
+class _SuggestionBlocState extends ConsumerState<SuggestionBloc> {
+
+  @override
+  void initState() {
+    super.initState();
+
+    ref.read(suggestionProvider.notifier).fetchAllSuggestions();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final suggestion = ref.watch(suggestionProvider);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: 5,
       children: [
-        CustomSubTitle(title: "Recommandations"),
+        const CustomSubTitle(title: "Recommandations"),
         Opacity(
           opacity: 0.6,
           child: Row(
-            spacing: 5,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               DataTag(

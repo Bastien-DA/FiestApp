@@ -51,7 +51,7 @@ class AddEvent extends ConsumerWidget {
                   CustomButton(
                     label: "Créer l'évènement",
                     icon: FontAwesomeIcons.arrowRight,
-                    onPressed: () => {router.push(AppRoute.home.path)},
+                    onPressed: () => {ref.read(router).push(AppRoute.home.path)},
                   ),
                 ],
               ),

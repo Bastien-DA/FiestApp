@@ -7,7 +7,6 @@ class SuggestionNotifier extends StateNotifier<Suggestion> {
   final suggestionService = SuggestionService();
 
   SuggestionNotifier(this.ref) : super(Suggestion(beer: 0, soft: 0, pizza: 0)) {
-    fetchAllSuggestions();
   }
 
   void fetchAllSuggestions() async {

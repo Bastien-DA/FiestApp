@@ -38,7 +38,7 @@ class Register extends ConsumerWidget {
                   CustomButton(
                     label: "Créer le compte",
                     icon: FontAwesomeIcons.arrowRight,
-                    onPressed: () => {router.push(AppRoute.home.path)},
+                    onPressed: () => {ref.read(router).push(AppRoute.home.path)},
                   ),
                 ],
               ),
