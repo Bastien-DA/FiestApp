@@ -39,6 +39,7 @@ export 'package:openapi/src/model/login_device_dto.dart';
 export 'package:openapi/src/model/poll.dart';
 export 'package:openapi/src/model/poll_option.dart';
 export 'package:openapi/src/model/poll_vote.dart';
+export 'package:openapi/src/model/register_response_dto.dart';
 export 'package:openapi/src/model/shopping.dart';
 export 'package:openapi/src/model/user.dart';
 

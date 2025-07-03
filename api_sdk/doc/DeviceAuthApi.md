@@ -55,7 +55,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **authControllerRegister**
-> User authControllerRegister(deviceId, username, gender, age, height, weight, alcoholConsumption, file)
+> RegisterResponseDto authControllerRegister(deviceId, username, gender, age, height, weight, alcoholConsumption, file)
 
 Register a user and link to deviceId (with avatar)
 
@@ -96,7 +96,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**User**](User.md)
+[**RegisterResponseDto**](RegisterResponseDto.md)
 
 ### Authorization
 

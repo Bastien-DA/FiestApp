@@ -1,7 +1,8 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:fiestapp/api/suggestion-service.dart';
-import 'package:fiestapp/models/user.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:openapi/src/model/user.dart';
 
 class RegisterFormNotifier extends StateNotifier<User> {
   final Ref ref;
@@ -11,53 +12,50 @@ class RegisterFormNotifier extends StateNotifier<User> {
 
   RegisterFormNotifier(this.ref)
     : super(
-        User(
-          userGuid: "",
-          username: "",
-          gender: "Male",
-          age: 0,
-          height: 0,
-          weight: 0,
-          alcoholConsumption: "Occasional",
-          ppLink: "",
-        ),
+        User((b) {
+          // Initialise avec des valeurs par défaut valides si besoin
+          b
+            ..guid = ''
+            ..username = ''
+            ..gender = UserGenderEnum.unknownDefaultOpenApi
+            ..age = 0
+            ..height = 0
+            ..weight = 0
+            ..alcoholConsumption =
+                UserAlcoholConsumptionEnum.unknownDefaultOpenApi
+            ..events = ListBuilder()
+            ..eventsParticipated = ListBuilder();
+        }),
       );
 
   XFile? get selectedFile => _selectedFile;
 
   void updateSelectedFile(XFile? file) {
     _selectedFile = file;
-    // Optionnel : mettre à jour le chemin dans le modèle si tu veux l’afficher dans l’UI
-    state = state.copyWith(ppLink: file?.path ?? "");
   }
 
   void updateUsername(String username) {
-    print(username);
-    state = state.copyWith(username: username);
+    state = state.rebuild((b) => b..username = username);
   }
 
-  void updateGender(String gender) {
-    state = state.copyWith(gender: gender);
+  void updateGender(UserGenderEnum gender) {
+    state = state.rebuild((b) => b..gender = gender);
   }
 
   void updateAge(int age) {
-    state = state.copyWith(age: age);
+    state = state.rebuild((b) => b..age = age);
   }
 
   void updateHeight(int height) {
-    state = state.copyWith(height: height);
+    state = state.rebuild((b) => b..height = height);
   }
 
   void updateWeight(int weight) {
-    state = state.copyWith(weight: weight);
+    state = state.rebuild((b) => b..weight = weight);
   }
 
-  void updatePpLink(String path) {
-    state = state.copyWith(ppLink: path);
-  }
-
-  void updateAlcohol(String value) {
-    state = state.copyWith(alcoholConsumption: value);
+  void updateAlcohol(UserAlcoholConsumptionEnum value) {
+    state = state.rebuild((b) => b..alcoholConsumption = value);
   }
 }
 

@@ -6,6 +6,7 @@ import 'package:fiestapp/provider/form/register-form.provider.dart';
 import 'package:fiestapp/utils/constant/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:openapi/openapi.dart';
 
 class RegisterForm extends ConsumerStatefulWidget {
   const RegisterForm({super.key});
@@ -50,9 +51,16 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
     });
 
     _genderController.addListener(() {
-      ref
-          .read(registerFormProvider.notifier)
-          .updateGender(_genderController.text);
+      switch (_genderController.text) {
+        case 'Female':
+          ref
+              .read(registerFormProvider.notifier)
+              .updateGender(UserGenderEnum.female);
+        case 'Male':
+          ref
+              .read(registerFormProvider.notifier)
+              .updateGender(UserGenderEnum.male);
+      }
     });
 
     _nameController.addListener(() {
@@ -68,16 +76,25 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
       }
     });
 
-    _fileController.addListener(() {
-      ref
-          .read(registerFormProvider.notifier)
-          .updatePpLink(_fileController.text);
-    });
-
     _alcoholConsumptionController.addListener(() {
-      ref
-          .read(registerFormProvider.notifier)
-          .updateAlcohol(_alcoholConsumptionController.text);
+      switch (_alcoholConsumptionController.text) {
+        case 'occasional':
+          ref
+              .read(registerFormProvider.notifier)
+              .updateAlcohol(UserAlcoholConsumptionEnum.occasional);
+        case 'regular':
+          ref
+              .read(registerFormProvider.notifier)
+              .updateAlcohol(UserAlcoholConsumptionEnum.regular);
+        case 'veteran':
+          ref
+              .read(registerFormProvider.notifier)
+              .updateAlcohol(UserAlcoholConsumptionEnum.veteran);
+        case 'unknown_default_open_api':
+          ref
+              .read(registerFormProvider.notifier)
+              .updateAlcohol(UserAlcoholConsumptionEnum.unknownDefaultOpenApi);
+      }
     });
   }
 
@@ -149,21 +166,24 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
             onChanged: (value) => print("Poids: $value kg"),
           ),
           const SizedBox(height: 20),
-          MinimalEnumSelector<AlcoholConsumption>(
+          MinimalEnumSelector<UserAlcoholConsumptionEnum>(
             width: MediaQuery.sizeOf(context).width * 0.6,
             title: "Quel buveur êtes-vous ?",
-            value: AlcoholConsumption.Occasional,
-            values: AlcoholConsumption.values,
+            value: UserAlcoholConsumptionEnum.occasional,
+            values: UserAlcoholConsumptionEnum.values.toList(),
             controller: _alcoholConsumptionController,
             labelBuilder: (val) {
               switch (val) {
-                case AlcoholConsumption.Occasional:
+                case UserAlcoholConsumptionEnum.occasional:
                   return "Occasionnel";
-                case AlcoholConsumption.Regular:
+                case UserAlcoholConsumptionEnum.regular:
                   return "Régulier";
-                case AlcoholConsumption.Veteran:
+                case UserAlcoholConsumptionEnum.veteran:
                   return "Aguerri";
+                case UserAlcoholConsumptionEnum.unknownDefaultOpenApi:
+                  return 'Aucune valeur';
               }
+              return '';
             },
             onChanged: (newValue) {
               print("Alcool sélectionné : $newValue");

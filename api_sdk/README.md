@@ -126,6 +126,7 @@ Class | Method | HTTP request | Description
  - [Poll](doc/Poll.md)
  - [PollOption](doc/PollOption.md)
  - [PollVote](doc/PollVote.md)
+ - [RegisterResponseDto](doc/RegisterResponseDto.md)
  - [Shopping](doc/Shopping.md)
  - [User](doc/User.md)
 

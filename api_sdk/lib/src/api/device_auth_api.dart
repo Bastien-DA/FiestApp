@@ -11,7 +11,7 @@ import 'package:dio/dio.dart';
 import 'package:built_value/json_object.dart';
 import 'package:openapi/src/api_util.dart';
 import 'package:openapi/src/model/login_device_dto.dart';
-import 'package:openapi/src/model/user.dart';
+import 'package:openapi/src/model/register_response_dto.dart';
 
 class DeviceAuthApi {
 
@@ -135,9 +135,9 @@ class DeviceAuthApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [User] as data
+  /// Returns a [Future] containing a [Response] with a [RegisterResponseDto] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<User>> authControllerRegister({ 
+  Future<Response<RegisterResponseDto>> authControllerRegister({ 
     required String deviceId,
     required String username,
     required String gender,
@@ -202,14 +202,14 @@ class DeviceAuthApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    User? _responseData;
+    RegisterResponseDto? _responseData;
 
     try {
       final rawResponse = _response.data;
       _responseData = rawResponse == null ? null : _serializers.deserialize(
         rawResponse,
-        specifiedType: const FullType(User),
-      ) as User;
+        specifiedType: const FullType(RegisterResponseDto),
+      ) as RegisterResponseDto;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -221,7 +221,7 @@ class DeviceAuthApi {
       );
     }
 
-    return Response<User>(
+    return Response<RegisterResponseDto>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

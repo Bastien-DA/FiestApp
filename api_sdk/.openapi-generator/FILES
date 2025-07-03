@@ -1,4 +1,5 @@
 .gitignore
+.openapi-generator-ignore
 README.md
 analysis_options.yaml
 doc/Course.md
@@ -27,6 +28,7 @@ doc/PollOption.md
 doc/PollVote.md
 doc/PollVotesApi.md
 doc/PollsApi.md
+doc/RegisterResponseDto.md
 doc/Shopping.md
 doc/ShoppingsApi.md
 doc/User.md
@@ -69,6 +71,7 @@ lib/src/model/login_device_dto.dart
 lib/src/model/poll.dart
 lib/src/model/poll_option.dart
 lib/src/model/poll_vote.dart
+lib/src/model/register_response_dto.dart
 lib/src/model/shopping.dart
 lib/src/model/user.dart
 lib/src/serializers.dart

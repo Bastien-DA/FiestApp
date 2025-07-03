@@ -5,11 +5,15 @@ import 'package:fiestapp/components/button/button.component.dart';
 import 'package:fiestapp/components/image-selector/image-selector.component.dart';
 import 'package:fiestapp/components/register/header.component.dart';
 import 'package:fiestapp/components/register/informations-block.component.dart';
+import 'package:fiestapp/enum/app-route.enum.dart';
+import 'package:fiestapp/provider/auth.provider.dart';
 import 'package:fiestapp/provider/form/register-form.provider.dart';
+import 'package:fiestapp/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:openapi/openapi.dart';
 import 'package:path_provider/path_provider.dart';
 
 class Register extends ConsumerWidget {
@@ -78,8 +82,9 @@ class Register extends ConsumerWidget {
     final image = ref.read(registerFormProvider.notifier).selectedFile;
 
     if (name.isEmpty) return _showError("Le nom est requis", context);
-    if (gender.isEmpty) return _showError("Le genre est requis", context);
-    if (alcoholConsumption.isEmpty)
+    if (gender == UserGenderEnum.unknownDefaultOpenApi)
+      return _showError("Le genre est requis", context);
+    if (alcoholConsumption == UserAlcoholConsumptionEnum.unknownDefaultOpenApi)
       return _showError(
         "Le niveau de consommation d'alcool est requis",
         context,
@@ -99,10 +104,19 @@ class Register extends ConsumerWidget {
       webpFile = await convertToWebP(File(image.path));
     }
 
-    await AuthService.register(
-      registerForm.copyWith(alcoholConsumption: "regular", gender: "male"),
+    final response = await AuthService.register(
+      registerForm.rebuild(
+        (b) => b
+          ..alcoholConsumption = UserAlcoholConsumptionEnum.regular
+          ..gender = UserGenderEnum.male,
+      ),
       webpFile == null ? null : File(webpFile.path),
     );
+
+    if (response.statusCode == 201) {
+      ref.read(authProvider.notifier).state = true;
+      ref.read(routerProvider).pushReplacement(AppRoute.home.path);
+    }
   }
 
   Future<XFile?> convertToWebP(File originalFile) async {

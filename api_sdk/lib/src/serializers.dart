@@ -33,6 +33,7 @@ import 'package:openapi/src/model/login_device_dto.dart';
 import 'package:openapi/src/model/poll.dart';
 import 'package:openapi/src/model/poll_option.dart';
 import 'package:openapi/src/model/poll_vote.dart';
+import 'package:openapi/src/model/register_response_dto.dart';
 import 'package:openapi/src/model/shopping.dart';
 import 'package:openapi/src/model/user.dart';
 
@@ -58,6 +59,7 @@ part 'serializers.g.dart';
   Poll,
   PollOption,
   PollVote,
+  RegisterResponseDto,
   Shopping,
   User,
 ])
