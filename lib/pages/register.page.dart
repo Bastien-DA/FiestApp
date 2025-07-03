@@ -1,14 +1,16 @@
+import 'dart:io';
+
+import 'package:fiestapp/api/auth.service.dart';
 import 'package:fiestapp/components/button/button.component.dart';
 import 'package:fiestapp/components/image-selector/image-selector.component.dart';
 import 'package:fiestapp/components/register/header.component.dart';
 import 'package:fiestapp/components/register/informations-block.component.dart';
-import 'package:fiestapp/enum/app-route.enum.dart';
 import 'package:fiestapp/provider/form/register-form.provider.dart';
-import 'package:fiestapp/router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 
 class Register extends ConsumerWidget {
   const Register({super.key});
@@ -52,7 +54,6 @@ class Register extends ConsumerWidget {
                     icon: FontAwesomeIcons.arrowRight,
                     onPressed: () {
                       _submitForm(ref, context);
-                      ref.read(routerProvider).push(AppRoute.home.path);
                     },
                   ),
                 ],
@@ -64,17 +65,16 @@ class Register extends ConsumerWidget {
     );
   }
 
-  void _submitForm(WidgetRef ref, context) {
+  Future<void> _submitForm(WidgetRef ref, context) async {
     final registerForm = ref.watch(registerFormProvider);
 
     final name = registerForm.username;
-
-    print(name);
     final age = registerForm.age;
     final gender = registerForm.gender;
     final weight = registerForm.weight;
     final height = registerForm.height;
     final alcoholConsumption = registerForm.alcoholConsumption;
+
     final image = ref.read(registerFormProvider.notifier).selectedFile;
 
     if (name.isEmpty) return _showError("Le nom est requis", context);
@@ -94,7 +94,33 @@ class Register extends ConsumerWidget {
     print("Alcool : $alcoholConsumption");
     print("Image: ${image?.name}");
 
-    // TODO: Appel à l’API
+    XFile? webpFile;
+    if (image != null) {
+      webpFile = await convertToWebP(File(image.path));
+    }
+
+    await AuthService.register(
+      registerForm.copyWith(alcoholConsumption: "regular", gender: "male"),
+      webpFile == null ? null : File(webpFile.path),
+    );
+  }
+
+  Future<XFile?> convertToWebP(File originalFile) async {
+    try {
+      Directory tempDir = await getTemporaryDirectory();
+      String timestamp = DateTime.now().millisecondsSinceEpoch.toString();
+
+      return await FlutterImageCompress.compressAndGetFile(
+        originalFile.absolute.path,
+        '${tempDir.path}/image_${timestamp}.webp',
+        format: CompressFormat.webp,
+        quality: 80,
+        keepExif: false,
+      );
+    } catch (e) {
+      print('Erreur conversion WebP: $e');
+      rethrow;
+    }
   }
 
   void _showError(String message, context) {
