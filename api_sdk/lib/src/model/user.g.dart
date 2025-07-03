@@ -72,13 +72,13 @@ Serializer<UserAlcoholConsumptionEnum> _$userAlcoholConsumptionEnumSerializer =
 class _$UserGenderEnumSerializer
     implements PrimitiveSerializer<UserGenderEnum> {
   static const Map<String, Object> _toWire = const <String, Object>{
-    'male': 'Male',
-    'female': 'Female',
+    'male': 'male',
+    'female': 'female',
     'unknownDefaultOpenApi': 'unknown_default_open_api',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
-    'Male': 'male',
-    'Female': 'female',
+    'male': 'male',
+    'female': 'female',
     'unknown_default_open_api': 'unknownDefaultOpenApi',
   };
 
@@ -102,15 +102,15 @@ class _$UserGenderEnumSerializer
 class _$UserAlcoholConsumptionEnumSerializer
     implements PrimitiveSerializer<UserAlcoholConsumptionEnum> {
   static const Map<String, Object> _toWire = const <String, Object>{
-    'occasional': 'Occasional',
-    'regular': 'Regular',
-    'veteran': 'Veteran',
+    'occasional': 'occasional',
+    'regular': 'regular',
+    'veteran': 'veteran',
     'unknownDefaultOpenApi': 'unknown_default_open_api',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
-    'Occasional': 'occasional',
-    'Regular': 'regular',
-    'Veteran': 'veteran',
+    'occasional': 'occasional',
+    'regular': 'regular',
+    'veteran': 'veteran',
     'unknown_default_open_api': 'unknownDefaultOpenApi',
   };
 

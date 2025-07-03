@@ -6,7 +6,6 @@ import 'package:dio/dio.dart';
 import 'package:fiestapp/utils/constant/constant.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
-import 'package:openapi/openapi.dart' hide User;
 
 import '../models/user.dart';
 
@@ -37,22 +36,27 @@ class AuthService {
 
     final deviceApi = apiClient.getDeviceAuthApi();
 
-    final userCreateDto = CreateUserDto(
-      (b) async => b
-        ..username = user.username
-        ..alcoholConsumption = CreateUserDtoAlcoholConsumptionEnum.regular
-        ..height = user.height
-        ..weight = user.weight
-        ..gender = CreateUserDtoGenderEnum.male
-        ..age = user.age
-        ..file = null,
-    );
-
-    print(userCreateDto);
+    // final userCreateDto = CreateUserDto(
+    //   (b) async => b
+    //     ..username = user.username
+    //     ..alcoholConsumption = CreateUserDtoAlcoholConsumptionEnum.regular
+    //     ..height = user.height
+    //     ..weight = user.weight
+    //     ..gender = CreateUserDtoGenderEnum.male
+    //     ..age = user.age
+    //     ..file = null,
+    // );
+    //
+    // print(userCreateDto);
 
     final response = await deviceApi.authControllerRegister(
       deviceId: deviceFingerprint,
-      user: userCreateDto,
+      username: user.username,
+      alcoholConsumption: "regular",
+      height: user.height,
+      weight: user.weight,
+      gender: "male",
+      age: user.age,
       file: imageFile == null
           ? null
           : await MultipartFile.fromFile(imageFile.path),
