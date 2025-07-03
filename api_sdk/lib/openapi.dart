@@ -23,6 +23,7 @@ export 'package:openapi/src/api/users_api.dart';
 export 'package:openapi/src/model/course.dart';
 export 'package:openapi/src/model/course_request.dart';
 export 'package:openapi/src/model/create_course_dto.dart';
+export 'package:openapi/src/model/create_event_dto.dart';
 export 'package:openapi/src/model/create_expense_dto.dart';
 export 'package:openapi/src/model/create_hosting_dto.dart';
 export 'package:openapi/src/model/create_hosting_request_dto.dart';

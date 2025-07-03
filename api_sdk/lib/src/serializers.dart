@@ -17,6 +17,7 @@ import 'package:openapi/src/model/date.dart';
 import 'package:openapi/src/model/course.dart';
 import 'package:openapi/src/model/course_request.dart';
 import 'package:openapi/src/model/create_course_dto.dart';
+import 'package:openapi/src/model/create_event_dto.dart';
 import 'package:openapi/src/model/create_expense_dto.dart';
 import 'package:openapi/src/model/create_hosting_dto.dart';
 import 'package:openapi/src/model/create_hosting_request_dto.dart';
@@ -41,6 +42,7 @@ part 'serializers.g.dart';
   Course,
   CourseRequest,
   CreateCourseDto,
+  CreateEventDto,
   CreateExpenseDto,
   CreateHostingDto,
   CreateHostingRequestDto,

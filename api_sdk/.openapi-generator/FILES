@@ -5,6 +5,7 @@ doc/Course.md
 doc/CourseRequest.md
 doc/CoursesApi.md
 doc/CreateCourseDto.md
+doc/CreateEventDto.md
 doc/CreateExpenseDto.md
 doc/CreateHostingDto.md
 doc/CreateHostingRequestDto.md
@@ -51,6 +52,7 @@ lib/src/date_serializer.dart
 lib/src/model/course.dart
 lib/src/model/course_request.dart
 lib/src/model/create_course_dto.dart
+lib/src/model/create_event_dto.dart
 lib/src/model/create_expense_dto.dart
 lib/src/model/create_hosting_dto.dart
 lib/src/model/create_hosting_request_dto.dart

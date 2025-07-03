@@ -110,6 +110,7 @@ Class | Method | HTTP request | Description
  - [Course](doc/Course.md)
  - [CourseRequest](doc/CourseRequest.md)
  - [CreateCourseDto](doc/CreateCourseDto.md)
+ - [CreateEventDto](doc/CreateEventDto.md)
  - [CreateExpenseDto](doc/CreateExpenseDto.md)
  - [CreateHostingDto](doc/CreateHostingDto.md)
  - [CreateHostingRequestDto](doc/CreateHostingRequestDto.md)

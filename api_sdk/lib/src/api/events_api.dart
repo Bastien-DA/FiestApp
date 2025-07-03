@@ -10,6 +10,7 @@ import 'package:dio/dio.dart';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/api_util.dart';
+import 'package:openapi/src/model/create_event_dto.dart';
 import 'package:openapi/src/model/event.dart';
 
 class EventsApi {
@@ -24,13 +25,7 @@ class EventsApi {
   /// 
   ///
   /// Parameters:
-  /// * [title] - Titre de l’événement
-  /// * [location] - Lieu de l’événement
-  /// * [date] - Horodatage en secondes de la date de l’événement
-  /// * [organizer] - GUID de l’organisateur (User)
-  /// * [latitude] - Latitude du lieu (optionnelle)
-  /// * [longitude] - Longitude du lieu (optionnelle)
-  /// * [file] 
+  /// * [createEventDto] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -41,13 +36,7 @@ class EventsApi {
   /// Returns a [Future] containing a [Response] with a [Event] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<Event>> eventControllerCreate({ 
-    required String title,
-    required String location,
-    required num date,
-    required String organizer,
-    num? latitude,
-    num? longitude,
-    MultipartFile? file,
+    required CreateEventDto createEventDto,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -65,22 +54,15 @@ class EventsApi {
         'secure': <Map<String, String>>[],
         ...?extra,
       },
-      contentType: 'multipart/form-data',
+      contentType: 'application/json',
       validateStatus: validateStatus,
     );
 
     dynamic _bodyData;
 
     try {
-      _bodyData = FormData.fromMap(<String, dynamic>{
-        r'title': encodeFormParameter(_serializers, title, const FullType(String)),
-        r'location': encodeFormParameter(_serializers, location, const FullType(String)),
-        if (latitude != null) r'latitude': encodeFormParameter(_serializers, latitude, const FullType(num)),
-        if (longitude != null) r'longitude': encodeFormParameter(_serializers, longitude, const FullType(num)),
-        r'date': encodeFormParameter(_serializers, date, const FullType(num)),
-        r'organizer': encodeFormParameter(_serializers, organizer, const FullType(String)),
-        if (file != null) r'file': file,
-      });
+      const _type = FullType(CreateEventDto);
+      _bodyData = _serializers.serialize(createEventDto, specifiedType: _type);
 
     } catch(error, stackTrace) {
       throw DioException(
@@ -334,13 +316,12 @@ class EventsApi {
   ///
   /// Parameters:
   /// * [id] - GUID de l’événement
-  /// * [title] - Titre de l’événement
-  /// * [location] - Lieu de l’événement
-  /// * [date] - Horodatage en secondes de la date de l’événement
-  /// * [organizer] - GUID de l’organisateur (User)
+  /// * [title] - Titre de lévénement
+  /// * [location] - Lieu de lévénement
+  /// * [date] - Horodatage en secondes de la date de lévénement
+  /// * [organizer] - GUID de lorganisateur (User)
   /// * [latitude] - Latitude du lieu (optionnelle)
   /// * [longitude] - Longitude du lieu (optionnelle)
-  /// * [file] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -358,7 +339,6 @@ class EventsApi {
     required String organizer,
     num? latitude,
     num? longitude,
-    MultipartFile? file,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -390,7 +370,6 @@ class EventsApi {
         if (longitude != null) r'longitude': encodeFormParameter(_serializers, longitude, const FullType(num)),
         r'date': encodeFormParameter(_serializers, date, const FullType(num)),
         r'organizer': encodeFormParameter(_serializers, organizer, const FullType(String)),
-        if (file != null) r'file': file,
       });
 
     } catch(error, stackTrace) {

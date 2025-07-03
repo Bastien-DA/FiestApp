@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 
 # **eventControllerCreate**
-> Event eventControllerCreate(title, location, date, organizer, latitude, longitude, file)
+> Event eventControllerCreate(createEventDto)
 
 Créer un nouvel événement
 
@@ -26,16 +26,10 @@ Créer un nouvel événement
 import 'package:openapi/api.dart';
 
 final api = Openapi().getEventsApi();
-final String title = title_example; // String | Titre de l’événement
-final String location = location_example; // String | Lieu de l’événement
-final num date = 8.14; // num | Horodatage en secondes de la date de l’événement
-final String organizer = organizer_example; // String | GUID de l’organisateur (User)
-final num latitude = 8.14; // num | Latitude du lieu (optionnelle)
-final num longitude = 8.14; // num | Longitude du lieu (optionnelle)
-final MultipartFile file = BINARY_DATA_HERE; // MultipartFile | 
+final CreateEventDto createEventDto = ; // CreateEventDto | 
 
 try {
-    final response = api.eventControllerCreate(title, location, date, organizer, latitude, longitude, file);
+    final response = api.eventControllerCreate(createEventDto);
     print(response);
 } catch on DioException (e) {
     print('Exception when calling EventsApi->eventControllerCreate: $e\n');
@@ -46,13 +40,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **title** | **String**| Titre de l’événement | 
- **location** | **String**| Lieu de l’événement | 
- **date** | **num**| Horodatage en secondes de la date de l’événement | 
- **organizer** | **String**| GUID de l’organisateur (User) | 
- **latitude** | **num**| Latitude du lieu (optionnelle) | [optional] 
- **longitude** | **num**| Longitude du lieu (optionnelle) | [optional] 
- **file** | **MultipartFile**|  | [optional] 
+ **createEventDto** | [**CreateEventDto**](CreateEventDto.md)|  | 
 
 ### Return type
 
@@ -64,7 +52,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -188,7 +176,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **eventControllerUpdate**
-> Event eventControllerUpdate(id, title, location, date, organizer, latitude, longitude, file)
+> Event eventControllerUpdate(id, title, location, date, organizer, latitude, longitude)
 
 Mettre à jour un événement
 
@@ -198,16 +186,15 @@ import 'package:openapi/api.dart';
 
 final api = Openapi().getEventsApi();
 final String id = id_example; // String | GUID de l’événement
-final String title = title_example; // String | Titre de l’événement
-final String location = location_example; // String | Lieu de l’événement
-final num date = 8.14; // num | Horodatage en secondes de la date de l’événement
-final String organizer = organizer_example; // String | GUID de l’organisateur (User)
+final String title = title_example; // String | Titre de lévénement
+final String location = location_example; // String | Lieu de lévénement
+final num date = 8.14; // num | Horodatage en secondes de la date de lévénement
+final String organizer = organizer_example; // String | GUID de lorganisateur (User)
 final num latitude = 8.14; // num | Latitude du lieu (optionnelle)
 final num longitude = 8.14; // num | Longitude du lieu (optionnelle)
-final MultipartFile file = BINARY_DATA_HERE; // MultipartFile | 
 
 try {
-    final response = api.eventControllerUpdate(id, title, location, date, organizer, latitude, longitude, file);
+    final response = api.eventControllerUpdate(id, title, location, date, organizer, latitude, longitude);
     print(response);
 } catch on DioException (e) {
     print('Exception when calling EventsApi->eventControllerUpdate: $e\n');
@@ -219,13 +206,12 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| GUID de l’événement | 
- **title** | **String**| Titre de l’événement | 
- **location** | **String**| Lieu de l’événement | 
- **date** | **num**| Horodatage en secondes de la date de l’événement | 
- **organizer** | **String**| GUID de l’organisateur (User) | 
+ **title** | **String**| Titre de lévénement | 
+ **location** | **String**| Lieu de lévénement | 
+ **date** | **num**| Horodatage en secondes de la date de lévénement | 
+ **organizer** | **String**| GUID de lorganisateur (User) | 
  **latitude** | **num**| Latitude du lieu (optionnelle) | [optional] 
  **longitude** | **num**| Longitude du lieu (optionnelle) | [optional] 
- **file** | **MultipartFile**|  | [optional] 
 
 ### Return type
 
