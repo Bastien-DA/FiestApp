@@ -1,10 +1,9 @@
 import 'package:fiestapp/components/custom-card/card-header.component.dart';
 import 'package:fiestapp/components/custom-card/you-participate/you-participate-bottom-card.component.dart';
 import 'package:fiestapp/enum/app-route.enum.dart';
-import 'package:fiestapp/models/event.dart';
 import 'package:fiestapp/provider/event/selected-event.provider.dart';
 import 'package:fiestapp/router.dart';
-import 'package:fiestapp/utils/constant/constant.dart';
+import 'package:openapi/openapi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -38,15 +37,15 @@ class YouParticipateCard extends ConsumerWidget {
         child: Column(
           children: [
             CardHeader(
-              pathImage: "${S3_enpoint}event/${event.guid}.webp",
+              pathImage: 'https://tripxl.com/blog/wp-content/uploads/2024/09/Subsix-Underwater-Nightclub-Niyama-Private-Islands.jpg',
               date: "12/07/2025",
               height: 140,
               width: 340,
             ),
             YouParticipateBottomCardComponent(
               eventCreatorName: event.organizer.username,
-              eventCreatorImage: event.organizer.ppLink ?? defaultProfilImage,
-              users: event.participants,
+              eventCreatorImage: event.organizer.guid,
+              users: event.participants.toList(),
               eventName: event.title,
               eventLocation: event.location,
             ),

@@ -1,13 +1,16 @@
 import 'package:fiestapp/components/avatar-group/avatar-group.component.dart';
 import 'package:fiestapp/components/button/button.component.dart';
 import 'package:fiestapp/components/organisation/poll/poll-choice.composent.dart';
-import 'package:fiestapp/mock/user.mock.dart';
 import 'package:fiestapp/utils/constant/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:openapi/openapi.dart';
+
 
 class SondageCard extends StatefulWidget {
-  const SondageCard({super.key});
+  const SondageCard({super.key, required this.poll});
+
+  final Poll poll;
 
   @override
   State<SondageCard> createState() => _SondageCardState();
@@ -69,7 +72,7 @@ class _SondageCardState extends State<SondageCard>
 
   Widget _buildCollapsedContent() {
     final String usersLengthText =
-        "${mockUsers.length} participant${mockUsers.length == 1 ? '' : 's'}";
+        "${widget.poll.votes} participant${widget.poll.votes.length == 1 ? '' : 's'}";
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -82,7 +85,7 @@ class _SondageCardState extends State<SondageCard>
               style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
             ),
             AvatarGroup(
-              users: mockUsers,
+              users: widget.poll.votes.map((v)=>v.user).toList(),
               haveBackground: false,
               textColor: Colors.black,
               text: usersLengthText,

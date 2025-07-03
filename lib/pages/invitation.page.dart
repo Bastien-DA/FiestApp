@@ -1,9 +1,9 @@
 import 'package:fiestapp/components/details/details-header.component.dart';
 import 'package:fiestapp/components/details/event-data-with-map.component.dart';
-import 'package:fiestapp/models/event.dart';
 import 'package:fiestapp/provider/event/selected-event.provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:openapi/openapi.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class Invitation extends ConsumerStatefulWidget {
@@ -17,7 +17,7 @@ class Invitation extends ConsumerStatefulWidget {
 
 class InvitationState extends ConsumerState<Invitation> {
   bool isMapExpanded = false;
-  late Future<Event> _future;
+  late Future<Event?> _future;
 
   @override
   void initState() {

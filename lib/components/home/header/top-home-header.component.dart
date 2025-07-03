@@ -55,7 +55,7 @@ class TopHomeHeader extends ConsumerWidget {
               },
             ),
             ProfilImageButton(
-              imagePath: user?.ppLink ?? defaultProfilImage,
+              imagePath: "${S3_enpoint}user/${user!.guid}.webp",
               onClick: () {
                 ref.read(routerProvider).push(AppRoute.profil.path);
               },

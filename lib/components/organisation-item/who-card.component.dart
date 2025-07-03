@@ -1,22 +1,26 @@
 import 'package:fiestapp/components/avatar-group/avatar-group.component.dart';
 import 'package:fiestapp/components/button/button.component.dart';
 import 'package:fiestapp/components/button/profil-image-button.component.dart';
-import 'package:fiestapp/mock/event.mock.dart';
-import 'package:fiestapp/mock/user.mock.dart';
+import 'package:fiestapp/provider/user.provider.dart';
 import 'package:fiestapp/utils/constant/enum.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:openapi/openapi.dart';
 
-class WhoDriveCard extends StatefulWidget {
+
+import '../../provider/event/selected-event.provider.dart';
+
+class WhoDriveCard extends ConsumerStatefulWidget {
   const WhoDriveCard({super.key, required this.type});
 
   final WhoCardType type;
 
   @override
-  State<WhoDriveCard> createState() => _WhoDriveCardState();
+  ConsumerState<WhoDriveCard> createState() => _WhoDriveCardState();
 }
 
-class _WhoDriveCardState extends State<WhoDriveCard>
+class _WhoDriveCardState extends ConsumerState<WhoDriveCard>
     with SingleTickerProviderStateMixin {
   bool _isExpanded = false;
 
@@ -37,6 +41,9 @@ class _WhoDriveCardState extends State<WhoDriveCard>
 
   @override
   Widget build(BuildContext context) {
+    final Event? event = ref.watch(selectedEventProvider);
+    final User? currentUser = ref.watch(userProvider);
+
     return GestureDetector(
       onTap: toggleExpand,
       child: AnimatedSize(
@@ -56,15 +63,15 @@ class _WhoDriveCardState extends State<WhoDriveCard>
               ),
             ],
           ),
-          child: _isExpanded
-              ? _buildExpandedContent()
-              : _buildCollapsedContent(),
+          child:  currentUser != null && event != null ? _isExpanded
+              ? _buildExpandedContent(currentUser, event)
+              : _buildCollapsedContent(currentUser, event) : Container(),
         ),
       ),
     );
   }
 
-  Widget _buildCollapsedContent() {
+  Widget _buildCollapsedContent(User currentUser, Event event) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -79,7 +86,7 @@ class _WhoDriveCardState extends State<WhoDriveCard>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  mockCurrentUser.username,
+                  currentUser.username,
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -95,7 +102,7 @@ class _WhoDriveCardState extends State<WhoDriveCard>
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      mockEvents[0].location,
+                      event.location,
                       style: const TextStyle(fontSize: 12, color: Colors.grey),
                     ),
                   ],
@@ -123,20 +130,20 @@ class _WhoDriveCardState extends State<WhoDriveCard>
     );
   }
 
-  Widget _buildExpandedContent() {
+  Widget _buildExpandedContent(User currentUser, Event event) {
     final String usersLengthText =
-        "${mockUsers.length} participant${mockUsers.length == 1 ? '' : 's'}";
+        "${event.participants.length} participant${event.participants.length == 1 ? '' : 's'}";
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildCollapsedContent(),
+        _buildCollapsedContent(currentUser, event),
 
         const SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             AvatarGroup(
-              users: mockUsers,
+              users: event.participants.toList(),
               haveBackground: false,
               textColor: Colors.black,
               text: usersLengthText,

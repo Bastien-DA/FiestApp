@@ -2,10 +2,11 @@ import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fiestapp/components/profil/profil-top-header.component.dart';
-import 'package:fiestapp/mock/user.mock.dart';
+import 'package:fiestapp/provider/user.provider.dart';
 import 'package:fiestapp/utils/constant/constant.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';import 'package:openapi/openapi.dart';
+
 
 class ProfilHeader extends ConsumerWidget {
   const ProfilHeader({super.key, this.allowEdit = true});
@@ -14,6 +15,9 @@ class ProfilHeader extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
+    User? currentUser = ref.watch(userProvider);
+
     return SizedBox(
       height: MediaQuery.sizeOf(context).height / 3.8,
       child: Stack(
@@ -59,7 +63,7 @@ class ProfilHeader extends ConsumerWidget {
               child: CircleAvatar(
                 radius: 61.5,
                 backgroundImage: CachedNetworkImageProvider(
-                  mockCurrentUser.ppLink ?? defaultProfilImage,
+                  currentUser?.guid ?? defaultProfilImage,
                 ),
               ),
             ),

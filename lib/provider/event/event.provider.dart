@@ -1,6 +1,6 @@
 import 'package:fiestapp/api/event-service.dart';
-import 'package:fiestapp/models/event.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:openapi/openapi.dart';
 
 class EventNotifier extends StateNotifier<List<Event>> {
   final Ref ref;

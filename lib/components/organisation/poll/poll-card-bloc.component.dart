@@ -1,16 +1,20 @@
 import 'package:fiestapp/components/modal/create-poll-modal.dart';
 import 'package:fiestapp/components/organisation-item/add.component.dart';
 import 'package:fiestapp/components/organisation/poll/poll-card.component.dart';
+import 'package:fiestapp/provider/event/selected-event.provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:openapi/openapi.dart';
 
-class SondageCardBloc extends StatefulWidget {
+
+class SondageCardBloc extends ConsumerStatefulWidget {
   const SondageCardBloc({super.key});
 
   @override
-  State<SondageCardBloc> createState() => _SondageCardBlocState();
+  ConsumerState<SondageCardBloc> createState() => _SondageCardBlocState();
 }
 
-class _SondageCardBlocState extends State<SondageCardBloc> {
+class _SondageCardBlocState extends ConsumerState<SondageCardBloc> {
   Future<void> onClick() {
     return showDialog<void>(
       context: context,
@@ -22,6 +26,8 @@ class _SondageCardBlocState extends State<SondageCardBloc> {
 
   @override
   Widget build(BuildContext context) {
+    final Event? event = ref.watch(selectedEventProvider);
+
     return Column(
       spacing: 10,
       children: [
@@ -31,7 +37,8 @@ class _SondageCardBlocState extends State<SondageCardBloc> {
           radius: 30,
           onClick: onClick,
         ),
-        SondageCard(),
+        for (Poll poll in event!.polls)
+          SondageCard(poll: poll,),
       ],
     );
   }

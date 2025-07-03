@@ -2,8 +2,8 @@ import 'package:fiestapp/components/button/column-icon-button.component.dart';
 import 'package:fiestapp/components/details/event-description.component.dart';
 import 'package:fiestapp/components/details/event-title.component.dart';
 import 'package:fiestapp/components/details/planning-data-block.component.dart';
-import 'package:fiestapp/enum/app-route.enum.dart';
-import 'package:fiestapp/models/event.dart';
+import 'package:fiestapp/enum/app-route.enum.dart';import 'package:openapi/openapi.dart';
+
 import 'package:fiestapp/router.dart';
 import 'package:fiestapp/utils/date.utils.dart';
 import 'package:flutter/material.dart';
@@ -30,8 +30,8 @@ class EventData extends ConsumerWidget {
         spacing: 10,
         children: [
           PlanningDataBlock(
-            date: formatDate(event.date),
-            hour: formatHour(event.date),
+            date: formatDate(event.date.toInt()),
+            hour: formatHour(event.date.toInt()),
           ),
           EventTitle(title: event.title, adress: event.location),
 
@@ -69,7 +69,7 @@ class EventData extends ConsumerWidget {
               ),
             ),
 
-          EventDescription(description: event.description),
+          EventDescription(description: "Hey viens à mon évènement !"),
         ],
       ),
     );

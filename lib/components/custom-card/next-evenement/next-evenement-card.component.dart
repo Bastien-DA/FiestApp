@@ -1,11 +1,11 @@
 import 'package:fiestapp/components/custom-card/card-header.component.dart';
 import 'package:fiestapp/components/custom-card/next-evenement/next-evenement-bottom-card.component.dart';
 import 'package:fiestapp/enum/app-route.enum.dart';
-import 'package:fiestapp/models/event.dart';
 import 'package:fiestapp/provider/event/selected-event.provider.dart';
 import 'package:fiestapp/router.dart';
-import 'package:fiestapp/utils/constant/constant.dart';
+import 'package:fiestapp/utils/date.utils.dart';
 import 'package:flutter/material.dart';
+import 'package:openapi/openapi.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class NextEvenementCard extends ConsumerWidget {
@@ -40,7 +40,7 @@ class NextEvenementCard extends ConsumerWidget {
             CardHeader(
               pathImage:
                   'https://tripxl.com/blog/wp-content/uploads/2024/09/Subsix-Underwater-Nightclub-Niyama-Private-Islands.jpg',
-              date: event.formattedDate,
+              date: formatDate(event.date.toInt()),
               height: 122,
               width: 340,
             ),
@@ -48,7 +48,7 @@ class NextEvenementCard extends ConsumerWidget {
               eventName: event.title,
               eventLocation: event.location,
               eventCreatorName: event.organizer.username,
-              eventCreatorImage: event.organizer.ppLink ?? defaultProfilImage,
+              eventCreatorImage: event.organizer.guid,
             ),
           ],
         ),

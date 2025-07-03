@@ -1,18 +1,22 @@
-import 'package:fiestapp/mock/user.mock.dart';
-import 'package:fiestapp/models/user.dart';
+import 'package:openapi/openapi.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserService {
-  Future<User> getCurrentUser() async {
-    return await Future.delayed(
-      Duration(milliseconds: 300),
-      () => mockCurrentUser,
-    );
+  final userApi = Openapi().getUsersApi();
+
+
+  Future<User?> getCurrentUser() async {
+    final prefs = await SharedPreferences.getInstance();
+    final String monId = prefs.getString('currentId') ?? '';
+
+    final response = await userApi.userControllerFindOne(id: monId);
+
+    return response.data;
   }
 
-  Future<User> getById(String guid) async {
-    return await Future.delayed(
-      Duration(milliseconds: 300),
-      () => mockUsers.firstWhere((u) => u.userGuid == guid),
-    );
+  Future<User?> getById(String guid) async {
+    final response = await userApi.userControllerFindOne(id: guid);
+
+    return response.data;
   }
 }

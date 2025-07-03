@@ -1,6 +1,8 @@
 import 'package:fiestapp/api/suggestion-service.dart';
 import 'package:fiestapp/models/suggestion.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:openapi/openapi.dart';
+
 
 class SuggestionNotifier extends StateNotifier<Suggestion> {
   final Ref ref;
@@ -9,8 +11,8 @@ class SuggestionNotifier extends StateNotifier<Suggestion> {
   SuggestionNotifier(this.ref) : super(Suggestion(beer: 0, soft: 0, pizza: 0)) {
   }
 
-  void fetchAllSuggestions() async {
-    final data = await suggestionService.getSuggestion();
+  void fetchAllSuggestions(Event event) async {
+    final data = await suggestionService.getSuggestion(event);
     state = data;
   }
 }

@@ -1,5 +1,5 @@
 import 'package:fiestapp/api/user-service.dart';
-import 'package:fiestapp/models/user.dart';
+import 'package:openapi/openapi.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CurrentUserNotifier extends StateNotifier<User?> {

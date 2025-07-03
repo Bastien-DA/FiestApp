@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:openapi/openapi.dart';
+
 
 class Profil extends ConsumerStatefulWidget {
   const Profil({super.key});
@@ -109,16 +111,14 @@ class ProfilState extends ConsumerState<Profil> {
     );
   }
 
-  String? formatAlcoholConsumption(String? alcoholConsumption) {
+  String? formatAlcoholConsumption(UserAlcoholConsumptionEnum? alcoholConsumption) {
     switch (alcoholConsumption) {
-      case 'occasional':
+      case UserAlcoholConsumptionEnum.occasional:
         return "Occasionnel";
-      case 'regular':
+      case UserAlcoholConsumptionEnum.regular:
         return "Régulier";
-      case 'veteran':
+      case UserAlcoholConsumptionEnum.veteran:
         return "Aguerri";
-      case null:
-        return null;
       default:
         return "Valeur non reconnu <PageProfil line 123>";
     }

@@ -3,21 +3,27 @@ import 'package:fiestapp/components/avatar-group/avatar-group.component.dart';
 import 'package:fiestapp/components/button/icon-button.component.dart';
 import 'package:fiestapp/components/modal/invitation-modal.dart';
 import 'package:fiestapp/enum/app-route.enum.dart';
-import 'package:fiestapp/mock/event.mock.dart';
-import 'package:fiestapp/mock/user.mock.dart';
 import 'package:fiestapp/provider/event/selected-event.provider.dart';
 import 'package:fiestapp/router.dart';
 import 'package:fiestapp/utils/constant/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:openapi/openapi.dart';
 
-class DetailsHeader extends ConsumerWidget {
+class DetailsHeader extends ConsumerStatefulWidget {
   const DetailsHeader({super.key, required this.height});
 
   final double height;
 
-  void goBack(WidgetRef ref) {
+  @override
+  ConsumerState<DetailsHeader> createState() => _DetailsHeaderState();
+}
+
+class _DetailsHeaderState extends ConsumerState<DetailsHeader> {
+  late final Event? event;
+
+  void goBack() {
     ref.read(selectedEventProvider.notifier).clear();
     ref.read(routerProvider).push(AppRoute.home.path);
   }
@@ -32,9 +38,20 @@ class DetailsHeader extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  void initState() {
+    super.initState();
+    setState(() {
+      event = ref.watch(selectedEventProvider);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    if (event == null) return const SizedBox(); // 🔒 fallback si `event` null
+
     final String usersLengthText =
-        "${mockUsers.length} participant${mockUsers.length == 1 ? '' : 's'}";
+        "${event!.participants.length} participant${event!.participants.length == 1 ? '' : 's'}";
 
     return ClipRRect(
       borderRadius: const BorderRadius.only(
@@ -42,40 +59,42 @@ class DetailsHeader extends ConsumerWidget {
         bottomRight: Radius.circular(40),
       ),
       child: CachedNetworkImage(
-        imageUrl: "${S3_enpoint}event/${mockEvents[0].guid}.webp",
+        imageUrl:
+        'https://tripxl.com/blog/wp-content/uploads/2024/09/Subsix-Underwater-Nightclub-Niyama-Private-Islands.jpg',
         width: double.infinity,
-        height: height,
+        height: widget.height,
         fit: BoxFit.cover,
         placeholder: (context, url) => Container(
           width: double.infinity,
-          height: height,
+          height: widget.height,
           color: Colors.grey.shade200,
           child: const Center(child: CircularProgressIndicator()),
         ),
         errorWidget: (context, url, error) => Container(
           width: double.infinity,
-          height: height,
+          height: widget.height,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: CachedNetworkImageProvider(defaultEventImage),
               fit: BoxFit.cover,
             ),
           ),
-          child: headerContent(context, usersLengthText, ref),
+          child: headerContent(context, usersLengthText),
         ),
         imageBuilder: (context, imageProvider) => Container(
           width: double.infinity,
-          height: height,
+          height: widget.height,
           decoration: BoxDecoration(
             image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
           ),
-          child: headerContent(context, usersLengthText, ref),
+          child: headerContent(context, usersLengthText),
         ),
       ),
     );
   }
 
-  Widget headerContent(context, usersLengthText, WidgetRef ref) {
+  Widget headerContent(
+      BuildContext context, String usersLengthText) {
     return SafeArea(
       minimum: const EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 45),
       bottom: false,
@@ -83,7 +102,7 @@ class DetailsHeader extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // 🡲 Boutons haut
+          // 🡲 Top Buttons
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -91,7 +110,7 @@ class DetailsHeader extends ConsumerWidget {
                 icon: FontAwesomeIcons.arrowLeft,
                 backgroundColor: Colors.black.withOpacity(0.2),
                 iconColor: Colors.white,
-                onClick: () => goBack(ref),
+                onClick: goBack,
               ),
               Row(
                 children: [
@@ -113,12 +132,12 @@ class DetailsHeader extends ConsumerWidget {
             ],
           ),
 
-          // 🡲 Groupe utilisateurs
+          // 🡲 Avatar Group
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               AvatarGroup(
-                users: mockUsers,
+                users: event!.participants.toList(),
                 haveBackground: true,
                 textColor: Colors.white,
                 text: usersLengthText,

@@ -1,6 +1,6 @@
 import 'package:fiestapp/components/avatar-group/avatar-group.component.dart';
 import 'package:fiestapp/components/custom-card/creator-event-name/creator-event-name.component.dart';
-import 'package:fiestapp/models/user.dart';
+import 'package:openapi/openapi.dart';
 import 'package:flutter/material.dart';
 
 class YouParticipateBottomCardComponent extends StatelessWidget {

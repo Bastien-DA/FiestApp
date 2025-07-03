@@ -1,10 +1,9 @@
 import 'package:fiestapp/components/custom-card/you-participate/you-participate-card.component.dart';
 import 'package:fiestapp/components/text/custom-title.component.dart';
-import 'package:fiestapp/models/event.dart';
-import 'package:fiestapp/models/user.dart';
 import 'package:fiestapp/provider/event/event.provider.dart';
 import 'package:fiestapp/provider/user.provider.dart';
 import 'package:flutter/material.dart';
+import 'package:openapi/openapi.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ProfilEvenements extends ConsumerWidget {
@@ -31,7 +30,7 @@ class ProfilEvenements extends ConsumerWidget {
                 children: events
                     .where(
                       (event) =>
-                          event.organizer.userGuid == currentUser?.userGuid,
+                          event.organizer.guid == currentUser?.guid,
                     )
                     .map((event) => YouParticipateCard(event: event))
                     .toList(),

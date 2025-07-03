@@ -1,9 +1,11 @@
 import 'package:fiestapp/components/text/custom-subtitlecomponent.dart';
 import 'package:fiestapp/components/text/data-tag.component.dart';
+import 'package:fiestapp/provider/event/selected-event.provider.dart';
 import 'package:fiestapp/provider/suggestion.provider.dart';
 import 'package:fiestapp/utils/constant/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:openapi/openapi.dart';
 
 class SuggestionBloc extends ConsumerStatefulWidget {
   const SuggestionBloc({super.key});
@@ -17,8 +19,13 @@ class _SuggestionBlocState extends ConsumerState<SuggestionBloc> {
   @override
   void initState() {
     super.initState();
+    
+    final Event? event = ref.read(selectedEventProvider);
 
-    ref.read(suggestionProvider.notifier).fetchAllSuggestions();
+    if (event == null) {
+      return;
+    }
+    ref.read(suggestionProvider.notifier).fetchAllSuggestions(event);
   }
 
   @override

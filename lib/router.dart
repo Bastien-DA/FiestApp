@@ -20,22 +20,22 @@ final routerProvider = Provider<GoRouter>((ref) {
     initialLocation: AppRoute.home.path,
     debugLogDiagnostics: true,
     refreshListenable: GoRouterRefreshNotifier(ref),
-    redirect: (context, state) {
-      final goingToRegister = state.uri.path == AppRoute.register.path;
-      final goingToHome = state.uri.path == AppRoute.home.path;
+    // redirect: (context, state) {
+    //   final goingToRegister = state.uri.path == AppRoute.register.path;
+    //   final goingToHome = state.uri.path == AppRoute.home.path;
+    //
+    //   if (!isLoggedIn) {
+    //     if (!goingToRegister) {
+    //       return AppRoute.register.path;
+    //     }
+    //   } else {
+    //     if (goingToRegister) {
+    //       return AppRoute.home.path;
+    //     }
+    //   }
 
-      if (!isLoggedIn) {
-        if (!goingToRegister) {
-          return AppRoute.register.path;
-        }
-      } else {
-        if (goingToRegister) {
-          return AppRoute.home.path;
-        }
-      }
-
-      return null;
-    },
+      // return null;
+    // },
     routes: [
       GoRoute(
         path: AppRoute.home.path,

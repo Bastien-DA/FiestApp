@@ -1,8 +1,6 @@
 import 'package:fiestapp/components/button/icon-button.component.dart';
 import 'package:fiestapp/components/details/event-data.component.dart';
-import 'package:fiestapp/placeholder/data.placeholder.dart';
 import 'package:fiestapp/provider/event/selected-event.provider.dart';
-import 'package:fiestapp/mock/event.mock.dart';
 import 'package:fiestapp/utils/constant/constant.dart';
 import 'package:fiestapp/utils/image-converter.utils.dart';
 import 'package:flutter/material.dart';
@@ -88,7 +86,7 @@ class _EventDetailsWithMapState extends ConsumerState<EventDetailsWithMap> {
       await manager.create(
         PointAnnotationOptions(
           geometry: Point(
-            coordinates: Position(event.longitude, event.latitute),
+            coordinates: Position(-0.56667, 44.833328),
           ),
           image: customMarkerImage,
           iconSize: 1,
@@ -122,7 +120,7 @@ class _EventDetailsWithMapState extends ConsumerState<EventDetailsWithMap> {
 
     final CameraOptions camera = CameraOptions(
       center: Point(
-        coordinates: Position(event?.longitude ?? 0, event?.latitute ?? 0),
+        coordinates: Position(-0.56667, 44.833328),
       ),
       zoom: 15,
       bearing: 0,
@@ -134,7 +132,7 @@ class _EventDetailsWithMapState extends ConsumerState<EventDetailsWithMap> {
       child: Column(
         spacing: 10,
         children: [
-          if (!widget.isMapExpanded) EventData(event: event ?? p_event),
+          if (!widget.isMapExpanded && event != null) EventData(event: event),
           SafeArea(
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),

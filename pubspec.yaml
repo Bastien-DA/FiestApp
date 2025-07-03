@@ -39,6 +39,7 @@ dependencies:
   device_info_plus: ^11.5.0
   local_auth: ^2.3.0
   path_provider: ^2.1.5
+  shared_preferences: ^2.5.3
 
 flutter_native_splash:
   color: "#FB8257"

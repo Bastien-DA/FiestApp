@@ -1,6 +1,6 @@
 import 'package:fiestapp/api/event-service.dart';
-import 'package:fiestapp/models/event.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:openapi/openapi.dart';
 
 class SelectedEventNotifier extends StateNotifier<Event?> {
   final Ref ref;
@@ -8,7 +8,7 @@ class SelectedEventNotifier extends StateNotifier<Event?> {
 
   SelectedEventNotifier(this.ref) : super(null);
 
-  Future<Event> fetchSelectedEvent(String id) async {
+  Future<Event?> fetchSelectedEvent(String id) async {
     final data = await eventService.getEventById(id);
     state = data;
     return data;
