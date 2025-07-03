@@ -8,6 +8,7 @@ import 'package:fiestapp/components/add-event/informations-block.component.dart'
 import 'package:fiestapp/components/button/button.component.dart';
 import 'package:fiestapp/components/image-selector/image-selector.component.dart';
 import 'package:fiestapp/enum/app-route.enum.dart';
+import 'package:fiestapp/provider/event/event.provider.dart';
 import 'package:fiestapp/provider/form/event-form.provider.dart';
 import 'package:fiestapp/provider/user.provider.dart';
 import 'package:fiestapp/router.dart';
@@ -62,7 +63,8 @@ class AddEvent extends ConsumerWidget {
                     label: "Créer l'évènement",
                     icon: FontAwesomeIcons.arrowRight,
                     onPressed: () => {
-                      ref.read(routerProvider).push(AppRoute.home.path),
+                      _submitForm(ref, context),
+                      ref.read(routerProvider).pop()
                     },
                   ),
                 ],
@@ -80,10 +82,13 @@ class AddEvent extends ConsumerWidget {
     final eventService = EventService();
 
     final eventForm = ref.watch(eventFormProvider);
-    final currentUser = ref.watch(userProvider);
 
 
-    await eventService.createEvent(eventForm, monId, null);
+    final response = await eventService.createEvent(eventForm, monId, null);
+
+    if (response.data != null){
+      ref.read(eventProvider).add(response.data!);
+    }
 
   }
 

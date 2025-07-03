@@ -24,7 +24,7 @@ class AuthService {
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      return data['hasAccount'] == true;
+      return data['accessToken'] == true;
     } else {
       return false;
     }
@@ -52,12 +52,6 @@ class AuthService {
     );
 
     return response;
-
-    if (response.statusCode == 200) {
-      print('Inscription réussie');
-    } else {
-      print('Échec de l\'inscription : ${response.statusCode}');
-    }
   }
 
   static Future<String> _getDeviceFingerprint() async {

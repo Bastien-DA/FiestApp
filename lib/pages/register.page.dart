@@ -15,6 +15,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:openapi/openapi.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Register extends ConsumerWidget {
   const Register({super.key});
@@ -114,8 +115,12 @@ class Register extends ConsumerWidget {
     );
 
     if (response.statusCode == 201) {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('currentId', response.data!.user.guid);
+      await prefs.setString('token', response.data!.accessToken);
+
       ref.read(authProvider.notifier).state = true;
-      ref.read(routerProvider).pushReplacement(AppRoute.home.path);
+      //ref.read(routerProvider).pushReplacement(AppRoute.home.path);
     }
   }
 

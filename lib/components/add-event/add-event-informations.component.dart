@@ -49,7 +49,7 @@ class _AddEvenInformationsState extends ConsumerState<AddEvenInformations> {
           title: "Description de l'événement",
           iconColor: Color(0xffE15B42),
           placeholder: "Entrez la description",
-          inputType: InputType.number,
+          inputType: InputType.text,
           controller: _descriptionController,
           onChanged: (value) => print("Description: $value"),
         ),

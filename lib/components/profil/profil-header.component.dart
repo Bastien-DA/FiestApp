@@ -63,7 +63,7 @@ class ProfilHeader extends ConsumerWidget {
               child: CircleAvatar(
                 radius: 61.5,
                 backgroundImage: CachedNetworkImageProvider(
-                  currentUser?.guid ?? defaultProfilImage,
+                  "${S3_enpoint}user/${currentUser?.guid}.webp",
                 ),
               ),
             ),

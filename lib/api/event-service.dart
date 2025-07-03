@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dio/src/response.dart';
 import 'package:fiestapp/provider/user.provider.dart';
 import 'package:openapi/openapi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -57,7 +58,7 @@ class EventService {
   }
 
   /// Crée un nouvel événement (optionnellement avec image)
-  Future<void> createEvent(CreateEventDto event, String guid,File? imageFile) async {
+  Future<Response<Event>> createEvent(CreateEventDto event, String guid,File? imageFile) async {
     final createDto = CreateEventDto((b) => b
       ..title = event.title
       ..location = event.location
@@ -69,10 +70,6 @@ class EventService {
 
     final response = await eventApi.eventControllerCreate(createEventDto: createDto);
 
-    if (response.statusCode == 201 || response.statusCode == 200) {
-      print('✅ Événement créé');
-    } else {
-      print('❌ Échec création événement : ${response.statusCode}');
-    }
+    return response;
   }
 }

@@ -26,6 +26,7 @@ class _HomeState extends ConsumerState<Home> {
   void initState() {
     super.initState();
     _future = ref.read(eventProvider.notifier).fetchAllEvents();
+    ref.read(userProvider.notifier).getCurrentUser();
   }
 
   @override

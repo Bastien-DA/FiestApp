@@ -1,8 +1,9 @@
+import 'package:fiestapp/utils/constant/constant.dart';
 import 'package:openapi/openapi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserService {
-  final userApi = Openapi().getUsersApi();
+  final userApi = apiClient.getUsersApi();
 
 
   Future<User?> getCurrentUser() async {

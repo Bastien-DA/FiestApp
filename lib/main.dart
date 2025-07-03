@@ -25,8 +25,7 @@ void main() async {
 
   final container = ProviderContainer();
 
-  //final isSessionExist = await AuthService.checkFingerprintAccount();
-  bool isSessionExist = true;
+  final isSessionExist = await AuthService.checkFingerprintAccount();
 
   container.read(authProvider.notifier).state = isSessionExist;
   runApp(ProviderScope(child: const MyApp()));

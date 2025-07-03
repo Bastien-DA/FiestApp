@@ -16,7 +16,7 @@ class TopHomeHeader extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userProvider);
-    return Row(
+    return user != null ? Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -63,6 +63,6 @@ class TopHomeHeader extends ConsumerWidget {
           ],
         ),
       ],
-    );
+    ) : Container();
   }
 }

@@ -1,6 +1,3 @@
-import 'package:fiestapp/api/suggestion-service.dart';
-import 'package:fiestapp/models/event.dart';
-import 'package:fiestapp/models/user.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';import 'package:openapi/openapi.dart';
 
@@ -19,11 +16,6 @@ class EventFormNotifier extends StateNotifier<CreateEventDto> {
         ..organizer = "zertyui"));
 
   XFile? get selectedFile => _selectedFile;
-
-  // void updateSelectedFile(XFile? file) {
-  //   _selectedFile = file;
-  //   state = state.rebuild(b)(ppLink: file?.path ?? "");
-  // }
 
   void updateTitle(String title) {
     state = state.rebuild((b) => b..title = title);

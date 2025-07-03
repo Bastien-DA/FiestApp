@@ -1,4 +1,5 @@
 import 'package:fiestapp/components/input/data-tag-input.component.dart';
+import 'package:fiestapp/provider/form/event-form.provider.dart';
 import 'package:fiestapp/utils/constant/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,22 +13,37 @@ class AddEventAdress extends ConsumerStatefulWidget {
 
 class _AddEventAdressState extends ConsumerState<AddEventAdress> {
   // Déclaration des controllers
-  late TextEditingController _titleController;
-  late TextEditingController _descriptionController;
+  late TextEditingController _streetController;
+  late TextEditingController _cityController;
+  late TextEditingController _postalCodeController;
 
   @override
   void initState() {
     super.initState();
     // Initialisation des controllers
-    _titleController = TextEditingController();
-    _descriptionController = TextEditingController();
+    _streetController = TextEditingController();
+    _cityController = TextEditingController();
+    _postalCodeController = TextEditingController();
+
+    _streetController.addListener(() {
+      ref.read(eventFormProvider.notifier).updateLocation("${_streetController.text}, ${_postalCodeController.text} ${_cityController.text}");
+    });
+
+    _cityController.addListener(() {
+      ref.read(eventFormProvider.notifier).updateLocation("${_streetController.text}, ${_postalCodeController.text} ${_cityController.text}");
+    });
+
+    _postalCodeController.addListener(() {
+      ref.read(eventFormProvider.notifier).updateLocation("${_streetController.text}, ${_postalCodeController.text} ${_cityController.text}");
+    });
   }
 
   @override
   void dispose() {
     // Libération de la mémoire
-    _titleController.dispose();
-    _descriptionController.dispose();
+    _streetController.dispose();
+    _cityController.dispose();
+    _postalCodeController.dispose();
     super.dispose();
   }
 
@@ -41,7 +57,7 @@ class _AddEventAdressState extends ConsumerState<AddEventAdress> {
           title: "Rue",
           placeholder: "Entrez la rue de l'événement",
           inputType: InputType.text,
-          controller: _titleController,
+          controller: _streetController,
           onChanged: (value) => print("rue: $value"),
         ),
         Row(
@@ -53,7 +69,7 @@ class _AddEventAdressState extends ConsumerState<AddEventAdress> {
                 title: "Ville",
                 placeholder: "Entrez la ville de l'événement",
                 inputType: InputType.text,
-                controller: _titleController,
+                controller: _cityController,
                 onChanged: (value) => print("Ville: $value"),
               ),
             ),
@@ -64,7 +80,7 @@ class _AddEventAdressState extends ConsumerState<AddEventAdress> {
                 iconColor: Color(0xffE15B42),
                 placeholder: "Entrez le code postal",
                 inputType: InputType.number,
-                controller: _descriptionController,
+                controller: _postalCodeController,
                 onChanged: (value) => print("Code postal: $value"),
               ),
             ),
